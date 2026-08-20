@@ -1,0 +1,82 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  border: none;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.md {
+  padding: var(--space-md) var(--space-xxl);
+  font-size: var(--font-sm);
+}
+
+.lg {
+  padding: var(--space-lg) var(--space-xxl);
+  font-size: var(--font-base);
+}
+
+.primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 8px 24px rgba(107, 78, 255, 0.28);
+}
+
+.primary:hover {
+  background: var(--color-active);
+}
+
+.dark {
+  background: var(--color-dark);
+  color: var(--color-white);
+}
+
+.dark:hover {
+  background: #211d3a;
+}
+
+.outline {
+  background: transparent;
+  color: var(--color-dark);
+  border: 1.5px solid var(--color-border);
+}
+
+.outline:hover {
+  border-color: var(--color-dark);
+}
+
+.ghost {
+  background: var(--color-primary-shade);
+  color: var(--color-primary);
+}
+
+.ghost:hover {
+  background: #ddd4ff;
+}
+
+.light {
+  background: var(--color-white);
+  color: var(--color-primary);
+}
+
+.light:hover {
+  background: var(--color-primary-shade);
+}
+
+.outlineLight {
+  background: transparent;
+  color: var(--color-white);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+}
+
+.outlineLight:hover {
+  border-color: var(--color-white);
+}

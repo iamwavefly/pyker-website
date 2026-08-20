@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,300..900;1,300..900&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap");
+
+:root {
+  /* Colors — mirrors mobile/theme/color.ts */
+  --color-primary: #6b4eff;
+  --color-primary-shade: #eae5ff;
+  --color-active: #7f66ff;
+  --color-dark: #0c0a1a;
+  --color-background: #f8f9fa;
+  --color-green: #02c076;
+  --color-green-shade: rgba(2, 192, 118, 0.1);
+  --color-red: #f84960;
+  --color-red-shade: rgba(248, 73, 96, 0.1);
+  --color-orange: #f7931a;
+  --color-orange-shade: rgba(247, 147, 26, 0.1);
+  --color-amber: #f0b90b;
+  --color-amber-shade: rgba(240, 185, 11, 0.1);
+  --color-sky: #0084ff;
+  --color-sky-shade: rgba(0, 132, 255, 0.1);
+  --color-grey-07: #1f1d2f;
+  --color-grey-06: #666379;
+  --color-grey-05: #848e9c;
+  --color-grey-03: #b7bdc6;
+  --color-grey-02: #f0f0f0;
+  --color-border: #d6d5dd;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Spacing — mirrors mobile/theme/sizes.ts */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 20px;
+  --space-xxl: 24px;
+  --space-xxxl: 32px;
+  --space-huge: 40px;
+
+  /* Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-xxl: 24px;
+  --radius-full: 999px;
+
+  /* Font sizes */
+  --font-xs: 12px;
+  --font-sm: 14px;
+  --font-base: 16px;
+  --font-lg: 18px;
+  --font-xl: 20px;
+  --font-2xl: 24px;
+  --font-3xl: 28px;
+  --font-4xl: 32px;
+  --font-5xl: 36px;
+  --font-6xl: 48px;
+
+  --font-family: "Mona Sans", sans-serif;
+  --font-display: "Bricolage Grotesque", "Mona Sans", sans-serif;
+
+  --container-width: 1152px;
+  --shadow-card: 0 2px 16px rgba(12, 10, 26, 0.06);
+  --shadow-lifted: 0 24px 64px rgba(12, 10, 26, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  background: var(--color-background);
+  color: var(--color-dark);
+  font-size: var(--font-base);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--space-xxl);
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-inline: var(--space-lg);
+  }
+}
+
+section {
+  position: relative;
+}

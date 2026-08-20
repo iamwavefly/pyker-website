@@ -1,0 +1,121 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(248, 249, 250, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.scrolled {
+  border-color: var(--color-border);
+  box-shadow: 0 4px 20px rgba(12, 10, 26, 0.06);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xxl);
+  padding-block: var(--space-lg);
+  transition: padding-block 0.25s ease;
+}
+
+.scrolled .bar {
+  padding-block: var(--space-md);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-lg);
+  font-weight: 700;
+  color: var(--color-dark);
+  flex-shrink: 0;
+}
+
+.logoMark {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xxl);
+  font-size: var(--font-sm);
+  font-weight: 500;
+  color: var(--color-grey-06);
+}
+
+.nav a {
+  position: relative;
+  padding-block: var(--space-xs);
+  transition: color 0.2s ease;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -1px;
+  height: 2px;
+  background: var(--color-primary);
+  transition: right 0.25s ease;
+}
+
+.nav a:hover {
+  color: var(--color-dark);
+}
+
+.active {
+  color: var(--color-primary) !important;
+  font-weight: 600;
+}
+
+.active::after {
+  right: 0 !important;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-shrink: 0;
+}
+
+.menuToggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-dark);
+}
+
+.mobileMenu {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .nav,
+  .actions {
+    display: none;
+  }
+
+  .menuToggle {
+    display: flex;
+  }
+
+  .mobileMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-lg);
+    padding-block: var(--space-lg) var(--space-xxl);
+    font-size: var(--font-base);
+    font-weight: 500;
+  }
+}

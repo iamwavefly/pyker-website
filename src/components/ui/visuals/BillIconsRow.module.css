@@ -1,0 +1,15 @@
+.row {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.pill {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: var(--color-orange-shade);
+  color: var(--color-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

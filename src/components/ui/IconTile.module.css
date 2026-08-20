@@ -1,0 +1,34 @@
+.tile {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.primary {
+  background: var(--color-primary-shade);
+  color: var(--color-primary);
+}
+
+.dark {
+  background: var(--color-dark);
+  color: var(--color-white);
+}
+
+.green {
+  background: var(--color-green-shade);
+  color: var(--color-green);
+}
+
+.orange {
+  background: var(--color-orange-shade);
+  color: var(--color-orange);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
+}

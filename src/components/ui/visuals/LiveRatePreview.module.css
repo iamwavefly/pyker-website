@@ -1,0 +1,42 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-grey-05);
+  letter-spacing: 0.03em;
+}
+
+.price {
+  font-size: var(--font-sm);
+  font-weight: 700;
+  color: var(--color-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.up {
+  font-size: var(--font-xs);
+  font-weight: 700;
+  color: var(--color-green);
+}
+
+.down {
+  font-size: var(--font-xs);
+  font-weight: 700;
+  color: var(--color-red);
+}
+
+.loading {
+  font-size: var(--font-xs);
+  color: var(--color-grey-05);
+}

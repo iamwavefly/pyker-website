@@ -1,0 +1,27 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-xs);
+  font-weight: 600;
+  color: var(--color-grey-06);
+}
+
+.check {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  border-radius: 50%;
+  background: var(--color-green-shade);
+  color: var(--color-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

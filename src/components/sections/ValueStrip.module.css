@@ -1,0 +1,153 @@
+.strip {
+  border-block: 1px solid var(--color-border);
+  background: var(--color-dark);
+  overflow: hidden;
+  padding-block: var(--space-lg);
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: scroll 32s linear infinite;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.trustItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--color-grey-03);
+  white-space: nowrap;
+  padding-inline: var(--space-xxl);
+}
+
+.trustItem:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.trustItem svg {
+  color: var(--color-active);
+  flex-shrink: 0;
+}
+
+.liveLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-grey-03);
+  white-space: nowrap;
+  padding-inline: var(--space-xxl) var(--space-lg);
+}
+
+.liveDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-green);
+  animation: pulse 1.8s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.coinCard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-xl);
+  white-space: nowrap;
+}
+
+.coinCard:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.coinBadge {
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  border-radius: 50%;
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.coinInfo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.coinSymbol {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-grey-05);
+  letter-spacing: 0.03em;
+}
+
+.coinPrice {
+  font-size: var(--font-sm);
+  font-weight: 700;
+  color: var(--color-white);
+  font-variant-numeric: tabular-nums;
+}
+
+.changeUp {
+  font-size: var(--font-xs);
+  font-weight: 700;
+  color: var(--color-green);
+  font-variant-numeric: tabular-nums;
+}
+
+.changeDown {
+  font-size: var(--font-xs);
+  font-weight: 700;
+  color: var(--color-red);
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(2, 192, 118, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(2, 192, 118, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(2, 192, 118, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation: none;
+  }
+
+  .liveDot {
+    animation: none;
+  }
+}
