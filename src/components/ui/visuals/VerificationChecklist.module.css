@@ -1,27 +1,17 @@
-.list {
+.row {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: var(--space-sm);
-  width: 100%;
 }
 
-.item {
-  display: flex;
+.badge {
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-sm);
-  font-size: var(--font-xs);
-  font-weight: 600;
-  color: var(--color-grey-06);
-}
-
-.check {
-  width: 18px;
-  height: 18px;
-  min-width: 18px;
-  border-radius: 50%;
+  gap: 4px;
+  padding: 4px var(--space-sm);
+  border-radius: var(--radius-full);
   background: var(--color-green-shade);
   color: var(--color-green);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
 }

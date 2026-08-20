@@ -25,6 +25,7 @@ import {
   EnvelopeSimple,
   Megaphone,
   CreditCard,
+  CopySimple,
 } from "@phosphor-icons/react";
 
 type IconProps = {
@@ -73,3 +74,4 @@ export const LinkedinLogoIcon = withWeight(LinkedinLogo, "fill");
 export const EnvelopeIcon = withDuotone(EnvelopeSimple);
 export const MegaphoneIcon = withDuotone(Megaphone);
 export const CreditCardIcon = withDuotone(CreditCard);
+export const CopyIcon = withDuotone(CopySimple);

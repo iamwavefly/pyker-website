@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Container from "../ui/Container";
+import CopyButton from "../ui/CopyButton";
 import { InstagramLogoIcon, LinkedinLogoIcon, XLogoIcon } from "../icons";
 import styles from "./Footer.module.css";
 
@@ -23,6 +24,7 @@ const COMPANY_LINKS = [
 const LEGAL_LINKS = [
   { label: "Terms of service", to: "/terms" },
   { label: "Privacy policy", to: "/privacy" },
+  { label: "Delete your account", to: "/delete-account" },
 ];
 
 const SUPPORT_EMAIL = "support@usepyker.com";
@@ -40,9 +42,12 @@ export default function Footer() {
             <p className={styles.tagline}>
               Sell crypto for Naira and spend in USD — one simple, secure wallet.
             </p>
-            <a href={`mailto:${SUPPORT_EMAIL}`} className={styles.email}>
-              {SUPPORT_EMAIL}
-            </a>
+            <div className={styles.emailRow}>
+              <a href={`mailto:${SUPPORT_EMAIL}`} className={styles.email}>
+                {SUPPORT_EMAIL}
+              </a>
+              <CopyButton text={SUPPORT_EMAIL} />
+            </div>
             <div className={styles.socials}>
               {SOCIALS.map(({ Icon, label, href }) => (
                 <a href={href} key={label} aria-label={label} className={styles.socialLink}>

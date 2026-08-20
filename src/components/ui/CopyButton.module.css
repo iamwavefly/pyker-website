@@ -1,0 +1,18 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--color-grey-05);
+  flex-shrink: 0;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.button:hover {
+  color: var(--color-primary);
+  background: var(--color-primary-shade);
+}

@@ -3,6 +3,7 @@ import Container from "../components/ui/Container";
 import Card from "../components/ui/Card";
 import IconTile from "../components/ui/IconTile";
 import Button from "../components/ui/Button";
+import CopyButton from "../components/ui/CopyButton";
 import {
   ArrowRightIcon,
   EnvelopeIcon,
@@ -42,14 +43,17 @@ export default function ContactPage() {
                 For account issues, transaction questions, or anything else — this is the
                 fastest way to reach the team.
               </p>
-              <Button
-                variant="ghost"
-                size="md"
-                href={`mailto:${SUPPORT_EMAIL}`}
-                icon={<ArrowRightIcon width={16} height={16} />}
-              >
-                {SUPPORT_EMAIL}
-              </Button>
+              <div className={styles.emailRow}>
+                <Button
+                  variant="ghost"
+                  size="md"
+                  href={`mailto:${SUPPORT_EMAIL}`}
+                  icon={<ArrowRightIcon width={16} height={16} />}
+                >
+                  {SUPPORT_EMAIL}
+                </Button>
+                <CopyButton text={SUPPORT_EMAIL} />
+              </div>
             </Card>
 
             <Card className={styles.card}>

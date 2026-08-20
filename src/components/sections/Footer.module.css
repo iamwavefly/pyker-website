@@ -37,6 +37,12 @@
   line-height: 1.6;
 }
 
+.emailRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
 .email {
   font-size: var(--font-sm);
   font-weight: 600;
