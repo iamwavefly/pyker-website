@@ -44,7 +44,7 @@ const FEATURES = [
     icon: WalletIcon,
     tone: "dark" as const,
     title: "13 coins, one payout",
-    description: "Sell Bitcoin, Ethereum, Solana, USDT and 9 more assets — straight to Naira.",
+    description: "Sell Bitcoin, Ethereum, Solana, USDT and 9 more assets, straight to Naira.",
     Visual: CoinStack,
   },
   {

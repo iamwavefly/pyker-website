@@ -1,4 +1,4 @@
-// Mirrors /mobile/theme/color.ts — keep in sync with the app's palette.
+// Mirrors /mobile/theme/color.ts. Keep in sync with the app's palette.
 export const colors = {
   primary: "#6B4EFF",
   primaryShade: "#EAE5FF",

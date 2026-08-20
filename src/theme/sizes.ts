@@ -1,4 +1,4 @@
-// Mirrors /mobile/theme/sizes.ts — keep spacing/radius/font scales in sync with the app.
+// Mirrors /mobile/theme/sizes.ts. Keep spacing/radius/font scales in sync with the app.
 export const spacing = {
   xs: 4,
   sm: 8,

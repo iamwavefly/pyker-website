@@ -29,7 +29,7 @@ export default function Hero() {
 
             <p className={styles.subtitle}>
               Pyker turns your crypto into spendable Naira in minutes, then lets
-              you fund a virtual USD card for anywhere Visa is accepted online —
+              you fund a virtual USD card for anywhere Visa is accepted online,
               all backed by bank-level security.
             </p>
 

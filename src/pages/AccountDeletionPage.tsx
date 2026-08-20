@@ -18,8 +18,8 @@ export default function AccountDeletionPage() {
         <h2>What happens to your account</h2>
         <p>
           Once we've verified your request, we'll disable your account and remove your
-          profile information — including your name, email, phone number, and any
-          identity documents on file — from our active systems.
+          profile information, including your name, email, phone number, and any
+          identity documents on file, from our active systems.
         </p>
       </section>
 
@@ -27,8 +27,8 @@ export default function AccountDeletionPage() {
         <h2>What data we retain, and why</h2>
         <p>
           Some information cannot be deleted immediately. As a financial service, we're
-          required to retain certain records — such as transaction history, identity
-          verification records, and related communications — for a period after an
+          required to retain certain records, such as transaction history, identity
+          verification records, and related communications, for a period after an
           account is closed, to meet legal, regulatory, and anti-fraud obligations. This
           data is kept securely, is no longer accessible through the app, and is not
           used for any purpose other than compliance and legal record-keeping.

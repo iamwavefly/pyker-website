@@ -40,7 +40,7 @@ export default function ContactPage() {
               </IconTile>
               <h3 className={styles.cardTitle}>Email support</h3>
               <p className={styles.cardText}>
-                For account issues, transaction questions, or anything else — this is the
+                For account issues, transaction questions, or anything else, this is the
                 fastest way to reach the team.
               </p>
               <div className={styles.emailRow}>
@@ -62,7 +62,7 @@ export default function ContactPage() {
               </IconTile>
               <h3 className={styles.cardTitle}>Follow along</h3>
               <p className={styles.cardText}>
-                Product updates, announcements and the occasional market take — find us
+                Product updates, announcements and the occasional market take. Find us
                 on social.
               </p>
               <div className={styles.socials}>

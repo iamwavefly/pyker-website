@@ -40,7 +40,7 @@ export default function Footer() {
               <span>Pyker</span>
             </Link>
             <p className={styles.tagline}>
-              Sell crypto for Naira and spend in USD — one simple, secure wallet.
+              Sell crypto for Naira and spend in USD from one simple, secure wallet.
             </p>
             <div className={styles.emailRow}>
               <a href={`mailto:${SUPPORT_EMAIL}`} className={styles.email}>

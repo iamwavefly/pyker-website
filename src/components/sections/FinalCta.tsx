@@ -16,7 +16,7 @@ export default function FinalCta() {
             <h2 className={styles.title}>Take control of your crypto today</h2>
             <p className={styles.description}>
               Download Pyker and start turning crypto into Naira, spending with your
-              virtual USD card, and paying bills — all from one secure wallet.
+              virtual USD card, and paying bills, all from one secure wallet.
             </p>
 
             <div className={styles.actionsWrap}>

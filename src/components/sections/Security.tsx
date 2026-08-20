@@ -34,7 +34,7 @@ export default function Security() {
             <span className={styles.eyebrow}>Security</span>
             <h2 className={styles.title}>Built to keep your money safe</h2>
             <p className={styles.description}>
-              Security isn't an afterthought — it's how Pyker is built, from account
+              Security isn't an afterthought: it's how Pyker is built, from account
               verification to every transaction you make.
             </p>
           </Reveal>

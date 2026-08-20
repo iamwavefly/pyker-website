@@ -19,17 +19,17 @@ const QUESTIONS = [
   {
     question: "Which coins can I sell on Pyker?",
     answer:
-      "Bitcoin, Ethereum, USDT, USDC, BNB, Solana, XRP, Dogecoin, TRON, TON, Litecoin, Bitcoin Cash and Avalanche — 13 coins in total, with more added regularly.",
+      "Bitcoin, Ethereum, USDT, USDC, BNB, Solana, XRP, Dogecoin, TRON, TON, Litecoin, Bitcoin Cash and Avalanche: 13 coins in total, with more added regularly.",
   },
   {
     question: "What is the Pyker virtual card?",
     answer:
-      "A virtual USD card you fund directly from your Pyker wallet balance. Use it for international subscriptions, online shopping, and anywhere Visa is accepted — no domiciliary bank account required.",
+      "A virtual USD card you fund directly from your Pyker wallet balance. Use it for international subscriptions, online shopping, and anywhere Visa is accepted, no domiciliary bank account required.",
   },
   {
     question: "Can I pay bills from my Pyker wallet?",
     answer:
-      "Yes. Once your Naira balance is funded — by selling crypto or a bank transfer — you can pay for airtime, data, electricity and cable TV subscriptions directly from it.",
+      "Yes. Once your Naira balance is funded (by selling crypto or a bank transfer), you can pay for airtime, data, electricity and cable TV subscriptions directly from it.",
   },
   {
     question: "Is my money and data safe?",

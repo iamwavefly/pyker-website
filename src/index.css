@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,300..900;1,300..900&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap");
 
 :root {
-  /* Colors — mirrors mobile/theme/color.ts */
+  /* Colors, mirrors mobile/theme/color.ts */
   --color-primary: #6b4eff;
   --color-primary-shade: #eae5ff;
   --color-active: #7f66ff;
@@ -26,7 +26,7 @@
   --color-white: #ffffff;
   --color-black: #000000;
 
-  /* Spacing — mirrors mobile/theme/sizes.ts */
+  /* Spacing, mirrors mobile/theme/sizes.ts */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 12px;

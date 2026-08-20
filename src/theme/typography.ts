@@ -1,4 +1,4 @@
-// Mirrors /mobile/theme/typography.ts — same Mona Sans scale used in the app.
+// Mirrors /mobile/theme/typography.ts. Same Mona Sans scale used in the app.
 export const fontFamily = {
   regular: "'Mona Sans', sans-serif",
   medium: "'Mona Sans', sans-serif",

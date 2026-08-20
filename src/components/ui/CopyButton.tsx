@@ -11,7 +11,7 @@ export default function CopyButton({ text, className }: { text: string; classNam
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
     } catch {
-      // Clipboard access denied or unavailable — nothing to fall back to safely.
+      // Clipboard access denied or unavailable, nothing to fall back to safely.
     }
   }
 

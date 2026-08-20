@@ -64,7 +64,7 @@ export default function TermsPage() {
         <ul>
           <li>Maintaining the confidentiality of your login credentials, PIN, and device.</li>
           <li>All activity that occurs under your account, whether or not authorized by you.</li>
-          <li>Ensuring that any wallet address or bank account you provide is accurate — Pyker is not responsible for funds sent to an incorrect address or account you supplied.</li>
+          <li>Ensuring that any wallet address or bank account you provide is accurate. Pyker is not responsible for funds sent to an incorrect address or account you supplied.</li>
           <li>Complying with any tax obligations arising from your use of the Service.</li>
         </ul>
       </section>

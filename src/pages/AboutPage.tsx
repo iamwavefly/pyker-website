@@ -36,7 +36,7 @@ export default function AboutPage() {
       <PageIntro
         eyebrow="About Pyker"
         title="A simpler way to turn crypto into everyday money"
-        description="Pyker exists to make crypto practical for everyday use — selling and spending — without the stress that usually comes with it."
+        description="Pyker exists to make crypto practical for everyday use, selling and spending, without the stress that usually comes with it."
       />
 
       <section className={styles.section}>
@@ -46,13 +46,13 @@ export default function AboutPage() {
             <p className={styles.missionText}>
               Selling crypto shouldn't mean juggling multiple apps, confusing rates, or
               waiting days to get paid. We built Pyker as one place to sell your crypto
-              and turn it into Naira in minutes — backed by identity verification and
+              and turn it into Naira in minutes, backed by identity verification and
               bank-level security from day one.
             </p>
             <p className={styles.missionText}>
               Beyond selling, Pyker connects crypto to the things people actually spend
               money on: a virtual USD card for online payments, plus airtime, data,
-              electricity, and cable TV. The goal is simple — make crypto useful, not
+              electricity, and cable TV. The goal is simple: make crypto useful, not
               just something you hold.
             </p>
           </div>

@@ -60,7 +60,7 @@ export default function HomePage() {
         tint
         eyebrow="Pay bills instantly"
         title="Airtime, data and bills, sorted"
-        description="Once your Naira balance is topped up from a sale, pay for the essentials right there in the app — no separate app, no delay."
+        description="Once your Naira balance is topped up from a sale, pay for the essentials right there in the app. No separate app, no delay."
         points={[
           "Airtime, data, electricity & cable TV",
           "Pay directly from your Naira balance",
@@ -73,7 +73,7 @@ export default function HomePage() {
       <ShowcaseSplit
         eyebrow="Trade between assets"
         title="Swap crypto at a fair, live rate"
-        description="Convert directly between supported assets — no detour through Naira — with the rate shown live before you confirm."
+        description="Convert directly between supported assets, no detour through Naira, with the rate shown live before you confirm."
         points={[
           "Convert between supported crypto assets directly",
           "Live floating rate shown before you confirm",
