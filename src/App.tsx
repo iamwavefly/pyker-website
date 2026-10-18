@@ -4,6 +4,7 @@ import Layout from "./components/layout/Layout";
 import ScrollToTop from "./components/layout/ScrollToTop";
 import { ROUTES, findRoute } from "./routes";
 import { applyMeta } from "./seo/meta";
+import { useHighlighterDraw, usePageTransitions } from "./hooks/useMotion";
 
 // Pre-rendered pages ship with the right head tags; this keeps them correct
 // as the user navigates between pages in the browser.
@@ -16,6 +17,9 @@ function RouteMeta() {
 }
 
 function App() {
+  useHighlighterDraw();
+  usePageTransitions();
+
   return (
     <>
       <ScrollToTop />

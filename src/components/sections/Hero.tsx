@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import { Link } from "react-router-dom";
 import Container from "../ui/Container";
 import Sparkline from "../page/Sparkline";
 import { FEATURES } from "../../data/features";
 import Button from "../ui/Button";
 import Phone from "../ui/Phone";
+import { BtcIcon } from "../icons/crypto";
 import VirtualCard from "../ui/VirtualCard";
 import MerchantLogo from "../ui/MerchantLogo";
-import { BtcIcon } from "../icons/crypto";
+import RollingNumber from "../ui/RollingNumber";
 import { ArrowRightIcon, CaretRightIcon, CheckCircleIcon } from "../icons";
 import { COINS, formatNgn } from "../../data/coins";
 import { useMarketTicker } from "../../hooks/useMarketTicker";
@@ -16,18 +17,104 @@ import styles from "./Hero.module.css";
 
 const TRUST = ["BVN-verified accounts", "PIN on every move", "Free naira withdrawals"];
 
-const RATE_COINS = COINS.filter((coin) => ["bitcoin", "tether", "ethereum"].includes(coin.id));
 
+// The app's real deposit tracker states.
+const SALE_STAGES = [
+  { key: "detected", label: "Payment detected" },
+  { key: "validating", label: "Validating" },
+  { key: "credited", label: "Credited" },
+] as const;
+const SALE_STEP_MS = 1300;
+
+// Where each naira coin flies when the sale is credited (offsets from the badge).
+const BURST = [
+  { x: -150, y: -70, r: -40, d: 0 },
+  { x: -110, y: -115, r: 25, d: 40 },
+  { x: -60, y: -130, r: -15, d: 80 },
+  { x: -15, y: -110, r: 45, d: 20 },
+  { x: 25, y: -85, r: -30, d: 60 },
+  { x: -175, y: -30, r: 20, d: 100 },
+  { x: 40, y: -45, r: -50, d: 120 },
+  { x: -85, y: -60, r: 60, d: 140 },
+];
+
+// A finished sale. The first time it scrolls into view it plays through the
+// tracker once, then stays as a fixed receipt. Pre-renders as credited.
+function SaleTile() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [stage, setStage] = useState(2);
+  const [burst, setBurst] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node || !document.documentElement.classList.contains("motion")) return;
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      setStage(0);
+      timers.push(setTimeout(() => setStage(1), SALE_STEP_MS));
+      timers.push(
+        setTimeout(() => {
+          setStage(2);
+          setBurst(true);
+        }, SALE_STEP_MS * 2),
+      );
+      timers.push(setTimeout(() => setBurst(false), SALE_STEP_MS * 2 + 1600));
+    });
+    observer.observe(node);
+    return () => {
+      observer.disconnect();
+      timers.forEach(clearTimeout);
+    };
+  }, []);
+
+  const { key, label } = SALE_STAGES[stage];
+  const credited = key === "credited";
+
+  return (
+    <div ref={ref} className={`${styles.tile} ${styles.tileLime} ${styles.sale}`}>
+      <span className={styles.tileTag}>
+        <BtcIcon size={18} /> Sell · BTC
+      </span>
+      <p className={styles.saleRoute}>
+        BTC <ArrowRightIcon width={26} height={26} /> NGN
+      </p>
+      <div className={styles.saleFoot}>
+        <span className={credited ? "" : styles.salePending}>
+          <small>{credited ? "You received" : "You'll receive"} · 0.004 BTC</small>
+          <RollingNumber value={credited ? "₦432,180" : "₦000,000"} />
+        </span>
+        <span key={key} className={`${styles.saleDone} ${styles[key]}`} aria-live="polite">
+          {credited ? <CheckCircleIcon width={16} height={16} /> : <i className={styles.stageDot} />}
+          {label}
+          {burst && (
+            <span className={styles.burst} aria-hidden="true">
+              {BURST.map((coin, i) => (
+                <i key={i} style={{ "--x": `${coin.x}px`, "--y": `${coin.y}px`, "--r": `${coin.r}deg`, "--d": `${coin.d}ms` } as CSSProperties}>
+                  ₦
+                </i>
+              ))}
+            </span>
+          )}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+const RATE_COINS = COINS.filter((coin) => ["bitcoin", "tether", "ethereum"].includes(coin.id));
 const RATE_CYCLE_MS = 4000;
 
-// One featured coin at a time, cycling, with its 7-day chart across the tile.
+// The live element of the hero: one coin at a time, cycling, with its 7-day
+// chart across the tile. Pauses on hover and when motion is reduced.
 function RateTile() {
   const { coins } = useMarketTicker();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (paused || !document.documentElement.classList.contains("motion")) return;
     const timer = setInterval(() => setIndex((i) => (i + 1) % RATE_COINS.length), RATE_CYCLE_MS);
     return () => clearInterval(timer);
   }, [paused]);
@@ -63,11 +150,11 @@ function RateTile() {
         </div>
       </div>
 
-      <div key={coin.id} className={styles.rateBody}>
+      <div className={styles.rateBody}>
         <span className={styles.rateLabel}>1 {coin.symbol} to naira</span>
         {live ? (
           <p className={styles.rateValue}>
-            ₦{formatNgn(live.price)}
+            <RollingNumber value={`₦${formatNgn(live.price)}`} />
             <span className={up ? styles.up : styles.down}>
               {up ? "▲" : "▼"} {Math.abs(live.change24h).toFixed(1)}%
             </span>
@@ -84,45 +171,92 @@ function RateTile() {
   );
 }
 
-function BentoVisual() {
+// The app's own screens, telling the story: wallet, deposit address, credited.
+const PHONE_SCREENS = [
+  { src: "/screens/home.png", alt: "Pyker home screen with wallet balance and quick actions" },
+  { src: "/screens/sell-address.png", alt: "Pyker deposit address screen with a QR code and live rates" },
+  { src: "/screens/sell-success.png", alt: "Pyker sale tracker showing a Bitcoin sale credited" },
+];
+const PHONE_SCREEN_MS = 3800;
 
+function PhoneTile() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node || !document.documentElement.classList.contains("motion")) return;
+    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting));
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!visible) return;
+    const timer = setInterval(() => setActive((i) => (i + 1) % PHONE_SCREENS.length), PHONE_SCREEN_MS);
+    return () => clearInterval(timer);
+  }, [visible]);
+
+  return (
+    <div ref={ref} className={`${styles.tile} ${styles.tilePhone}`}>
+      <span className={styles.phoneTag}>One app for crypto and dollars</span>
+      <Phone screens={PHONE_SCREENS} active={active} className={styles.phone} eager />
+    </div>
+  );
+}
+
+// The card leans towards the pointer, with a sheen that follows it.
+function CardTile() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  function handleMove(event: PointerEvent<HTMLDivElement>) {
+    const node = ref.current;
+    if (event.pointerType !== "mouse" || !node || !document.documentElement.classList.contains("motion")) return;
+    const rect = node.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    node.style.setProperty("--ry", `${(x * 18).toFixed(1)}deg`);
+    node.style.setProperty("--rx", `${(-y * 14).toFixed(1)}deg`);
+    node.style.setProperty("--sheen", `${((x + 0.5) * 100).toFixed(0)}%`);
+  }
+
+  function handleLeave() {
+    ref.current?.style.removeProperty("--ry");
+    ref.current?.style.removeProperty("--rx");
+    ref.current?.style.removeProperty("--sheen");
+  }
+
+  return (
+    <div
+      ref={ref}
+      className={`${styles.tile} ${styles.tileViolet} ${styles.card}`}
+      onPointerMove={handleMove}
+      onPointerLeave={handleLeave}
+    >
+      <p className={styles.tileTitle}>Spend in dollars</p>
+      <span className={styles.cardNote}>Visa or Mastercard, funded in naira</span>
+      <div className={styles.cardArt}>
+        <VirtualCard color="black" network="visa" />
+        <span className={styles.sheen} aria-hidden="true" />
+      </div>
+    </div>
+  );
+}
+
+function BentoVisual() {
   return (
     <div className={styles.bento}>
       {/* Left column */}
-      <div className={`${styles.tile} ${styles.tileLime} ${styles.sale}`}>
-        <span className={styles.tileTag}>
-          <BtcIcon size={18} /> Sell · BTC
-        </span>
-        <p className={styles.saleRoute}>
-          BTC <ArrowRightIcon width={26} height={26} /> NGN
-        </p>
-        <div className={styles.saleFoot}>
-          <span>
-            <small>You received</small>
-            ₦432,180
-          </span>
-          <span className={styles.saleDone}>
-            <CheckCircleIcon width={16} height={16} /> Credited
-          </span>
-        </div>
-      </div>
+      <SaleTile />
 
       <RateTile />
 
       {/* Centre: the app */}
-      <div className={`${styles.tile} ${styles.tilePhone}`}>
-        <span className={styles.phoneTag}>One app for crypto and dollars</span>
-        <Phone src="/screens/home.png" alt="Pyker home screen with wallet balance and quick actions" className={styles.phone} eager />
-      </div>
+      <PhoneTile />
 
       {/* Right column */}
-      <div className={`${styles.tile} ${styles.tileViolet} ${styles.card}`}>
-        <p className={styles.tileTitle}>Spend in dollars</p>
-        <span className={styles.cardNote}>Visa or Mastercard, funded in naira</span>
-        <div className={styles.cardArt}>
-          <VirtualCard color="black" network="visa" />
-        </div>
-      </div>
+      <CardTile />
 
       <div className={`${styles.tile} ${styles.tileWhite} ${styles.merchants}`}>
         <span className={styles.tileTag}>Pay for</span>

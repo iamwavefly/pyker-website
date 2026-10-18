@@ -33,11 +33,47 @@
   background: #f8f9fa;
 }
 
-.screen img {
+.shot {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
+  /* The same curve phones use for navigation */
+  transition: transform 0.55s cubic-bezier(0.32, 0.72, 0, 1), filter 0.55s cubic-bezier(0.32, 0.72, 0, 1),
+    box-shadow 0.55s ease;
+}
+
+/* The screen in view */
+.shotOn {
+  z-index: 2;
+  transform: none;
+  box-shadow: -10px 0 30px rgba(12, 10, 26, 0.18);
+}
+
+/* Screens we've moved past sit slightly left, dimmed, underneath */
+.shotPast {
+  z-index: 1;
+  transform: translateX(-28%);
+  filter: brightness(0.88);
+}
+
+/* Screens still to come wait off to the right, above */
+.shotNext {
+  z-index: 3;
+  transform: translateX(102%);
+  box-shadow: none;
+}
+
+/* Screens not involved in the current move jump without animating */
+.snap {
+  transition: none;
+}
+
+/* With a single screen there's nothing to move */
+.shot:only-of-type {
+  box-shadow: none;
 }
 
 .island {

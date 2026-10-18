@@ -50,7 +50,28 @@
   font-weight: 700;
   line-height: 1;
   box-shadow: 0 0.06em 0 rgba(12, 10, 26, 0.12), 0 0.18em 0.4em -0.1em rgba(12, 10, 26, 0.25);
-  animation: stamp 0.7s 0.35s var(--ease-out) both;
+  animation: stamp 0.7s var(--stamp-delay, 0.35s) var(--ease-out) both;
+}
+
+/* A flick of the sticker on hover */
+/* Runs alongside the stamp-in so leaving hover doesn't replay it */
+.sticker:hover {
+  animation: stamp 0.7s var(--stamp-delay, 0.35s) var(--ease-out) both, wobble 0.6s ease;
+}
+
+@keyframes wobble {
+  20% {
+    transform: rotate(-14deg) scale(1.08);
+  }
+  45% {
+    transform: rotate(10deg) scale(1.08);
+  }
+  70% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: none;
+  }
 }
 
 .naira {
@@ -63,7 +84,7 @@
   background: var(--color-lime);
   color: var(--color-dark);
   rotate: 7deg;
-  animation-delay: 0.5s;
+  --stamp-delay: 0.5s;
 }
 
 /* Hand-drawn underline that draws itself in */
@@ -164,7 +185,31 @@
     "sale phone card"
     "rates phone merchants";
   gap: 16px;
-  animation: rise 1s 0.3s var(--ease-out) both;
+}
+
+/* Tiles rise in one after another */
+.bento > .tile {
+  animation: rise 0.8s var(--ease-out) both;
+}
+
+.bento > .tile:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.bento > .tile:nth-child(2) {
+  animation-delay: 0.38s;
+}
+
+.bento > .tile:nth-child(3) {
+  animation-delay: 0.34s;
+}
+
+.bento > .tile:nth-child(4) {
+  animation-delay: 0.42s;
+}
+
+.bento > .tile:nth-child(5) {
+  animation-delay: 0.5s;
 }
 
 .tile {
@@ -255,7 +300,31 @@
   opacity: 0.65;
 }
 
+.salePending {
+  opacity: 0.45;
+}
+
+.saleFoot > span:first-child {
+  transition: opacity 0.4s ease;
+}
+
+.stageDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-amber);
+  box-shadow: 0 0 0 0 rgba(240, 185, 11, 0.6);
+  animation: ping 1.4s ease-out infinite;
+}
+
+.validating .stageDot {
+  background: #7fb2ff;
+  box-shadow: 0 0 0 0 rgba(127, 178, 255, 0.6);
+}
+
 .saleDone {
+  position: relative;
+  animation: badgeIn 0.35s var(--ease-out) both;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -376,6 +445,56 @@
   height: 34%;
 }
 
+/* Naira coins popping out of the badge once the sale is credited */
+.burst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  pointer-events: none;
+}
+
+.burst i {
+  position: absolute;
+  left: -11px;
+  top: -11px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--color-dark);
+  color: var(--color-lime);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  animation: coinPop 1.3s cubic-bezier(0.2, 0.8, 0.3, 1) var(--d) both;
+}
+
+@keyframes coinPop {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.3);
+  }
+  20% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+    transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(var(--x) * 1.1), calc(var(--y) + 50px)) rotate(var(--r)) scale(0.8);
+  }
+}
+
+@keyframes badgeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+  }
+}
+
 @keyframes rateIn {
   from {
     opacity: 0;
@@ -454,17 +573,43 @@
   color: rgba(255, 255, 255, 0.72);
 }
 
+.card {
+  perspective: 900px;
+}
+
 .cardArt {
   position: absolute;
   right: -18px;
   bottom: -46px;
   width: 280px;
-  transform: rotate(-8deg);
-  transition: transform 0.5s var(--ease-out);
+  transform: rotate(-8deg) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.45s var(--ease-out);
 }
 
 .card:hover .cardArt {
-  transform: rotate(-6deg) translateY(-6px);
+  transform: rotate(-6deg) translateY(-8px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition-duration: 0.15s;
+}
+
+/* Light sliding across the card, following the pointer */
+.sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: linear-gradient(
+    105deg,
+    transparent calc(var(--sheen, 0%) - 30%),
+    rgba(255, 255, 255, 0.28) var(--sheen, 0%),
+    transparent calc(var(--sheen, 0%) + 30%)
+  );
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card:hover .sheen {
+  opacity: 1;
 }
 
 /* White: where the card works */

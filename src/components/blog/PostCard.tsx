@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { formatPostDate, postPath, readingMinutes, type Post } from "../../content/blog";
 import PostCover from "./PostCover";
+import Reveal from "../ui/Reveal";
 import styles from "./Blog.module.css";
 
 export default function PostCard({ post }: { post: Post }) {
@@ -22,8 +23,10 @@ export default function PostCard({ post }: { post: Post }) {
 export function PostGrid({ posts }: { posts: Post[] }) {
   return (
     <div className={styles.grid}>
-      {posts.map((post) => (
-        <PostCard key={post.slug} post={post} />
+      {posts.map((post, index) => (
+        <Reveal key={post.slug} delay={(index % 3) * 80}>
+          <PostCard post={post} />
+        </Reveal>
       ))}
     </div>
   );

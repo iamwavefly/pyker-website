@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from "react";
 import Container from "../ui/Container";
 import VirtualCard from "../ui/VirtualCard";
+import Reveal from "../ui/Reveal";
 import { CARD_COLORS, type CardColor, type CardNetwork } from "../../data/cards";
 import { ChevronDownIcon, DesignIcon, MusicIcon, PlusIcon, ShoppingIcon, SparkIcon } from "../icons";
 import styles from "./CardSection.module.css";
@@ -85,7 +86,7 @@ export default function CardSection() {
       <div className={styles.texture} aria-hidden="true" />
       <Container>
         <div className={styles.layout}>
-          <div className={styles.left}>
+          <Reveal className={styles.left}>
             <span className={styles.eyebrow}>Virtual dollar card</span>
             <h2 className={`display ${styles.title}`}>Your dollar card, ready in a minute</h2>
             <p className={styles.lead}>
@@ -113,9 +114,9 @@ export default function CardSection() {
                 );
               })}
             </ol>
-          </div>
+          </Reveal>
 
-          <div className={styles.panel}>
+          <Reveal delay={120} className={styles.panel}>
             <div className={styles.cardWrap}>
               <VirtualCard color={color} network={network} frozen={frozen} />
             </div>
@@ -137,7 +138,7 @@ export default function CardSection() {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </Container>
 

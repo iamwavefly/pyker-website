@@ -144,18 +144,20 @@ export type LinkCard = { to: string; title: string; text: string; badge?: string
 export function LinkCards({ links }: { links: LinkCard[] }) {
   return (
     <div className={styles.linkCards}>
-      {links.map((link) => (
-        <Link key={link.to} to={link.to} className={styles.linkCard}>
-          {link.icon && <span className={styles.linkIcon}>{link.icon}</span>}
-          <span className={styles.linkTitle}>
-            {link.title}
-            {link.badge && <span className={styles.badge}>{link.badge}</span>}
-          </span>
-          <span className={styles.linkText}>{link.text}</span>
-          <span className={styles.linkArrow}>
-            <CaretRightIcon width={16} height={16} />
-          </span>
-        </Link>
+      {links.map((link, index) => (
+        <Reveal key={link.to} delay={(index % 4) * 60}>
+          <Link to={link.to} className={styles.linkCard}>
+            {link.icon && <span className={styles.linkIcon}>{link.icon}</span>}
+            <span className={styles.linkTitle}>
+              {link.title}
+              {link.badge && <span className={styles.badge}>{link.badge}</span>}
+            </span>
+            <span className={styles.linkText}>{link.text}</span>
+            <span className={styles.linkArrow}>
+              <CaretRightIcon width={16} height={16} />
+            </span>
+          </Link>
+        </Reveal>
       ))}
     </div>
   );
