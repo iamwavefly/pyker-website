@@ -21,11 +21,11 @@ export const bitcoinToNaira: Post = {
     { type: "h2", text: "Step 1: Check today's Bitcoin to naira rate" },
     {
       type: "p",
-      text: "Bitcoin's price changes constantly, so start by checking the current market price. Our [crypto to naira rates page](/rates) shows the BTC to NGN market price, updated every minute, along with the last seven days of movement.",
+      text: "Bitcoin's price changes constantly, so start by checking the current market price. Our [crypto to naira rates page](/rates) shows what Pyker pays for BTC today, along with the last seven days of market movement.",
     },
     {
       type: "p",
-      text: "Remember that the market price is a reference. The rate you get when you sell is shown in the app before you send, so you always know what you'll receive.",
+      text: "Prices move through the day, so the rate you get is the one shown in the app when you sell, before you send anything. You always know what you'll receive.",
     },
     { type: "h2", text: "Step 2: Understand confirmations" },
     {
@@ -124,7 +124,7 @@ export const bitcoinToNaira: Post = {
     {
       question: "Where can I check the Bitcoin to naira rate today?",
       answer:
-        "Pyker's crypto rates page shows the current BTC to naira market price, updated every minute. Your exact payout rate is shown in the app before you send.",
+        "Pyker's crypto rates page shows what Pyker pays for BTC today. Your exact payout rate is shown in the app before you send.",
     },
     {
       question: "Can I receive dollars instead of naira for my Bitcoin?",

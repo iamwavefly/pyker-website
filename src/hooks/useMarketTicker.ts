@@ -1,5 +1,6 @@
 import { useSyncExternalStore } from "react";
-import { COIN_IDS } from "../data/coins";
+import { COINS, COIN_IDS } from "../data/coins";
+import { PYKER_API_URL } from "../data/links";
 
 export type TickerCoin = {
   id: string;
@@ -9,11 +10,31 @@ export type TickerCoin = {
   sparkline: number[];
 };
 
+/** Pyker's own sell rates, by symbol (e.g. "USDT"), in naira per 1 unit. */
+export type PykerRates = {
+  rates: Record<string, number>;
+  /** When Pyker last refreshed them, in epoch milliseconds. */
+  updatedAt: number;
+};
+
 export type TickerState = {
+  /** Market data from CoinGecko: price, 24h change and 7-day chart. */
   coins: TickerCoin[] | null;
   status: "loading" | "ready" | "error";
-  /** When the prices were fetched, in epoch milliseconds. */
+  /** When the market data was fetched, in epoch milliseconds. */
   updatedAt: number | null;
+  /** Pyker's own rates, preferred over the market price wherever shown. */
+  pyker: PykerRates | null;
+};
+
+/** The naira figure to show for a coin: Pyker's rate if known, else market. */
+export type CoinRate = {
+  price: number;
+  source: "pyker" | "market";
+  /** When `price` was last updated, in epoch milliseconds. */
+  updatedAt: number | null;
+  change24h: number | null;
+  sparkline: number[];
 };
 
 declare global {
@@ -23,13 +44,16 @@ declare global {
   }
 }
 
-const ENDPOINT = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=ngn&ids=${COIN_IDS.join(
+const MARKET_ENDPOINT = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=ngn&ids=${COIN_IDS.join(
   ","
 )}&sparkline=true&price_change_percentage=24h`;
+const PYKER_ENDPOINT = `${PYKER_API_URL}/api/v1/rates`;
 
-const REFRESH_MS = 60_000;
+const MARKET_REFRESH_MS = 60_000;
+// Pyker caches its rates for hours, so there's no point asking often.
+const PYKER_REFRESH_MS = 15 * 60_000;
 
-const EMPTY: TickerState = { coins: null, status: "loading", updatedAt: null };
+const EMPTY: TickerState = { coins: null, status: "loading", updatedAt: null, pyker: null };
 
 function resample(points: number[], count: number) {
   if (points.length <= count) return points;
@@ -37,22 +61,43 @@ function resample(points: number[], count: number) {
   return Array.from({ length: count }, (_, i) => points[Math.floor(i * step)]);
 }
 
-export async function fetchTicker(signal?: AbortSignal): Promise<TickerState> {
-  const res = await fetch(ENDPOINT, { signal });
+async function fetchMarket(signal?: AbortSignal): Promise<TickerCoin[]> {
+  const res = await fetch(MARKET_ENDPOINT, { signal });
   if (!res.ok) throw new Error("market data unavailable");
   const data: any[] = await res.json();
-  const coins: TickerCoin[] = data.map((coin) => ({
+  return data.map((coin) => ({
     id: coin.id,
     symbol: (coin.symbol as string).toUpperCase(),
     price: coin.current_price,
     change24h: coin.price_change_percentage_24h ?? 0,
     sparkline: resample(coin.sparkline_in_7d?.price ?? [], 48),
   }));
-  return { coins, status: "ready", updatedAt: Date.now() };
 }
 
-// One shared poller for every widget on the page, so CoinGecko sees a single
-// request per minute no matter how many components read prices.
+async function fetchPykerRates(signal?: AbortSignal): Promise<PykerRates> {
+  const res = await fetch(PYKER_ENDPOINT, { signal });
+  if (!res.ok) throw new Error("pyker rates unavailable");
+  const data: { rates: { asset: string; rate: number }[]; updated_at: string } = await res.json();
+  const rates: Record<string, number> = {};
+  for (const rate of data.rates) rates[rate.asset.toUpperCase()] = rate.rate;
+  if (Object.keys(rates).length === 0) throw new Error("no pyker rates");
+  return { rates, updatedAt: Date.parse(data.updated_at) || Date.now() };
+}
+
+/** Fetches both sources; either can fail without failing the other. */
+export async function fetchTicker(signal?: AbortSignal): Promise<TickerState> {
+  const [market, pyker] = await Promise.allSettled([fetchMarket(signal), fetchPykerRates(signal)]);
+  if (market.status === "rejected" && pyker.status === "rejected") throw market.reason;
+  return {
+    coins: market.status === "fulfilled" ? market.value : null,
+    status: market.status === "fulfilled" ? "ready" : "error",
+    updatedAt: market.status === "fulfilled" ? Date.now() : null,
+    pyker: pyker.status === "fulfilled" ? pyker.value : null,
+  };
+}
+
+// One shared store for every widget on the page, so each source sees a
+// single request per refresh no matter how many components read prices.
 //
 // `hydrationState` is what the server rendered with: primed by the
 // pre-renderer, then read back from the page in the browser so the first
@@ -61,38 +106,45 @@ let hydrationState: TickerState =
   (typeof window !== "undefined" && window.__PYKER_TICKER__) || EMPTY;
 let state: TickerState = hydrationState;
 const listeners = new Set<() => void>();
-let timer: ReturnType<typeof setInterval> | undefined;
+let timers: ReturnType<typeof setInterval>[] = [];
 
 export function primeTicker(snapshot: TickerState | null) {
   hydrationState = snapshot ?? EMPTY;
   state = hydrationState;
 }
 
-function emit(next: TickerState) {
-  state = next;
+function emit(next: Partial<TickerState>) {
+  state = { ...state, ...next };
   listeners.forEach((listener) => listener());
 }
 
-function load() {
-  fetchTicker()
-    .then(emit)
+// Each source keeps its last good value if a refresh fails.
+function loadMarket() {
+  fetchMarket()
+    .then((coins) => emit({ coins, status: "ready", updatedAt: Date.now() }))
     .catch(() => {
-      // Keep showing the last good prices if a refresh fails.
-      if (!state.coins) emit({ coins: null, status: "error", updatedAt: null });
+      if (!state.coins) emit({ status: "error" });
     });
+}
+
+function loadPyker() {
+  fetchPykerRates()
+    .then((pyker) => emit({ pyker }))
+    .catch(() => {});
 }
 
 function subscribe(listener: () => void) {
   listeners.add(listener);
-  if (!timer) {
-    load();
-    timer = setInterval(load, REFRESH_MS);
+  if (timers.length === 0) {
+    loadMarket();
+    loadPyker();
+    timers = [setInterval(loadMarket, MARKET_REFRESH_MS), setInterval(loadPyker, PYKER_REFRESH_MS)];
   }
   return () => {
     listeners.delete(listener);
-    if (listeners.size === 0 && timer) {
-      clearInterval(timer);
-      timer = undefined;
+    if (listeners.size === 0) {
+      timers.forEach(clearInterval);
+      timers = [];
     }
   };
 }
@@ -105,9 +157,32 @@ export function useMarketTicker() {
   );
 }
 
-export function useCoinPrice(id: string) {
-  const { coins } = useMarketTicker();
-  return coins?.find((coin) => coin.id === id) ?? null;
+/** The rate to show for a coin: Pyker's own when available, else the market price. */
+export function rateFor(state: TickerState, id: string): CoinRate | null {
+  const market = state.coins?.find((coin) => coin.id === id) ?? null;
+  const symbol = COINS.find((coin) => coin.id === id)?.symbol;
+  const pykerRate = symbol ? state.pyker?.rates[symbol] : undefined;
+  if (pykerRate) {
+    return {
+      price: pykerRate,
+      source: "pyker",
+      updatedAt: state.pyker?.updatedAt ?? null,
+      change24h: market?.change24h ?? null,
+      sparkline: market?.sparkline ?? [],
+    };
+  }
+  if (!market) return null;
+  return {
+    price: market.price,
+    source: "market",
+    updatedAt: state.updatedAt,
+    change24h: market.change24h,
+    sparkline: market.sparkline,
+  };
+}
+
+export function useCoinRate(id: string) {
+  return rateFor(useMarketTicker(), id);
 }
 
 /** "14:05, 18 Oct" in Lagos time, formatted by hand so server and browser agree. */

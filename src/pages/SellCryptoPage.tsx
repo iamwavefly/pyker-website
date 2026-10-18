@@ -44,7 +44,7 @@ export default function SellCryptoPage() {
         <Steps steps={SELL_HUB.steps} />
       </PageSection>
 
-      <PageSection eyebrow="Today's prices" title="Crypto to naira rates" intro="Market prices, updated every minute.">
+      <PageSection eyebrow="Today's prices" title="Crypto to naira rates" intro="What Pyker pays for each coin today.">
         <RatesTable />
       </PageSection>
 

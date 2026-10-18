@@ -44,7 +44,7 @@ export function sellCoinFaq(coin: Coin): FaqItem[] {
     },
     {
       question: `What rate will I get for my ${symbol}?`,
-      answer: `You'll see the live rate in the app before you send anything. The prices on this page are market prices for reference and can differ slightly from your payout rate.`,
+      answer: `You'll see your exact rate in the app before you send anything. The rate on this page is today's Pyker rate, refreshed every few hours, so it can differ slightly as the market moves.`,
     },
     {
       question: `Are there fees to sell ${symbol}?`,

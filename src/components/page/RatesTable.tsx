@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { COINS, formatNgn, sellPath } from "../../data/coins";
-import { formatLagosTime, useMarketTicker } from "../../hooks/useMarketTicker";
+import { formatLagosTime, rateFor, useMarketTicker } from "../../hooks/useMarketTicker";
 import Sparkline from "./Sparkline";
 import styles from "./Page.module.css";
 
 export default function RatesTable() {
-  const { coins, updatedAt } = useMarketTicker();
+  const ticker = useMarketTicker();
+  const pyker = ticker.pyker !== null;
+  const asOf = pyker ? ticker.pyker!.updatedAt : ticker.updatedAt;
 
   return (
     <div className={styles.ratesWrap}>
@@ -13,7 +15,7 @@ export default function RatesTable() {
         <thead>
           <tr>
             <th scope="col">Coin</th>
-            <th scope="col">Price in naira</th>
+            <th scope="col">{pyker ? "Pyker rate" : "Price in naira"}</th>
             <th scope="col">24h change</th>
             <th scope="col" className={styles.hideSm}>
               Last 7 days
@@ -25,7 +27,7 @@ export default function RatesTable() {
         </thead>
         <tbody>
           {COINS.map((coin) => {
-            const live = coins?.find((c) => c.id === coin.id);
+            const live = rateFor(ticker, coin.id);
             const up = (live?.change24h ?? 0) >= 0;
             return (
               <tr key={coin.id}>
@@ -40,7 +42,7 @@ export default function RatesTable() {
                 </th>
                 <td className={styles.ratePrice}>{live ? `₦${formatNgn(live.price)}` : "—"}</td>
                 <td className={up ? styles.up : styles.down}>
-                  {live ? `${up ? "+" : "−"}${Math.abs(live.change24h).toFixed(2)}%` : "—"}
+                  {live && live.change24h !== null ? `${up ? "+" : "−"}${Math.abs(live.change24h).toFixed(2)}%` : "—"}
                 </td>
                 <td className={styles.hideSm}>
                   <Sparkline points={live?.sparkline} up={up} className={styles.rateSpark} fill={false} />
@@ -54,8 +56,11 @@ export default function RatesTable() {
         </tbody>
       </table>
       <p className={styles.ratesNote}>
-        Market prices from CoinGecko{updatedAt ? `, as of ${formatLagosTime(updatedAt)} (Lagos time)` : ""}, refreshed
-        every minute. When you sell on Pyker, your exact rate is shown in the app before you send.
+        {pyker
+          ? "What Pyker pays for 1 unit of each coin, for new accounts, updated every few hours"
+          : "Market prices from CoinGecko"}
+        {asOf ? `, as of ${formatLagosTime(asOf)} (Lagos time)` : ""}. 24h change and charts show the wider market. Your
+        exact rate is shown in the app before you send.
       </p>
     </div>
   );

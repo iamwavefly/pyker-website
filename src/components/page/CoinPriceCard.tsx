@@ -1,13 +1,13 @@
 import type { Coin } from "../../data/coins";
 import { formatNgn } from "../../data/coins";
-import { formatLagosTime, useCoinPrice, useMarketTicker } from "../../hooks/useMarketTicker";
+import { formatLagosTime, useCoinRate } from "../../hooks/useMarketTicker";
 import Sparkline from "./Sparkline";
 import styles from "./Page.module.css";
 
 export default function CoinPriceCard({ coin }: { coin: Coin }) {
-  const live = useCoinPrice(coin.id);
-  const { updatedAt } = useMarketTicker();
-  const up = (live?.change24h ?? 0) >= 0;
+  const rate = useCoinRate(coin.id);
+  const up = (rate?.change24h ?? 0) >= 0;
+  const pyker = rate?.source === "pyker";
 
   return (
     <div className={styles.priceCard}>
@@ -20,25 +20,25 @@ export default function CoinPriceCard({ coin }: { coin: Coin }) {
           </span>
         </span>
         <span className={styles.liveTag}>
-          <i /> Live
+          <i /> {pyker ? "Pyker rate" : "Market"}
         </span>
       </div>
 
       <div className={styles.priceValue}>
-        <strong>{live ? `₦${formatNgn(live.price)}` : "₦ —"}</strong>
-        {live && (
+        <strong>{rate ? `₦${formatNgn(rate.price)}` : "₦ —"}</strong>
+        {rate && rate.change24h !== null && (
           <span className={up ? styles.up : styles.down}>
-            {up ? "▲" : "▼"} {Math.abs(live.change24h).toFixed(2)}% (24h)
+            {up ? "▲" : "▼"} {Math.abs(rate.change24h).toFixed(2)}% (24h)
           </span>
         )}
       </div>
 
-      <Sparkline points={live?.sparkline} up={up} className={styles.priceChart} />
+      <Sparkline points={rate?.sparkline} up={up} className={styles.priceChart} />
 
       <p className={styles.priceNote}>
-        Market price for 1 {coin.symbol}
-        {updatedAt ? `, as of ${formatLagosTime(updatedAt)} (Lagos)` : ""}. Your exact rate is shown in the app
-        before you send.
+        {pyker ? `What Pyker pays for 1 ${coin.symbol}` : `Market price for 1 ${coin.symbol}`}
+        {rate?.updatedAt ? `, as of ${formatLagosTime(rate.updatedAt)} (Lagos)` : ""}. Your exact rate is shown in
+        the app before you send.
       </p>
     </div>
   );

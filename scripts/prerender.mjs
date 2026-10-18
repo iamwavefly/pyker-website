@@ -16,7 +16,8 @@ const { render, ROUTES, sitemapEntries, headTags, safeJson, sitemapXml, fetchTic
 let ticker = null;
 try {
   ticker = await fetchTicker(AbortSignal.timeout(10_000));
-  console.log(`prerender: prices fetched for ${ticker.coins.length} coins`);
+  console.log(`prerender: market prices ${ticker.coins ? `fetched for ${ticker.coins.length} coins` : "unavailable"}`);
+  console.log(`prerender: Pyker rates ${ticker.pyker ? `fetched for ${Object.keys(ticker.pyker.rates).join(", ")}` : "unavailable, falling back to market prices"}`);
 } catch (error) {
   console.warn(`prerender: prices unavailable (${error.message}), building without them`);
 }

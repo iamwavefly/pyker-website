@@ -11,7 +11,7 @@ import MerchantLogo from "../ui/MerchantLogo";
 import RollingNumber from "../ui/RollingNumber";
 import { ArrowRightIcon, CaretRightIcon, CheckCircleIcon } from "../icons";
 import { COINS, formatNgn } from "../../data/coins";
-import { useMarketTicker } from "../../hooks/useMarketTicker";
+import { rateFor, useMarketTicker } from "../../hooks/useMarketTicker";
 import { MERCHANTS } from "../../data/merchants";
 import styles from "./Hero.module.css";
 
@@ -109,7 +109,7 @@ const RATE_CYCLE_MS = 4000;
 // The live element of the hero: one coin at a time, cycling, with its 7-day
 // chart across the tile. Pauses on hover and when motion is reduced.
 function RateTile() {
-  const { coins } = useMarketTicker();
+  const ticker = useMarketTicker();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -120,7 +120,7 @@ function RateTile() {
   }, [paused]);
 
   const coin = RATE_COINS[index];
-  const live = coins?.find((c) => c.id === coin.id);
+  const live = rateFor(ticker, coin.id);
   const up = (live?.change24h ?? 0) >= 0;
 
   return (
@@ -131,7 +131,7 @@ function RateTile() {
     >
       <div className={styles.ratesTop}>
         <span className={styles.tileTag}>
-          <i className={styles.liveDot} /> Live rate
+          <i className={styles.liveDot} /> {live?.source === "market" ? "Market rate" : "Pyker rate"}
         </span>
         <div className={styles.rateTabs} role="tablist" aria-label="Coin">
           {RATE_COINS.map((c, i) => (
@@ -155,9 +155,11 @@ function RateTile() {
         {live ? (
           <p className={styles.rateValue}>
             <RollingNumber value={`₦${formatNgn(live.price)}`} />
-            <span className={up ? styles.up : styles.down}>
-              {up ? "▲" : "▼"} {Math.abs(live.change24h).toFixed(1)}%
-            </span>
+            {live.change24h !== null && (
+              <span className={up ? styles.up : styles.down}>
+                {up ? "▲" : "▼"} {Math.abs(live.change24h).toFixed(1)}%
+              </span>
+            )}
           </p>
         ) : (
           <Link to={FEATURES.rates.path} className={styles.rateLink}>

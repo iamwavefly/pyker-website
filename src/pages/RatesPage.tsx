@@ -13,13 +13,13 @@ export default function RatesPage() {
           { label: "Home", to: "/" },
           { label: "Crypto rates", to: FEATURES.rates.path },
         ]}
-        eyebrow="Live market prices"
+        eyebrow="Today's rates"
         title={
           <>
             Crypto to naira <span className="accent">rates today</span>
           </>
         }
-        intro="Bitcoin, USDT, Ethereum, USDC, Solana and Dogecoin prices in naira, refreshed every minute. Ready to sell? You'll see your exact rate in the app before you send."
+        intro="What Pyker pays for Bitcoin, USDT, Ethereum, USDC, Solana and Dogecoin today, in naira. Ready to sell? You'll see your exact rate in the app before you send."
         secondary={{ label: "How selling works", to: FEATURES.sellCrypto.path }}
       />
 
