@@ -6,6 +6,11 @@ export const RATES = {
     "Today's Pyker rates for Bitcoin, USDT, Ethereum, USDC, Solana and Dogecoin in naira. See what you'll get before you sell, then get paid in minutes.",
   faq: [
     {
+      question: "What is Pyker's dollar to naira rate today?",
+      answer:
+        "The USD rate at the top of the rates table shows the naira value of $1 today, the same USD rate you see in the Pyker app. The conversion rate for each coin is what you receive for 1 unit of that coin.",
+    },
+    {
       question: "What is the USDT to naira rate today?",
       answer:
         "The table on this page shows what Pyker pays for 1 USDT today, refreshed every few hours. When you sell, you'll see your exact rate in the app before you send.",

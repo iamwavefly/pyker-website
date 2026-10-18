@@ -13,6 +13,8 @@ export type TickerCoin = {
 /** Pyker's own sell rates, by symbol (e.g. "USDT"), in naira per 1 unit. */
 export type PykerRates = {
   rates: Record<string, number>;
+  /** Naira per $1, as the app's "USD rate" row shows it. */
+  usdRate: number | null;
   /** When Pyker last refreshed them, in epoch milliseconds. */
   updatedAt: number;
 };
@@ -77,11 +79,15 @@ async function fetchMarket(signal?: AbortSignal): Promise<TickerCoin[]> {
 async function fetchPykerRates(signal?: AbortSignal): Promise<PykerRates> {
   const res = await fetch(PYKER_ENDPOINT, { signal });
   if (!res.ok) throw new Error("pyker rates unavailable");
-  const data: { rates: { asset: string; rate: number }[]; updated_at: string } = await res.json();
+  const data: {
+    rates: { asset: string; rate: number }[];
+    usd_rate?: { rate: number };
+    updated_at: string;
+  } = await res.json();
   const rates: Record<string, number> = {};
   for (const rate of data.rates) rates[rate.asset.toUpperCase()] = rate.rate;
   if (Object.keys(rates).length === 0) throw new Error("no pyker rates");
-  return { rates, updatedAt: Date.parse(data.updated_at) || Date.now() };
+  return { rates, usdRate: data.usd_rate?.rate ?? null, updatedAt: Date.parse(data.updated_at) || Date.now() };
 }
 
 /** Fetches both sources; either can fail without failing the other. */

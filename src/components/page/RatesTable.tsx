@@ -11,11 +11,17 @@ export default function RatesTable() {
 
   return (
     <div className={styles.ratesWrap}>
+      {ticker.pyker?.usdRate && (
+        <div className={styles.usdBanner}>
+          <span>USD rate</span>
+          <strong>$1 = ₦{formatNgn(ticker.pyker.usdRate)}</strong>
+        </div>
+      )}
       <table className={styles.rates}>
         <thead>
           <tr>
             <th scope="col">Coin</th>
-            <th scope="col">{pyker ? "Pyker rate" : "Price in naira"}</th>
+            <th scope="col">{pyker ? "Conversion rate" : "Price in naira"}</th>
             <th scope="col">24h change</th>
             <th scope="col" className={styles.hideSm}>
               Last 7 days

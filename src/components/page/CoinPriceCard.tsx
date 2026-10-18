@@ -1,11 +1,12 @@
 import type { Coin } from "../../data/coins";
 import { formatNgn } from "../../data/coins";
-import { formatLagosTime, useCoinRate } from "../../hooks/useMarketTicker";
+import { formatLagosTime, useCoinRate, useMarketTicker } from "../../hooks/useMarketTicker";
 import Sparkline from "./Sparkline";
 import styles from "./Page.module.css";
 
 export default function CoinPriceCard({ coin }: { coin: Coin }) {
   const rate = useCoinRate(coin.id);
+  const usdRate = useMarketTicker().pyker?.usdRate ?? null;
   const up = (rate?.change24h ?? 0) >= 0;
   const pyker = rate?.source === "pyker";
 
@@ -20,7 +21,7 @@ export default function CoinPriceCard({ coin }: { coin: Coin }) {
           </span>
         </span>
         <span className={styles.liveTag}>
-          <i /> {pyker ? "Pyker rate" : "Market"}
+          <i /> {pyker ? "Conversion rate" : "Market"}
         </span>
       </div>
 
@@ -34,6 +35,13 @@ export default function CoinPriceCard({ coin }: { coin: Coin }) {
       </div>
 
       <Sparkline points={rate?.sparkline} up={up} className={styles.priceChart} />
+
+      {usdRate && (
+        <div className={styles.usdRow}>
+          <span>USD rate</span>
+          <strong>$1 = ₦{formatNgn(usdRate)}</strong>
+        </div>
+      )}
 
       <p className={styles.priceNote}>
         {pyker ? `What Pyker pays for 1 ${coin.symbol}` : `Market price for 1 ${coin.symbol}`}

@@ -131,7 +131,7 @@ function RateTile() {
     >
       <div className={styles.ratesTop}>
         <span className={styles.tileTag}>
-          <i className={styles.liveDot} /> {live?.source === "market" ? "Market rate" : "Pyker rate"}
+          <i className={styles.liveDot} /> {live?.source === "market" ? "Market rate" : "Conversion rate"}
         </span>
         <div className={styles.rateTabs} role="tablist" aria-label="Coin">
           {RATE_COINS.map((c, i) => (
@@ -151,7 +151,10 @@ function RateTile() {
       </div>
 
       <div className={styles.rateBody}>
-        <span className={styles.rateLabel}>1 {coin.symbol} to naira</span>
+        <span className={styles.rateLabel}>
+          1 {coin.symbol} to naira
+          {ticker.pyker?.usdRate ? <> · USD rate $1 = ₦{formatNgn(ticker.pyker.usdRate)}</> : null}
+        </span>
         {live ? (
           <p className={styles.rateValue}>
             <RollingNumber value={`₦${formatNgn(live.price)}`} />
