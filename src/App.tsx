@@ -1,25 +1,34 @@
-import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import ScrollToTop from "./components/layout/ScrollToTop";
-import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/AboutPage";
-import ContactPage from "./pages/ContactPage";
-import TermsPage from "./pages/TermsPage";
-import PrivacyPage from "./pages/PrivacyPage";
-import AccountDeletionPage from "./pages/AccountDeletionPage";
+import { ROUTES, findRoute } from "./routes";
+import { applyMeta } from "./seo/meta";
+
+// Pre-rendered pages ship with the right head tags; this keeps them correct
+// as the user navigates between pages in the browser.
+function RouteMeta() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    applyMeta(findRoute(pathname).meta);
+  }, [pathname]);
+  return null;
+}
 
 function App() {
   return (
     <>
       <ScrollToTop />
+      <RouteMeta />
       <Routes>
         <Route element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="contact" element={<ContactPage />} />
-          <Route path="terms" element={<TermsPage />} />
-          <Route path="privacy" element={<PrivacyPage />} />
-          <Route path="delete-account" element={<AccountDeletionPage />} />
+          {ROUTES.map((route) =>
+            route.path === "/" ? (
+              <Route key="home" index element={route.element} />
+            ) : (
+              <Route key={route.path} path={route.path === "*" ? "*" : route.path.slice(1)} element={route.element} />
+            ),
+          )}
         </Route>
       </Routes>
     </>

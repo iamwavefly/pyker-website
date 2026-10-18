@@ -1,0 +1,62 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.store {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 20px 0 16px;
+  border-radius: 14px;
+  transition: transform 0.2s var(--ease-out), background-color 0.2s ease;
+}
+
+.store:hover {
+  transform: translateY(-2px);
+}
+
+.dark {
+  background: var(--color-dark);
+  color: var(--color-white);
+}
+
+.dark:hover {
+  background: #262238;
+}
+
+.light {
+  background: var(--color-white);
+  color: var(--color-dark);
+  box-shadow: 0 1px 2px rgba(12, 10, 26, 0.06);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  text-align: left;
+}
+
+.caption {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.soon {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.soon:hover {
+  transform: none;
+  background: var(--color-dark);
+}

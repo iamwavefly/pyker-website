@@ -4,6 +4,8 @@ import Card from "../components/ui/Card";
 import IconTile from "../components/ui/IconTile";
 import Button from "../components/ui/Button";
 import CopyButton from "../components/ui/CopyButton";
+import Faq from "../components/sections/Faq";
+import { SUPPORT_FAQ } from "../content/support";
 import {
   ArrowRightIcon,
   EnvelopeIcon,
@@ -21,6 +23,7 @@ const SOCIALS = [
 ];
 
 const SUPPORT_EMAIL = "support@usepyker.com";
+
 
 export default function ContactPage() {
   return (
@@ -76,6 +79,8 @@ export default function ContactPage() {
           </div>
         </Container>
       </section>
+
+      <Faq items={SUPPORT_FAQ} title="Before you write in" />
     </>
   );
 }

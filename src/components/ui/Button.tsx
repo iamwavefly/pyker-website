@@ -1,7 +1,7 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import styles from "./Button.module.css";
 
-type Variant = "primary" | "dark" | "outline" | "ghost" | "light" | "outlineLight";
+type Variant = "primary" | "lime" | "dark" | "outline" | "ghost" | "light" | "outlineLight";
 type Size = "md" | "lg";
 
 type CommonProps = {
@@ -36,7 +36,7 @@ export default function Button({
     return (
       <a href={href} className={classes} {...anchorRest}>
         {icon}
-        {children}
+        <span className={styles.label}>{children}</span>
       </a>
     );
   }
@@ -44,7 +44,7 @@ export default function Button({
   return (
     <button className={classes} {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
       {icon}
-      {children}
+      <span className={styles.label}>{children}</span>
     </button>
   );
 }

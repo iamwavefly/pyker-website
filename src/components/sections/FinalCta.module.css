@@ -1,40 +1,20 @@
 .section {
-  padding-block: var(--space-huge);
+  padding-block: var(--section-pad) 32px;
 }
 
-.card {
+.panel {
   position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  background: var(--color-primary);
-  border-radius: var(--radius-xxl);
-  padding: calc(var(--space-huge) * 1.4) var(--space-huge);
+  min-height: 460px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
-}
-
-.glowTop {
-  position: absolute;
-  top: -80px;
-  right: -60px;
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.glowBottom {
-  position: absolute;
-  bottom: -100px;
-  left: -60px;
-  width: 240px;
-  height: 240px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
-  pointer-events: none;
+  justify-content: center;
+  border-radius: 36px;
+  background-color: #f7f6fb;
+  background-image: radial-gradient(45% 70% at 0% 0%, rgba(107, 78, 255, 0.35), transparent 70%),
+    radial-gradient(45% 70% at 100% 100%, rgba(212, 245, 92, 0.6), transparent 70%), var(--grid-lines);
+  background-size: auto, auto, var(--grid-size), var(--grid-size);
+  box-shadow: 0 0 0 1px var(--color-line);
+  overflow: hidden;
 }
 
 .copy {
@@ -43,99 +23,55 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-lg);
+  gap: 18px;
+  max-width: 520px;
+  padding: 64px 24px;
+  text-align: center;
+}
+
+.icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(107, 78, 255, 0.35);
 }
 
 .title {
-  font-family: var(--font-display);
-  font-size: var(--font-4xl);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--color-white);
-  max-width: 560px;
+  text-wrap: balance;
 }
 
 .description {
-  font-size: var(--font-base);
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 460px;
-  line-height: 1.6;
+  font-size: var(--font-lg);
+  line-height: 1.55;
+  color: var(--color-grey-06);
+  margin-bottom: 6px;
 }
 
-.actionsWrap {
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin-top: var(--space-sm);
-}
-
-.actions {
-  display: flex;
-  gap: var(--space-md);
-  flex-wrap: wrap;
+.copy > :last-child {
   justify-content: center;
 }
 
-.chip {
+.phoneLeft,
+.phoneRight {
   position: absolute;
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  background: var(--color-white);
-  color: var(--color-dark);
-  font-size: var(--font-xs);
-  font-weight: 700;
-  border-radius: var(--radius-full);
-  padding: var(--space-sm) var(--space-md);
-  box-shadow: 0 12px 28px rgba(12, 10, 26, 0.25);
-  animation: bob 5s ease-in-out infinite;
-  white-space: nowrap;
+  width: 230px;
+  max-width: none;
 }
 
-.chip svg {
-  color: var(--color-primary);
-  flex-shrink: 0;
+.phoneLeft {
+  left: 4%;
+  bottom: -190px;
+  transform: rotate(-10deg);
 }
 
-.chipA {
-  top: -34px;
-  left: -40px;
-  animation-delay: 0.3s;
+.phoneRight {
+  right: 4%;
+  bottom: -210px;
+  transform: rotate(10deg);
 }
 
-.chipB {
-  bottom: -34px;
-  right: -40px;
-  animation-delay: 1.4s;
-}
-
-@keyframes bob {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .chip {
-    animation: none;
-  }
-}
-
-@media (max-width: 640px) {
-  .card {
-    padding: var(--space-huge) var(--space-xxl);
-  }
-
-  .title {
-    font-size: var(--font-3xl);
-  }
-
-  .chipA,
-  .chipB {
+@media (max-width: 1080px) {
+  .phones {
     display: none;
   }
 }

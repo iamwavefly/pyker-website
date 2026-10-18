@@ -16,7 +16,7 @@ export default function SectionHeading({
   return (
     <div className={`${styles.heading} ${align === "center" ? styles.center : ""}`}>
       {eyebrow && <Badge>{eyebrow}</Badge>}
-      <h2 className={styles.title}>{title}</h2>
+      <h2 className={`display ${styles.title}`}>{title}</h2>
       {description && <p className={styles.description}>{description}</p>}
     </div>
   );

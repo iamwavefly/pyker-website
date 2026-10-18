@@ -1,0 +1,95 @@
+/* The outer element is the size container, so every detail below (bezel,
+   radius, buttons) scales with the phone's width via cqw. */
+.device {
+  container-type: inline-size;
+  width: 100%;
+  max-width: 300px;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 9 / 19.2;
+  padding: 1.1cqw;
+  border-radius: 15.5cqw;
+  /* Titanium edge: lit at the top-left, darker towards the bottom-right */
+  background: linear-gradient(145deg, #5d5a68 0%, #2b2934 22%, #1a1920 50%, #34323d 78%, #6a6775 100%);
+  box-shadow: inset 0 0 0 0.35cqw rgba(255, 255, 255, 0.14), inset 0 0 0 0.7cqw rgba(0, 0, 0, 0.35),
+    0 1.5cqw 3cqw rgba(12, 10, 26, 0.12), 0 14cqw 22cqw -6cqw rgba(20, 12, 60, 0.42);
+}
+
+.bezel {
+  height: 100%;
+  padding: 2.4cqw;
+  border-radius: 14.5cqw;
+  background: #07060c;
+  box-shadow: inset 0 0 0 0.3cqw rgba(255, 255, 255, 0.05);
+}
+
+.screen {
+  position: relative;
+  height: 100%;
+  border-radius: 12.2cqw;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+.screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.island {
+  position: absolute;
+  top: 2.6cqw;
+  left: 50%;
+  width: 31%;
+  height: 8.4cqw;
+  border-radius: 999px;
+  background: #07060c;
+  transform: translateX(-50%);
+}
+
+/* A faint diagonal reflection on the glass */
+.glare {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 28%, transparent 42%);
+  pointer-events: none;
+}
+
+/* Side buttons sit just outside the frame edge */
+.button {
+  position: absolute;
+  width: 1.2cqw;
+  border-radius: 0.6cqw;
+  background: linear-gradient(90deg, #2a2832, #55525f 60%, #2a2832);
+}
+
+.action,
+.volUp,
+.volDown {
+  left: -0.9cqw;
+}
+
+.power {
+  right: -0.9cqw;
+  top: 33%;
+  height: 16%;
+}
+
+.action {
+  top: 20%;
+  height: 5.5%;
+}
+
+.volUp {
+  top: 29%;
+  height: 10%;
+}
+
+.volDown {
+  top: 41%;
+  height: 10%;
+}

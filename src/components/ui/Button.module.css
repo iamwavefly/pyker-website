@@ -3,35 +3,65 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
-  border: none;
+  border: 1px solid transparent;
   border-radius: var(--radius-full);
   font-weight: 600;
+  letter-spacing: -0.005em;
   white-space: nowrap;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s ease, background-color 0.2s ease,
+    border-color 0.2s ease, color 0.2s ease;
+}
+
+/* Trim the label to its cap height and baseline so flex centring is optical,
+   not skewed by the font's uneven ascent and descent. */
+.label {
+  display: block;
+  line-height: 1;
+  text-box: trim-both cap alphabetic;
+}
+
+.button svg {
+  display: block;
+  flex-shrink: 0;
+  transition: transform 0.25s var(--ease-out);
+}
+
+.button:hover svg:last-child {
+  transform: translateX(2px);
 }
 
 .button:active {
-  transform: translateY(1px);
+  transform: scale(0.98);
 }
 
 .md {
-  padding: var(--space-md) var(--space-xxl);
+  height: 42px;
+  padding-inline: 18px;
   font-size: var(--font-sm);
 }
 
 .lg {
-  padding: var(--space-lg) var(--space-xxl);
-  font-size: var(--font-base);
+  height: 52px;
+  padding-inline: 24px;
+  font-size: 15px;
 }
 
 .primary {
   background: var(--color-primary);
   color: var(--color-white);
-  box-shadow: 0 8px 24px rgba(107, 78, 255, 0.28);
 }
 
 .primary:hover {
   background: var(--color-active);
+}
+
+.lime {
+  background: var(--color-lime);
+  color: var(--color-dark);
+}
+
+.lime:hover {
+  background: var(--color-lime-deep);
 }
 
 .dark {
@@ -40,17 +70,17 @@
 }
 
 .dark:hover {
-  background: #211d3a;
+  background: #262238;
 }
 
 .outline {
-  background: transparent;
+  background: var(--color-surface);
   color: var(--color-dark);
-  border: 1.5px solid var(--color-border);
+  border: 1.5px solid var(--color-dark);
 }
 
 .outline:hover {
-  border-color: var(--color-dark);
+  background: var(--color-soft);
 }
 
 .ghost {
@@ -64,7 +94,7 @@
 
 .light {
   background: var(--color-white);
-  color: var(--color-primary);
+  color: var(--color-dark);
 }
 
 .light:hover {
@@ -74,7 +104,7 @@
 .outlineLight {
   background: transparent;
   color: var(--color-white);
-  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .outlineLight:hover {

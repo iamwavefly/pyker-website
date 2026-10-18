@@ -1,0 +1,113 @@
+/* The outer element is the size container, so the card's cqw units scale
+   with the card itself rather than the viewport. */
+.sizer {
+  container-type: inline-size;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1080 / 616;
+  border-radius: 5cqw;
+  overflow: hidden;
+  color: var(--color-white);
+  box-shadow: 0 24px 48px -16px rgba(43, 27, 107, 0.45), 0 6px 14px rgba(12, 10, 26, 0.12);
+  user-select: none;
+}
+
+.art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.artOn {
+  opacity: 1;
+}
+
+.logo {
+  position: absolute;
+  top: 10%;
+  left: 6%;
+  width: 19%;
+}
+
+/* Proportioned like the app's CardPreview: 40x14 and 32x24 on a full card. */
+.visa,
+.mastercard {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  height: auto;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.visa {
+  width: 13%;
+}
+
+.mastercard {
+  width: 11%;
+}
+
+.markOn {
+  opacity: 1;
+}
+
+.bottom {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 3.8cqw;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.bottom span {
+  display: block;
+}
+
+.bottom div > span:first-child {
+  letter-spacing: 0.06em;
+}
+
+.expiry {
+  text-align: right;
+}
+
+.frost {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2cqw;
+  font-size: 4.4cqw;
+  font-weight: 600;
+  background: rgba(225, 235, 255, 0.3);
+  backdrop-filter: blur(10px) saturate(1.2);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.frost svg {
+  width: 11cqw;
+  height: 11cqw;
+}
+
+.frozen .frost {
+  opacity: 1;
+}

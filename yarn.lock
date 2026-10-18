@@ -187,6 +187,11 @@
   resolved "https://registry.npmjs.org/@rolldown/pluginutils/-/pluginutils-1.0.1.tgz#e3fcee093fbb5ce765e1ad088ff4de2889f6f9be"
   integrity sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==
 
+"@solar-icons/react@2.3.2":
+  version "2.3.2"
+  resolved "https://registry.npmjs.org/@solar-icons/react/-/react-2.3.2.tgz#e6eb1520b9e48d18c4916bbba430edd0a2fefddc"
+  integrity sha512-ZZGIm9Njg+tcJxSK0jSuPJrO4vOFDETbN5jNpCdR/b1LBCvLumkOimLi2GFFwR9205nlD6dNcBM9623yxbLyuA==
+
 "@types/node@^24.13.3":
   version "24.13.3"
   resolved "https://registry.npmjs.org/@types/node/-/node-24.13.3.tgz#49f18bd3c647866dcda51a0756c145e14590ce16"
