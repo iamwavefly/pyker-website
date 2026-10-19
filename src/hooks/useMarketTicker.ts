@@ -167,7 +167,9 @@ export function useMarketTicker() {
 export function rateFor(state: TickerState, id: string): CoinRate | null {
   const market = state.coins?.find((coin) => coin.id === id) ?? null;
   const symbol = COINS.find((coin) => coin.id === id)?.symbol;
-  const pykerRate = symbol ? state.pyker?.rates[symbol] : undefined;
+  // USDT shows the same value as the USD rate (Breet's direct $1 rate).
+  const pykerRate =
+    symbol === "USDT" && state.pyker?.usdRate ? state.pyker.usdRate : symbol ? state.pyker?.rates[symbol] : undefined;
   if (pykerRate) {
     return {
       price: pykerRate,
