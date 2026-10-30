@@ -11,14 +11,20 @@ const ssrDir = path.join(root, "dist-ssr");
 const server = await import(pathToFileURL(path.join(ssrDir, "entry-server.js")).href);
 const { render, ROUTES, sitemapEntries, headTags, safeJson, sitemapXml, fetchTicker, primeTicker } = server;
 
-// Bake in today's prices so rate pages are indexed with real numbers. If the
-// price API is down, pages still build and load prices in the browser.
+// Bake in today's prices so rate pages are indexed with real numbers. If
+// Pyker's rates are down, pages fall back to market prices.
 let ticker = null;
 try {
   ticker = await fetchTicker(AbortSignal.timeout(10_000));
   console.log(`prerender: market prices ${ticker.coins ? `fetched for ${ticker.coins.length} coins` : "unavailable"}`);
   console.log(`prerender: Pyker rates ${ticker.pyker ? `fetched for ${Object.keys(ticker.pyker.rates).join(", ")}` : "unavailable, falling back to market prices"}`);
 } catch (error) {
+  // Failing keeps the last good deployment live instead of shipping rate
+  // pages with no numbers. Set ALLOW_MISSING_RATES=1 to deploy anyway.
+  if (!process.env.ALLOW_MISSING_RATES) {
+    console.error(`prerender: prices unavailable (${error.message}); set ALLOW_MISSING_RATES=1 to build without them`);
+    process.exit(1);
+  }
   console.warn(`prerender: prices unavailable (${error.message}), building without them`);
 }
 primeTicker(ticker);

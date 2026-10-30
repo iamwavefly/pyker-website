@@ -53,7 +53,7 @@ const PYKER_ENDPOINT = `${PYKER_API_URL}/api/v1/rates`;
 
 const MARKET_REFRESH_MS = 60_000;
 // Pyker caches its rates for hours, so there's no point asking often.
-const PYKER_REFRESH_MS = 15 * 60_000;
+const PYKER_REFRESH_MS = 60 * 60_000;
 
 const EMPTY: TickerState = { coins: null, status: "loading", updatedAt: null, pyker: null };
 
