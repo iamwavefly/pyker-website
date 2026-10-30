@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import Container from "../ui/Container";
 import Button from "../ui/Button";
+import GetAppButton from "../ui/GetAppButton";
 import { useScrolled } from "../../hooks/useScrolled";
 import { useScrollSpy } from "../../hooks/useScrollSpy";
 import { CaretRightIcon, CloseIcon, MenuIcon } from "../icons";
@@ -50,9 +51,9 @@ export default function Header() {
           </nav>
 
           <div className={styles.actions}>
-            <Button variant="lime" size="md" href="/#download" icon={<CaretRightIcon width={12} height={12} />} className={styles.iconEnd}>
+            <GetAppButton variant="lime" size="md" icon={<CaretRightIcon width={12} height={12} />} className={styles.iconEnd}>
               Get the app
-            </Button>
+            </GetAppButton>
             <Button variant="outline" size="md" href="/contact">
               Contact
             </Button>
@@ -81,9 +82,9 @@ export default function Header() {
                 </a>
               ),
             )}
-            <Button variant="lime" size="lg" href="/#download" onClick={() => setOpen(false)}>
+            <GetAppButton variant="lime" size="lg" onClick={() => setOpen(false)}>
               Get the app
-            </Button>
+            </GetAppButton>
           </nav>
         )}
       </Container>

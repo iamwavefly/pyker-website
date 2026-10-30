@@ -1,5 +1,5 @@
 import { AppleLogoIcon, GooglePlayLogoIcon } from "../icons";
-import { PLAY_STORE_URL } from "../../data/links";
+import { APP_STORE_URL, PLAY_STORE_URL } from "../../data/links";
 import styles from "./StoreButtons.module.css";
 
 export default function StoreButtons({ tone = "dark" }: { tone?: "dark" | "light" }) {
@@ -18,14 +18,24 @@ export default function StoreButtons({ tone = "dark" }: { tone?: "dark" | "light
         </span>
       </a>
 
-      {/* No App Store listing yet: shown, but not clickable. */}
-      <span className={`${styles.store} ${styles[tone]} ${styles.soon}`} aria-disabled="true">
-        <AppleLogoIcon width={22} height={22} />
-        <span className={styles.text}>
-          <span className={styles.caption}>Coming soon to the</span>
-          <span className={styles.label}>App Store</span>
+      {APP_STORE_URL ? (
+        <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className={`${styles.store} ${styles[tone]}`}>
+          <AppleLogoIcon width={22} height={22} />
+          <span className={styles.text}>
+            <span className={styles.caption}>Download on the</span>
+            <span className={styles.label}>App Store</span>
+          </span>
+        </a>
+      ) : (
+        // No App Store listing yet: shown, but not clickable.
+        <span className={`${styles.store} ${styles[tone]} ${styles.soon}`} aria-disabled="true">
+          <AppleLogoIcon width={22} height={22} />
+          <span className={styles.text}>
+            <span className={styles.caption}>Coming soon to the</span>
+            <span className={styles.label}>App Store</span>
+          </span>
         </span>
-      </span>
+      )}
     </div>
   );
 }

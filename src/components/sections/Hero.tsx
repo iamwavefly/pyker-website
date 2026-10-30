@@ -4,6 +4,7 @@ import Container from "../ui/Container";
 import Sparkline from "../page/Sparkline";
 import { FEATURES } from "../../data/features";
 import Button from "../ui/Button";
+import GetAppButton from "../ui/GetAppButton";
 import Phone from "../ui/Phone";
 import { BtcIcon } from "../icons/crypto";
 import VirtualCard from "../ui/VirtualCard";
@@ -313,9 +314,9 @@ export default function Hero() {
               virtual dollar card.
             </p>
             <div className={styles.ctaRow}>
-              <Button variant="lime" size="lg" href="#download" icon={<CaretRightIcon width={13} height={13} />} className={styles.iconEnd}>
+              <GetAppButton variant="lime" size="lg" icon={<CaretRightIcon width={13} height={13} />} className={styles.iconEnd}>
                 Get the app
-              </Button>
+              </GetAppButton>
               <Button variant="outline" size="lg" href="#how-it-works">
                 See how it works
               </Button>
