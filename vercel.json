@@ -11,5 +11,12 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/pay-for",
+      "destination": "/virtual-dollar-card",
+      "permanent": true
+    }
   ]
 }

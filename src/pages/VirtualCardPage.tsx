@@ -7,6 +7,7 @@ import { PostGrid } from "../components/blog/PostCard";
 import { postsTagged } from "../content/blog";
 import { FEATURES } from "../data/features";
 import { CARD } from "../content/card";
+import { SERVICES, serviceLabel, servicePath } from "../content/payFor";
 import { CreditCardIcon, EyeSlashIcon, PlusIcon, SnowflakeIcon, GlobeIcon, MusicIcon, IdCardIcon, ShoppingIcon } from "../components/icons";
 
 export default function VirtualCardPage() {
@@ -62,6 +63,16 @@ export default function VirtualCardPage() {
             Icon: [GlobeIcon, MusicIcon, IdCardIcon, ShoppingIcon][index] ?? GlobeIcon,
             title: use.title,
             text: use.text,
+          }))}
+        />
+      </PageSection>
+
+      <PageSection soft eyebrow="Guides by service" title="How to pay for popular services">
+        <LinkCards
+          links={SERVICES.map((service) => ({
+            to: servicePath(service),
+            title: `Pay for ${service.name}`,
+            text: `${serviceLabel(service.category)}: step-by-step with your Pyker card.`,
           }))}
         />
       </PageSection>

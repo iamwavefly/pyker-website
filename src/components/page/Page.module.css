@@ -714,6 +714,12 @@ a.rateCoin:hover {
   }
 }
 
+.legalNote {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--color-grey-05);
+}
+
 /* Merchant names */
 .merchants ul {
   display: flex;

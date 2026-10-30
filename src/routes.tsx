@@ -10,6 +10,7 @@ import SellCoinPage from "./pages/SellCoinPage";
 import CoinRatePage from "./pages/CoinRatePage";
 import RatesPage from "./pages/RatesPage";
 import VirtualCardPage from "./pages/VirtualCardPage";
+import PayForPage from "./pages/PayForPage";
 import PayBillsPage from "./pages/PayBillsPage";
 import SellGiftCardsPage from "./pages/SellGiftCardsPage";
 import { GIFT_CARDS } from "./content/giftCards";
@@ -27,6 +28,7 @@ import { SELL_HUB, sellCoinDescription, sellCoinFaq, sellCoinTitle } from "./con
 import { RATES } from "./content/rates";
 import { coinRateDescription, coinRateFaq, coinRateTitle } from "./content/coinRates";
 import { CARD } from "./content/card";
+import { SERVICES, serviceFaq, servicePath } from "./content/payFor";
 import { BILLS } from "./content/bills";
 import { SUPPORT_FAQ } from "./content/support";
 import { appSchema, articleSchema, breadcrumbSchema, faqSchema, type PageMeta, type SitemapEntry } from "./seo/meta";
@@ -130,6 +132,34 @@ export const ROUTES: AppRoute[] = [
     },
     sitemap: { priority: 0.9, changefreq: "weekly" },
   },
+  ...SERVICES.map(
+    (service): AppRoute => ({
+      path: servicePath(service),
+      element: <PayForPage service={service} />,
+      meta: {
+        title: `${service.metaTitle} | Pyker`,
+        description: service.description,
+        path: servicePath(service),
+        jsonLd: [
+          articleSchema({
+            title: service.metaTitle,
+            description: service.description,
+            path: servicePath(service),
+            published: service.updated,
+            updated: service.updated,
+            image: "/og-image.png",
+          }),
+          breadcrumbSchema([
+            home,
+            { name: "Virtual dollar card", path: FEATURES.virtualCard.path },
+            { name: service.name, path: servicePath(service) },
+          ]),
+          faqSchema(serviceFaq(service)),
+        ],
+      },
+      sitemap: { priority: 0.8, changefreq: "monthly", lastmod: service.updated },
+    }),
+  ),
   {
     path: FEATURES.giftCards.path,
     element: <SellGiftCardsPage />,
