@@ -178,9 +178,9 @@ function RateTile() {
 
 // The app's own screens, telling the story: wallet, deposit address, credited.
 const PHONE_SCREENS = [
-  { src: "/screens/home.png", alt: "Pyker home screen with wallet balance and quick actions" },
-  { src: "/screens/sell-address.png", alt: "Pyker deposit address screen with a QR code and live rates" },
-  { src: "/screens/sell-success.png", alt: "Pyker sale tracker showing a Bitcoin sale credited" },
+  { src: "/screens/home.webp", alt: "Pyker home screen with wallet balance and quick actions" },
+  { src: "/screens/sell-address.webp", alt: "Pyker deposit address screen with a QR code and live rates" },
+  { src: "/screens/sell-success.webp", alt: "Pyker sale tracker showing a Bitcoin sale credited" },
 ];
 const PHONE_SCREEN_MS = 3800;
 

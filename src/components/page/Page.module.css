@@ -523,6 +523,131 @@ a.rateCoin:hover {
   color: var(--color-grey-05);
 }
 
+/* Rate converter */
+.converter {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: 16px;
+  max-width: 760px;
+  padding: 24px;
+  border-radius: 24px;
+  background: var(--color-surface);
+  box-shadow: 0 0 0 1px var(--color-border);
+}
+
+.convertField {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-grey-05);
+}
+
+.convertInput {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  border-radius: 16px;
+  background: var(--color-soft);
+  box-shadow: 0 0 0 1px var(--color-line);
+  transition: box-shadow 0.2s ease;
+}
+
+.convertInput:focus-within {
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+.convertInput input {
+  flex: 1;
+  min-width: 0;
+  padding: 16px 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.convertInput strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-dark);
+}
+
+.convertEquals {
+  padding-bottom: 16px;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-grey-05);
+}
+
+.convertNote {
+  grid-column: 1 / -1;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-grey-05);
+}
+
+/* Rate amount tables */
+.amountGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.amountTitle {
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.amountBox {
+  border-radius: 24px;
+  background: var(--color-surface);
+  box-shadow: 0 0 0 1px var(--color-border);
+  overflow: hidden;
+}
+
+.amounts {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.amounts th,
+.amounts td {
+  padding: 14px 24px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.amounts tbody tr:last-child th,
+.amounts tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.amounts thead th {
+  padding-block: 12px;
+  background: var(--color-soft);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-grey-05);
+}
+
+.amounts tbody th {
+  font-weight: 500;
+}
+
+.amounts td {
+  font-weight: 600;
+}
+
 @media (max-width: 1000px) {
   .points {
     grid-template-columns: repeat(2, 1fr);
@@ -535,6 +660,10 @@ a.rateCoin:hover {
   }
 
   .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .amountGrid {
     grid-template-columns: 1fr;
   }
 }
@@ -559,6 +688,20 @@ a.rateCoin:hover {
 
   .ratePrice {
     font-size: 14px;
+  }
+
+  .converter {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .convertEquals {
+    display: none;
+  }
+
+  .amounts th,
+  .amounts td {
+    padding: 12px 16px;
   }
 }
 

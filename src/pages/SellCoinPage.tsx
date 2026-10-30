@@ -4,7 +4,7 @@ import Faq from "../components/sections/Faq";
 import FinalCta from "../components/sections/FinalCta";
 import { PostGrid } from "../components/blog/PostCard";
 import { postsTagged, type PostTag } from "../content/blog";
-import { COINS, sellPath, type Coin } from "../data/coins";
+import { COINS, ratePath, sellPath, type Coin } from "../data/coins";
 import { FEATURES } from "../data/features";
 import { SELL_COMPARE, sellCoinFaq, sellCoinSteps } from "../content/sell";
 import { BoltIcon, ChartIcon, QrIcon, WalletIcon } from "../components/icons";
@@ -32,7 +32,7 @@ export default function SellCoinPage({ coin }: { coin: Coin }) {
           </>
         }
         intro={coin.intro}
-        secondary={{ label: "See all rates", to: FEATURES.rates.path }}
+        secondary={{ label: `${coin.symbol} to naira rate today`, to: ratePath(coin) }}
         aside={<CoinPriceCard coin={coin} />}
       />
 

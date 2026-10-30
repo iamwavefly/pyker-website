@@ -44,13 +44,13 @@ const STEPS: { Icon: typeof BoltIcon; title: string; text: string; visual: React
     Icon: QrIcon,
     title: "Pick a coin, get an address",
     text: "Choose what you're selling and whether you want naira or dollars. Your deposit address is ready instantly.",
-    visual: <Phone src="/screens/sell-address.png" alt="Pyker deposit address screen" className={styles.phone} />,
+    visual: <Phone src="/screens/sell-address.webp" alt="Pyker deposit address screen" className={styles.phone} />,
   },
   {
     Icon: BoltIcon,
     title: "Send and watch it land",
     text: "Send from any wallet or exchange and follow it live, from payment detected to funds credited.",
-    visual: <Phone src="/screens/sell-success.png" alt="Pyker sale tracking screen" className={styles.phone} />,
+    visual: <Phone src="/screens/sell-success.webp" alt="Pyker sale tracking screen" className={styles.phone} />,
   },
   {
     Icon: CreditCardIcon,

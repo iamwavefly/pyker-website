@@ -10,8 +10,8 @@ export default function FinalCta() {
       <Container>
         <Reveal className={styles.panel}>
           <div className={styles.phones} aria-hidden="true">
-            <Phone src="/screens/sell-address.png" alt="" className={styles.phoneLeft} />
-            <Phone src="/screens/virtual-card.png" alt="" className={styles.phoneRight} />
+            <Phone src="/screens/sell-address.webp" alt="" className={styles.phoneLeft} />
+            <Phone src="/screens/virtual-card.webp" alt="" className={styles.phoneRight} />
           </div>
 
           <div className={styles.copy}>

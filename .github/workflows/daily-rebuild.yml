@@ -1,0 +1,24 @@
+# Rebuilds the site every morning so pre-rendered rate pages show today's
+# rates and the sitemap's lastmod stays honest. Needs a Vercel deploy hook
+# (Project Settings > Git > Deploy Hooks, branch main) saved as the
+# VERCEL_DEPLOY_HOOK repository secret.
+name: Daily rebuild
+
+on:
+  schedule:
+    - cron: "0 5 * * *" # 06:00 Lagos time
+  workflow_dispatch:
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel deploy
+        env:
+          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$VERCEL_DEPLOY_HOOK" ]; then
+            echo "::error::VERCEL_DEPLOY_HOOK secret is not set"
+            exit 1
+          fi
+          curl --fail --silent --show-error -X POST "$VERCEL_DEPLOY_HOOK"

@@ -168,18 +168,29 @@ export function applyMeta(meta: PageMeta) {
   }
 }
 
-export type SitemapEntry = { path: string; priority: number; changefreq: "daily" | "weekly" | "monthly" | "yearly" };
+export type SitemapEntry = {
+  path: string;
+  priority: number;
+  changefreq: "daily" | "weekly" | "monthly" | "yearly";
+  /** ISO date the content last changed. */
+  lastmod?: string;
+  /** Shows today's rates, so it changes with every build. */
+  live?: boolean;
+};
 
-export function sitemapXml(entries: SitemapEntry[], lastmod: string) {
+// Google ignores lastmod once it proves unreliable, so pages only get one
+// when we know it: their own date, or the build date if they show live rates.
+export function sitemapXml(entries: SitemapEntry[], buildDate: string) {
   const urls = entries
-    .map(
-      (entry) => `  <url>
-    <loc>${absoluteUrl(entry.path)}</loc>
-    <lastmod>${lastmod}</lastmod>
+    .map((entry) => {
+      const lastmod = entry.lastmod ?? (entry.live ? buildDate : null);
+      return `  <url>
+    <loc>${absoluteUrl(entry.path)}</loc>${lastmod ? `
+    <lastmod>${lastmod}</lastmod>` : ""}
     <changefreq>${entry.changefreq}</changefreq>
     <priority>${entry.priority.toFixed(1)}</priority>
-  </url>`,
-    )
+  </url>`;
+    })
     .join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

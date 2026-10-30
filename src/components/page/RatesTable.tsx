@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { COINS, formatNgn, sellPath } from "../../data/coins";
+import { COINS, formatNgn, ratePath, sellPath } from "../../data/coins";
 import { formatLagosTime, rateFor, useMarketTicker } from "../../hooks/useMarketTicker";
 import Sparkline from "./Sparkline";
 import styles from "./Page.module.css";
@@ -38,7 +38,7 @@ export default function RatesTable() {
             return (
               <tr key={coin.id}>
                 <th scope="row">
-                  <Link to={sellPath(coin)} className={styles.rateCoin}>
+                  <Link to={ratePath(coin)} className={styles.rateCoin}>
                     <coin.Icon size={32} />
                     <span>
                       {coin.name}

@@ -6,7 +6,7 @@
 
 .top {
   display: grid;
-  grid-template-columns: 1.6fr repeat(4, 1fr);
+  grid-template-columns: 1.4fr repeat(5, 1fr);
   gap: var(--space-huge);
   padding-bottom: 48px;
 }

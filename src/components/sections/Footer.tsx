@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Container from "../ui/Container";
 import CopyButton from "../ui/CopyButton";
 import { InstagramLogoIcon, LinkedinLogoIcon, XLogoIcon } from "../icons";
-import { COINS, sellPath } from "../../data/coins";
+import { COINS, ratePath, sellPath } from "../../data/coins";
 import { FEATURES } from "../../data/features";
 import styles from "./Footer.module.css";
 
@@ -20,6 +20,13 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
     links: [
       ...COINS.map((coin) => ({ label: `Sell ${coin.displayName}`, to: sellPath(coin) })),
       { label: "All coins", to: FEATURES.sellCrypto.path },
+    ],
+  },
+  {
+    title: "Rates today",
+    links: [
+      ...COINS.map((coin) => ({ label: `${coin.displayName} to naira`, to: ratePath(coin) })),
+      { label: "All rates", to: FEATURES.rates.path },
     ],
   },
   {

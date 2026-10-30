@@ -68,7 +68,7 @@ const TABS: { key: string; label: string; title: string; text: string; more: { l
       {
         title: "Your own deposit address",
         text: "Scan or share a QR code, with the minimum and live rate shown before you send.",
-        visual: <Screen src="/screens/sell-address.png" position="50% 52%" />,
+        visual: <Screen src="/screens/sell-address.webp" position="50% 52%" />,
       },
       {
         title: "Rates that move with the market",
@@ -106,7 +106,7 @@ const TABS: { key: string; label: string; title: string; text: string; more: { l
       {
         title: "In control, always",
         text: "Fund, withdraw or freeze in one tap. Card details only show after your PIN.",
-        visual: <Screen src="/screens/virtual-card.png" position="50% 46%" />,
+        visual: <Screen src="/screens/virtual-card.webp" position="50% 46%" />,
       },
     ],
   },

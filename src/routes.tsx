@@ -7,6 +7,7 @@ import PrivacyPage from "./pages/PrivacyPage";
 import AccountDeletionPage from "./pages/AccountDeletionPage";
 import SellCryptoPage from "./pages/SellCryptoPage";
 import SellCoinPage from "./pages/SellCoinPage";
+import CoinRatePage from "./pages/CoinRatePage";
 import RatesPage from "./pages/RatesPage";
 import VirtualCardPage from "./pages/VirtualCardPage";
 import PayBillsPage from "./pages/PayBillsPage";
@@ -19,11 +20,12 @@ import { BLOG_PATH, POSTS, postPath } from "./content/blog";
 import AlternativesPage from "./pages/AlternativesPage";
 import AlternativePage from "./pages/AlternativePage";
 import { ALTERNATIVES, ALTERNATIVES_FAQ, ALTERNATIVES_PATH, alternativePath } from "./content/alternatives";
-import { COINS, sellPath } from "./data/coins";
+import { COINS, ratePath, sellPath } from "./data/coins";
 import { FEATURES } from "./data/features";
 import { HOME, HOME_FAQ } from "./content/home";
 import { SELL_HUB, sellCoinDescription, sellCoinFaq, sellCoinTitle } from "./content/sell";
 import { RATES } from "./content/rates";
+import { coinRateDescription, coinRateFaq, coinRateTitle } from "./content/coinRates";
 import { CARD } from "./content/card";
 import { BILLS } from "./content/bills";
 import { SUPPORT_FAQ } from "./content/support";
@@ -47,7 +49,7 @@ export const ROUTES: AppRoute[] = [
     path: "/",
     element: <HomePage />,
     meta: { ...HOME, path: "/", jsonLd: [appSchema, faqSchema(HOME_FAQ)] },
-    sitemap: { priority: 1, changefreq: "weekly" },
+    sitemap: { priority: 1, changefreq: "weekly", live: true },
   },
   {
     path: FEATURES.sellCrypto.path,
@@ -61,7 +63,7 @@ export const ROUTES: AppRoute[] = [
         faqSchema(SELL_HUB.faq),
       ],
     },
-    sitemap: { priority: 0.9, changefreq: "weekly" },
+    sitemap: { priority: 0.9, changefreq: "weekly", live: true },
   },
   ...COINS.map(
     (coin): AppRoute => ({
@@ -80,7 +82,7 @@ export const ROUTES: AppRoute[] = [
           faqSchema(sellCoinFaq(coin)),
         ],
       },
-      sitemap: { priority: 0.9, changefreq: "daily" },
+      sitemap: { priority: 0.9, changefreq: "daily", live: true },
     }),
   ),
   {
@@ -92,8 +94,28 @@ export const ROUTES: AppRoute[] = [
       path: FEATURES.rates.path,
       jsonLd: [breadcrumbSchema([home, { name: "Crypto rates", path: FEATURES.rates.path }]), faqSchema(RATES.faq)],
     },
-    sitemap: { priority: 0.9, changefreq: "daily" },
+    sitemap: { priority: 0.9, changefreq: "daily", live: true },
   },
+  ...COINS.map(
+    (coin): AppRoute => ({
+      path: ratePath(coin),
+      element: <CoinRatePage coin={coin} />,
+      meta: {
+        title: coinRateTitle(coin),
+        description: coinRateDescription(coin),
+        path: ratePath(coin),
+        jsonLd: [
+          breadcrumbSchema([
+            home,
+            { name: "Crypto rates", path: FEATURES.rates.path },
+            { name: `${coin.displayName} to naira`, path: ratePath(coin) },
+          ]),
+          faqSchema(coinRateFaq(coin)),
+        ],
+      },
+      sitemap: { priority: 0.9, changefreq: "daily", live: true },
+    }),
+  ),
   {
     path: FEATURES.virtualCard.path,
     element: <VirtualCardPage />,
@@ -143,7 +165,7 @@ export const ROUTES: AppRoute[] = [
       path: BLOG_PATH,
       jsonLd: [breadcrumbSchema([home, { name: "Blog", path: BLOG_PATH }])],
     },
-    sitemap: { priority: 0.7, changefreq: "weekly" },
+    sitemap: { priority: 0.7, changefreq: "weekly", lastmod: POSTS.map((post) => post.updated).sort().at(-1) },
   },
   ...POSTS.map(
     (post): AppRoute => ({
@@ -159,7 +181,7 @@ export const ROUTES: AppRoute[] = [
           faqSchema(post.faq),
         ],
       },
-      sitemap: { priority: 0.7, changefreq: "monthly" },
+      sitemap: { priority: 0.7, changefreq: "monthly", lastmod: post.updated },
     }),
   ),
   {

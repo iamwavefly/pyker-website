@@ -47,8 +47,8 @@ for (const route of ROUTES) {
   console.log(`prerender: ${url} -> ${path.relative(root, file)}`);
 }
 
-const lastmod = new Date().toISOString().slice(0, 10);
-await fs.writeFile(path.join(dist, "sitemap.xml"), sitemapXml(sitemapEntries(), lastmod));
+const buildDate = new Date().toISOString().slice(0, 10);
+await fs.writeFile(path.join(dist, "sitemap.xml"), sitemapXml(sitemapEntries(), buildDate));
 console.log(`prerender: sitemap.xml with ${sitemapEntries().length} URLs`);
 
 await fs.rm(ssrDir, { recursive: true, force: true });
