@@ -65,6 +65,13 @@ export const virtualCardGuide: Post = {
       title: "Smart habit",
       text: "Only keep what you need on the card, and freeze it between purchases. Just remember to unfreeze it before any subscription renews.",
     },
+    {
+      type: "screens",
+      items: [
+        { src: "/screens/home.webp", alt: "Pyker home screen with the Virtual card quick action", caption: "Tap Virtual card on the home screen to create your card." },
+        { src: "/screens/virtual-card.webp", alt: "Pyker virtual card screen with Fund card, Withdraw, Card details and Freeze", caption: "Fund, withdraw, view details or freeze your card in one place." },
+      ],
+    },
     { type: "h2", text: "Common uses" },
     {
       type: "ul",

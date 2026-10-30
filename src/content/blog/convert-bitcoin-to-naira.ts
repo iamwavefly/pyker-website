@@ -56,6 +56,13 @@ export const bitcoinToNaira: Post = {
         "**Get paid.** Once the network confirms your payment, your wallet is credited and you get a receipt.",
       ],
     },
+    {
+      type: "screens",
+      items: [
+        { src: "/screens/sell-address.webp", alt: "Pyker deposit address screen with NGN or USD wallet choice and a QR code", caption: "Your Bitcoin deposit address. Choose NGN or USD wallet, then copy or scan it." },
+        { src: "/screens/sell-success.webp", alt: "Pyker sale tracker showing payment detected, validating and funds credited", caption: "Follow your sale from payment detected to funds credited." },
+      ],
+    },
     { type: "h2", text: "Fees to expect" },
     {
       type: "p",

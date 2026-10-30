@@ -76,6 +76,12 @@ export const avoidScams: Post = {
         "You can track every sale from payment detected to funds credited, with a receipt.",
       ],
     },
+    {
+      type: "screens",
+      items: [
+        { src: "/screens/sell-success.webp", alt: "Pyker sale tracker showing payment detected, validating and funds credited", caption: "Every Pyker sale is tracked to funds credited. There's no buyer, so no fake alert." },
+      ],
+    },
     { type: "h2", text: "6. \"Doubling\" and investment schemes" },
     {
       type: "p",

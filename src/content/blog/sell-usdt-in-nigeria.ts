@@ -62,6 +62,13 @@ export const sellUsdt: Post = {
         "**Track it.** Watch your payment go from detected to validated to credited, with a receipt at the end.",
       ],
     },
+    {
+      type: "screens",
+      items: [
+        { src: "/screens/sell-address.webp", alt: "Pyker deposit address screen with NGN or USD wallet choice and a QR code", caption: "The deposit address screen (shown here for Bitcoin). For USDT, you pick your network first." },
+        { src: "/screens/sell-success.webp", alt: "Pyker sale tracker showing payment detected, validating and funds credited", caption: "Track your sale until your wallet is credited." },
+      ],
+    },
     { type: "h2", text: "Step 3: Use your naira" },
     {
       type: "p",

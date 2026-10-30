@@ -64,6 +64,12 @@ export const payForChatgpt: Post = {
       title: "Keep a buffer for renewals",
       text: "ChatGPT Plus renews every month. Keep a little more than the subscription price on your card so a renewal doesn't fail, and top up before your renewal date.",
     },
+    {
+      type: "screens",
+      items: [
+        { src: "/screens/virtual-card.webp", alt: "Pyker virtual card screen with Fund card, Withdraw, Card details and Freeze", caption: "Tap Card details and enter your PIN to see the number, expiry and CVV for ChatGPT." },
+      ],
+    },
     { type: "h2", text: "If your payment is still declined" },
     {
       type: "p",

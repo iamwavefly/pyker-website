@@ -1257,6 +1257,21 @@ export function serviceGuide(service: Service): Block[] {
       ],
     },
     {
+      type: "screens",
+      items: [
+        {
+          src: "/screens/home.webp",
+          alt: "Pyker home screen with the Virtual card quick action",
+          caption: "Start from Virtual card on the Pyker home screen.",
+        },
+        {
+          src: "/screens/virtual-card.webp",
+          alt: "Pyker virtual card screen with Fund card, Withdraw, Card details and Freeze",
+          caption: `Fund card tops it up. Card details shows what you'll enter on ${name}.`,
+        },
+      ],
+    },
+    {
       type: "tip",
       title: "Keep Card details open",
       text: `You'll copy the card number, CVV, expiry and billing address into ${name} in the next step. Use the billing address Pyker shows, not your home address.`,

@@ -10,7 +10,9 @@ export type Block =
   | { type: "ol"; items: string[] }
   | { type: "tip"; title: string; text: string }
   | { type: "table"; head: string[]; rows: string[][] }
-  | { type: "cta"; title: string; text: string; to: string; label: string };
+  | { type: "cta"; title: string; text: string; to: string; label: string }
+  /** One or two app screenshots in phone frames, each with a caption. */
+  | { type: "screens"; items: { src: string; alt: string; caption: string }[] };
 
 export type CoverTone = "lilac" | "lime" | "peach" | "ink";
 

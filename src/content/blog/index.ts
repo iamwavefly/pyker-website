@@ -40,6 +40,8 @@ function blockText(block: Block): string {
       return `${block.title} ${block.text}`;
     case "cta":
       return "";
+    case "screens":
+      return block.items.map((item) => item.caption).join(" ");
     default:
       return block.text;
   }

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Rich from "./Rich";
+import Phone from "../ui/Phone";
 import { headingId, type Block } from "../../content/blog";
 import { CaretRightIcon } from "../icons";
 import styles from "./Blog.module.css";
@@ -77,6 +78,17 @@ function BlockView({ block }: { block: Block }) {
               ))}
             </tbody>
           </table>
+        </div>
+      );
+    case "screens":
+      return (
+        <div className={styles.screens}>
+          {block.items.map((item) => (
+            <figure key={item.src}>
+              <Phone src={item.src} alt={item.alt} className={styles.screenPhone} />
+              <figcaption>{item.caption}</figcaption>
+            </figure>
+          ))}
         </div>
       );
     case "cta":
