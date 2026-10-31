@@ -546,7 +546,7 @@ const morePlatforms: Alternative[] = [
       { ...pykerSellRow, them: "Check the Bitnob app for its current selling options." },
       {
         label: "Dollar card",
-        pyker: "USD Visa or Mastercard, in five colours. A one-time issuance fee is shown before you confirm.",
+        pyker: "USD Visa or Mastercard, in five colours. A one-time creation fee is shown before you confirm.",
         them: "Offers a virtual dollar card. Check Bitnob for its current card fees.",
       },
     ],
@@ -767,7 +767,7 @@ const morePlatforms: Alternative[] = [
     ],
     switchSteps: [
       { title: "Verify your account", text: "Sign up in the Pyker app and verify your BVN." },
-      { title: "Create your card", text: "Choose Visa or Mastercard and a colour. The one-time issuance fee is shown before you confirm." },
+      { title: "Create your card", text: "Choose Visa or Mastercard and a colour. The one-time creation fee is shown before you confirm." },
       { title: "Fund it and pay", text: "Move money from your Pyker balance onto your card and use it anywhere online." },
     ],
     faq: [
@@ -873,12 +873,12 @@ export const PAYOUT_CHECKS = [
 ];
 
 // What to compare between dollar cards, for card-app alternative pages.
-// Pyker's side matches the app: issuance fee shown before you confirm, funded
+// Pyker's side matches the app: creation fee shown before you confirm, funded
 // from the Pyker balance, Visa or Mastercard, freeze/withdraw, PIN-gated details.
 export const CARD_CHECKS = [
   {
     title: "Issuance and funding fees",
-    text: "Check what it costs to create and top up a card. Pyker's one-time issuance fee is shown before you confirm.",
+    text: "Check what it costs to create and top up a card. Pyker's one-time creation fee is shown before you confirm.",
   },
   {
     title: "How you fund it",

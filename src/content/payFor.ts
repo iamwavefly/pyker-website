@@ -1235,6 +1235,7 @@ export function findService(slug: string) {
 /** The full guide: what you need, the Pyker setup tailored to the service, then its own walkthrough. */
 export function serviceGuide(service: Service): Block[] {
   const { name } = service;
+  const network = service.card.network === "visa" ? "Visa" : "Mastercard";
   return [
     { type: "h2", text: "What you need" },
     {
@@ -1249,25 +1250,46 @@ export function serviceGuide(service: Service): Block[] {
     {
       type: "ol",
       items: [
-        "**Open Virtual card.** On the Pyker home screen, tap **Virtual card** and start a new card.",
+        "**Open Virtual card.** On the Pyker home screen, tap **Virtual card**. If you already have a card, tap **Add card**.",
         `**Choose ${service.cardType}.** Under **Select card option**, pick **${service.cardType}**. ${service.cardTypeReason}`,
         `**Pick a colour and network.** On **Customise your virtual card**, choose a colour, then Visa or Mastercard. ${name} accepts both.`,
-        `**Fund it from your wallet.** Choose **Wallet** as the funding source, enter an amount and confirm with your PIN. ${service.fundAdvice} The creation fee is shown before you confirm.`,
-        "**Open your card details.** Tap **Card details** and enter your PIN. You'll see the card number, CVV, expiry (**Valid till**), name on card and billing address.",
       ],
     },
     {
       type: "screens",
       items: [
         {
-          src: "/screens/home.webp",
-          alt: "Pyker home screen with the Virtual card quick action",
-          caption: "Start from Virtual card on the Pyker home screen.",
+          src: `/screens/card-option-${service.cardType.toLowerCase()}.webp`,
+          alt: `Pyker Select card option screen with ${service.cardType} selected`,
+          caption: `Pick ${service.cardType} under Select card option.`,
         },
         {
-          src: "/screens/virtual-card.webp",
-          alt: "Pyker virtual card screen with Fund card, Withdraw, Card details and Freeze",
-          caption: `Fund card tops it up. Card details shows what you'll enter on ${name}.`,
+          src: `/screens/card-customise-${service.card.network}.webp`,
+          alt: `Pyker Customise your virtual card screen with ${network} selected`,
+          caption: "Choose a colour, then Visa or Mastercard.",
+        },
+      ],
+    },
+    {
+      type: "ol",
+      start: 4,
+      items: [
+        `**Fund it from your wallet.** Choose **Wallet** as the funding source, enter an amount in USD and tap **Create virtual card**. ${service.fundAdvice} The creation fee is shown before you confirm.`,
+        "**Open your card details.** On your card, tap **Card details** and enter your PIN. You'll see the card number, CVV, expiry (**Valid till**), name on card and billing address.",
+      ],
+    },
+    {
+      type: "screens",
+      items: [
+        {
+          src: "/screens/card-create-fund.webp",
+          alt: "Pyker Fund card screen with Wallet as the funding source and a USD amount field",
+          caption: "Fund the card from your naira wallet in USD.",
+        },
+        {
+          src: "/screens/card-details.webp",
+          alt: "Pyker Card details screen with card number, CVV, expiry, name and billing address",
+          caption: `Everything ${name} asks for, with a copy button on each line.`,
         },
       ],
     },

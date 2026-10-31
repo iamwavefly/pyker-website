@@ -12,7 +12,7 @@ export const CARD = {
     },
     {
       title: "Create your card",
-      text: "Choose Visa or Mastercard and pick a colour. A one-time issuance fee is shown before you confirm.",
+      text: "Choose Visa or Mastercard and pick a colour. A one-time creation fee is shown before you confirm.",
     },
     {
       title: "Fund it and spend",
@@ -34,7 +34,7 @@ export const CARD = {
     {
       question: "How much does the card cost?",
       answer:
-        "There's a one-time issuance fee when you create a card. The exact amount is shown in the app before you confirm.",
+        "There's a one-time creation fee when you create a card. The exact amount is shown in the app before you confirm.",
     },
     {
       question: "Can I use it for Apple, Google, Netflix, Udemy or Claude?",

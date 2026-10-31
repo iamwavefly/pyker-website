@@ -11,7 +11,7 @@ export const payForChatgpt: Post = {
   category: "Dollar card",
   tags: ["card"],
   published: "2026-10-18",
-  updated: "2026-10-18",
+  updated: "2026-10-31",
   cover: { kind: "card", color: "pink", network: "visa", tone: "lilac" },
   body: [
     {
@@ -53,7 +53,7 @@ export const payForChatgpt: Post = {
       type: "ol",
       items: [
         "**Download Pyker and verify your account.** Sign up, then verify your BVN in the app. It usually takes a few minutes.",
-        "**Create your virtual dollar card.** Choose Visa or Mastercard and pick a colour. A one-time issuance fee is shown before you confirm.",
+        "**Create your virtual dollar card.** Choose Visa or Mastercard and pick a colour. A one-time creation fee is shown before you confirm.",
         "**Fund your card.** Move money from your Pyker balance onto the card. You can top up your balance by bank transfer or by [selling crypto for naira](/sell-crypto).",
         "**Get your card details.** In the app, open your card and confirm your PIN to see the card number, expiry date and CVV.",
         "**Subscribe in ChatGPT.** Open ChatGPT, choose to upgrade to Plus, and enter your Pyker card details at checkout.",
@@ -67,7 +67,8 @@ export const payForChatgpt: Post = {
     {
       type: "screens",
       items: [
-        { src: "/screens/virtual-card.webp", alt: "Pyker virtual card screen with Fund card, Withdraw, Card details and Freeze", caption: "Tap Card details and enter your PIN to see the number, expiry and CVV for ChatGPT." },
+        { src: "/screens/card-fund.webp", alt: "Pyker Fund card screen with Wallet as the funding source and a USD amount field", caption: "Fund card moves dollars onto your card from your Pyker wallet." },
+        { src: "/screens/card-details.webp", alt: "Pyker Card details screen with card number, CVV, expiry and billing address", caption: "Card details, after your PIN, has everything ChatGPT's checkout asks for." },
       ],
     },
     { type: "h2", text: "If your payment is still declined" },

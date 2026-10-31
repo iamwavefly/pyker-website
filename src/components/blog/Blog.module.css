@@ -429,7 +429,7 @@
   }
 
   .layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .toc {
@@ -476,4 +476,26 @@
   line-height: 1.5;
   text-align: center;
   color: var(--color-grey-05);
+}
+
+/* Two phones per row on small screens, so a set of screens isn't a long stack */
+@media (max-width: 560px) {
+  .screens {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-items: center;
+    gap: 24px 12px;
+    padding: 24px 12px;
+  }
+
+  .screens figure {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  /* An odd last screen sits centred under the pair */
+  .screens figure:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: calc(50% - 6px);
+  }
 }

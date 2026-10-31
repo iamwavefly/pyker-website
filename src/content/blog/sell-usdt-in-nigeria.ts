@@ -11,7 +11,7 @@ export const sellUsdt: Post = {
   category: "Selling crypto",
   tags: ["usdt", "sell"],
   published: "2026-10-18",
-  updated: "2026-10-18",
+  updated: "2026-10-31",
   cover: { kind: "coins", ids: ["tether"], tone: "lime" },
   body: [
     {
@@ -65,6 +65,7 @@ export const sellUsdt: Post = {
     {
       type: "screens",
       items: [
+        { src: "/screens/sell-assets.webp", alt: "Pyker Sell Crypto screen listing the coins you can sell, including USDT on six networks", caption: "Pick USDT, then choose the network you're sending on." },
         { src: "/screens/sell-address.webp", alt: "Pyker deposit address screen with NGN or USD wallet choice and a QR code", caption: "The deposit address screen (shown here for Bitcoin). For USDT, you pick your network first." },
         { src: "/screens/sell-success.webp", alt: "Pyker sale tracker showing payment detected, validating and funds credited", caption: "Track your sale until your wallet is credited." },
       ],

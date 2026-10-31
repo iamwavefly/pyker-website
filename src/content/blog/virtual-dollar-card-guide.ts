@@ -11,7 +11,7 @@ export const virtualCardGuide: Post = {
   category: "Dollar card",
   tags: ["card"],
   published: "2026-10-18",
-  updated: "2026-10-18",
+  updated: "2026-10-31",
   cover: { kind: "art", src: "/art/cards.webp" },
   body: [
     {
@@ -38,7 +38,7 @@ export const virtualCardGuide: Post = {
       type: "table",
       head: ["What to check", "Why it matters"],
       rows: [
-        ["Issuance fee", "Some cards charge a one-time fee to create the card. Check it before you confirm."],
+        ["Creation fee", "Some cards charge a one-time fee to create the card. Check it before you confirm."],
         ["Funding options", "How easily can you load dollars? From naira, from crypto, or both?"],
         ["Visa or Mastercard", "Some merchants accept one network more readily, so having a choice helps."],
         ["Freeze and withdraw", "You should be able to freeze the card instantly and move unused funds back."],
@@ -48,7 +48,7 @@ export const virtualCardGuide: Post = {
     { type: "h2", text: "How the Pyker dollar card works" },
     {
       type: "p",
-      text: "With [Pyker's virtual dollar card](/virtual-dollar-card), you choose Visa or Mastercard and one of five colours, and the card is ready in about a minute. A one-time issuance fee is shown before you confirm.",
+      text: "With [Pyker's virtual dollar card](/virtual-dollar-card), you choose Visa or Mastercard and one of five colours, and the card is ready in about a minute. A one-time creation fee is shown before you confirm.",
     },
     {
       type: "ol",
@@ -68,8 +68,9 @@ export const virtualCardGuide: Post = {
     {
       type: "screens",
       items: [
-        { src: "/screens/home.webp", alt: "Pyker home screen with the Virtual card quick action", caption: "Tap Virtual card on the home screen to create your card." },
-        { src: "/screens/virtual-card.webp", alt: "Pyker virtual card screen with Fund card, Withdraw, Card details and Freeze", caption: "Fund, withdraw, view details or freeze your card in one place." },
+        { src: "/screens/card-option-standard.webp", alt: "Pyker Select card option screen with Standard and Lite cards", caption: "Pick Standard for everyday use, or Lite for a one-off card that expires on its own." },
+        { src: "/screens/card-customise-visa.webp", alt: "Pyker Customise your virtual card screen with colour and Visa or Mastercard options", caption: "Choose one of five colours, then Visa or Mastercard." },
+        { src: "/screens/card-details.webp", alt: "Pyker Card details screen with card number, CVV, expiry and billing address", caption: "Card details, shown after your PIN, with everything you need at checkout." },
       ],
     },
     { type: "h2", text: "Common uses" },
@@ -105,10 +106,22 @@ export const virtualCardGuide: Post = {
         "**Never share your CVV or PIN.** No genuine support team will ask for them.",
       ],
     },
+    {
+      type: "screens",
+      items: [
+        { src: "/screens/card-frozen.webp", alt: "Pyker virtual card marked Frozen, with an Unfreeze button", caption: "A frozen card declines every charge until you tap Unfreeze." },
+      ],
+    },
     { type: "h2", text: "What happens to money you don't spend" },
     {
       type: "p",
       text: "Your card balance stays yours. With Pyker, you can withdraw unused funds from your card back to your wallet at any time, so you're never stuck with dollars on a card you no longer need.",
+    },
+    {
+      type: "screens",
+      items: [
+        { src: "/screens/card-withdraw.webp", alt: "Pyker Withdraw screen with a choice of NGN wallet or USD wallet", caption: "Withdraw to your NGN or USD wallet. A small minimum balance keeps the card active." },
+      ],
     },
     {
       type: "cta",
@@ -130,7 +143,7 @@ export const virtualCardGuide: Post = {
     },
     {
       question: "How much does a Pyker dollar card cost?",
-      answer: "There's a one-time issuance fee when you create a card. The exact amount is shown in the app before you confirm.",
+      answer: "There's a one-time creation fee when you create a card. The exact amount is shown in the app before you confirm.",
     },
     {
       question: "Where can I use the Pyker dollar card?",

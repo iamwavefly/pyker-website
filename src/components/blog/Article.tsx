@@ -28,8 +28,10 @@ function BlockView({ block }: { block: Block }) {
     case "ul":
     case "ol": {
       const List = block.type;
+      // The numbers are a CSS counter, so `start` has to set the counter too.
+      const start = block.type === "ol" ? block.start : undefined;
       return (
-        <List>
+        <List start={start} style={start ? { counterReset: `step ${start - 1}` } : undefined}>
           {block.items.map((item) => (
             <li key={item}>
               <Rich text={item} />

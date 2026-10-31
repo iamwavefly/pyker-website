@@ -25,7 +25,7 @@ export const HOME_FAQ: FaqItem[] = [
   {
     question: "What is the Pyker virtual card?",
     answer:
-      "A USD Visa or Mastercard virtual card you fund from your Pyker balance. Use it for subscriptions, software and online shopping, no domiciliary account needed. A one-time issuance fee is shown before you confirm.",
+      "A USD Visa or Mastercard virtual card you fund from your Pyker balance. Use it for subscriptions, software and online shopping, no domiciliary account needed. A one-time creation fee is shown before you confirm.",
   },
   {
     question: "Can I withdraw naira to my bank account?",

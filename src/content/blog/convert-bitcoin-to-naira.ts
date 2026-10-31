@@ -11,7 +11,7 @@ export const bitcoinToNaira: Post = {
   category: "Selling crypto",
   tags: ["bitcoin", "sell"],
   published: "2026-10-18",
-  updated: "2026-10-18",
+  updated: "2026-10-31",
   cover: { kind: "coins", ids: ["bitcoin"], tone: "ink" },
   body: [
     {
@@ -59,6 +59,7 @@ export const bitcoinToNaira: Post = {
     {
       type: "screens",
       items: [
+        { src: "/screens/sell-assets.webp", alt: "Pyker Sell Crypto screen listing the coins you can sell, including USDT on six networks", caption: "Tap Sell Crypto, then pick BTC from the list." },
         { src: "/screens/sell-address.webp", alt: "Pyker deposit address screen with NGN or USD wallet choice and a QR code", caption: "Your Bitcoin deposit address. Choose NGN or USD wallet, then copy or scan it." },
         { src: "/screens/sell-success.webp", alt: "Pyker sale tracker showing payment detected, validating and funds credited", caption: "Follow your sale from payment detected to funds credited." },
       ],

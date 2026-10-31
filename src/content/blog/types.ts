@@ -7,7 +7,8 @@ export type Block =
   | { type: "h2"; text: string }
   | { type: "h3"; text: string }
   | { type: "ul"; items: string[] }
-  | { type: "ol"; items: string[] }
+  /** `start` continues the numbering of an earlier list, e.g. after screenshots. */
+  | { type: "ol"; items: string[]; start?: number }
   | { type: "tip"; title: string; text: string }
   | { type: "table"; head: string[]; rows: string[][] }
   | { type: "cta"; title: string; text: string; to: string; label: string }
