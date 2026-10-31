@@ -13,6 +13,8 @@ export type PageMeta = {
   path: string;
   noindex?: boolean;
   jsonLd?: JsonLd[];
+  /** Share image path, e.g. "/share/sell-bitcoin.png". Defaults to the site-wide one. */
+  image?: string;
 };
 
 export type FaqItem = { question: string; answer: string };
@@ -83,6 +85,10 @@ export const appSchema: JsonLd = {
   offers: { "@type": "Offer", price: "0", priceCurrency: "NGN" },
 };
 
+function shareImageUrl(meta: PageMeta) {
+  return meta.image ? absoluteUrl(meta.image) : OG_IMAGE;
+}
+
 function escapeHtml(value: string) {
   return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
@@ -95,6 +101,7 @@ export function safeJson(value: unknown) {
 /** Head tags for a pre-rendered page. Kept in step with applyMeta below. */
 export function headTags(meta: PageMeta) {
   const url = absoluteUrl(meta.path);
+  const image = shareImageUrl(meta);
   const title = escapeHtml(meta.title);
   const description = escapeHtml(meta.description);
   const tags = [
@@ -105,10 +112,12 @@ export function headTags(meta: PageMeta) {
     `<meta property="og:title" content="${title}" />`,
     `<meta property="og:description" content="${description}" />`,
     `<meta property="og:url" content="${url}" />`,
-    `<meta property="og:image" content="${OG_IMAGE}" />`,
+    `<meta property="og:image" content="${image}" />`,
+    `<meta property="og:image:width" content="1200" />`,
+    `<meta property="og:image:height" content="630" />`,
     `<meta name="twitter:title" content="${title}" />`,
     `<meta name="twitter:description" content="${description}" />`,
-    `<meta name="twitter:image" content="${OG_IMAGE}" />`,
+    `<meta name="twitter:image" content="${image}" />`,
     ...(meta.jsonLd ?? []).map(
       (data) => `<script type="application/ld+json" data-page-jsonld>${safeJson(data)}</script>`,
     ),
@@ -153,6 +162,8 @@ export function applyMeta(meta: PageMeta) {
   upsert('meta[property="og:url"]', metaTag("property", "og:url"), "content", url);
   upsert('meta[name="twitter:title"]', metaTag("name", "twitter:title"), "content", meta.title);
   upsert('meta[name="twitter:description"]', metaTag("name", "twitter:description"), "content", meta.description);
+  upsert('meta[property="og:image"]', metaTag("property", "og:image"), "content", shareImageUrl(meta));
+  upsert('meta[name="twitter:image"]', metaTag("name", "twitter:image"), "content", shareImageUrl(meta));
 
   const robots = document.head.querySelector('meta[name="robots"]');
   if (meta.noindex && !robots) document.head.appendChild(metaTag("name", "robots")()).setAttribute("content", "noindex");

@@ -2,7 +2,16 @@ import type { Block } from "./blog";
 import type { CardColor, CardNetwork } from "../data/cards";
 import type { FaqItem } from "../seo/meta";
 
-export type ServiceCategory = "streaming" | "apps" | "ads" | "learning" | "tools";
+export type ServiceCategory =
+  | "streaming"
+  | "apps"
+  | "ads"
+  | "learning"
+  | "tools"
+  | "shopping"
+  | "work"
+  | "travel"
+  | "gaming";
 
 /** Card types as the Pyker app labels them on "Select card option". */
 type CardType = "Standard" | "Lite";
@@ -33,9 +42,17 @@ export type Service = {
 export const PAY_FOR_PATH = "/pay-for";
 
 export function serviceLabel(category: ServiceCategory) {
-  return { streaming: "Streaming", apps: "App stores", ads: "Ads", learning: "Online courses", tools: "AI tools" }[
-    category
-  ];
+  return {
+    streaming: "Streaming",
+    apps: "App stores",
+    ads: "Ads",
+    learning: "Online courses",
+    tools: "AI tools",
+    shopping: "Shopping",
+    work: "Work tools",
+    travel: "Travel",
+    gaming: "Gaming",
+  }[category];
 }
 
 // Rules for this file:
@@ -1221,6 +1238,781 @@ export const SERVICES: Service[] = [
     card: { color: "pink", network: "visa" },
     related: ["claude", "facebook-instagram-ads", "coursera"],
     updated: "2026-10-30",
+  },
+  {
+    slug: "amazon",
+    name: "Amazon",
+    category: "shopping",
+    metaTitle: "How to Pay on Amazon From Nigeria",
+    description:
+      "Step-by-step: create a Pyker virtual dollar card, fund it from naira, and add it to Amazon for orders and Prime. Plus fixes for declined payments.",
+    intro:
+      "Want to order from Amazon or pay for Prime, but your naira card won't go through? Here's how to add a Pyker virtual dollar card to your Amazon account and check out, step by step.",
+    cardType: "Standard",
+    cardTypeReason:
+      "Amazon sends refunds back to the card you paid with, and Prime renews automatically, so you want a card that stays active. A Lite card expires on its own.",
+    fundAdvice:
+      "Fund the order total shown at checkout, including shipping and any import charges Amazon lists, plus a small buffer.",
+    body: [
+      { type: "h2", text: "Step 2: Add your card to Amazon" },
+      {
+        type: "p",
+        text: "You can save your Pyker card to your account first, or add it while you check out. Either way, it's saved for your next order.",
+      },
+      { type: "h3", text: "Save it to your account" },
+      {
+        type: "ol",
+        items: [
+          "Sign in to Amazon and open **Your Account**.",
+          "Select **Your Payments**, then **Add a payment method**.",
+          "Choose to add a credit or debit card and enter the card number, name and expiry date from **Card details** in Pyker.",
+          "Enter the billing address shown under **Card details** in Pyker, then save the card.",
+        ],
+      },
+      { type: "h3", text: "Or add it at checkout" },
+      {
+        type: "ol",
+        items: [
+          "Add your items to your cart and proceed to checkout.",
+          "On **Select a Payment Method**, choose **Add a credit or debit card**.",
+          "Enter your Pyker card details and billing address, then place your order.",
+        ],
+      },
+      {
+        type: "tip",
+        title: "Billing address and delivery address are different",
+        text: "Your billing address is the one Pyker shows under Card details. Your delivery address is where the parcel goes. Amazon asks for both, so don't swap them.",
+      },
+      { type: "h2", text: "Paying for Prime" },
+      {
+        type: "p",
+        text: "Prime is charged to the payment method on your Prime membership. Once your Pyker card is saved, open your Prime membership page and update the payment method to your Pyker card. Fund the card before each renewal date.",
+      },
+      { type: "h2", text: "If Amazon declines your card" },
+      {
+        type: "ul",
+        items: [
+          "**Check the balance.** The card needs to cover the full order total, including shipping and import charges.",
+          "**Check the billing address.** It must match **Card details** in Pyker exactly.",
+          "**Make sure the card isn't frozen.** Unfreeze it in Pyker, then try again.",
+          "**Changing card on an open order?** Updating Your Payments doesn't change open orders. Change the payment on the order itself from Your Orders.",
+        ],
+      },
+      { type: "h2", text: "Refunds" },
+      {
+        type: "p",
+        text: "Amazon refunds a returned or cancelled order to the card you paid with. Keep your Pyker card active (don't terminate it) until any refund has arrived. You'll see it under **View transactions** on your card.",
+      },
+    ],
+    faq: [
+      {
+        question: "Can I pay on Amazon from Nigeria with a virtual dollar card?",
+        answer:
+          "Yes. Amazon accepts Visa and Mastercard. Add your Pyker card under Your Payments, or at checkout on the Select a Payment Method page.",
+      },
+      {
+        question: "Can I pay for Amazon Prime with my Pyker card?",
+        answer:
+          "Yes. Save the card to your account, then set it as the payment method on your Prime membership page. Fund it before each renewal.",
+      },
+      {
+        question: "Where do Amazon refunds go?",
+        answer:
+          "Back to the card you paid with. Keep your Pyker card active until the refund arrives, then you can withdraw it to your wallet.",
+      },
+    ],
+    card: { color: "black", network: "mastercard" },
+    related: ["aliexpress", "temu", "airbnb"],
+    updated: "2026-10-31",
+  },
+  {
+    slug: "aliexpress",
+    name: "AliExpress",
+    category: "shopping",
+    metaTitle: "How to Pay on AliExpress From Nigeria",
+    description:
+      "Step-by-step: create a Pyker virtual dollar card, fund it from naira, and pay for AliExpress orders. Plus what to do when a payment is declined.",
+    intro:
+      "Shopping on AliExpress but your naira card keeps failing at checkout? Here's how to pay with a Pyker virtual dollar card, step by step, and what to do if AliExpress asks you to verify the card.",
+    cardType: "Standard",
+    cardTypeReason:
+      "AliExpress refunds cancelled orders and won disputes to the card you paid with, sometimes weeks later. A Standard card stays active for those refunds, while a Lite card expires on its own.",
+    fundAdvice:
+      "Fund the order total shown at checkout, plus a small buffer. AliExpress may check the card when you add it.",
+    body: [
+      { type: "h2", text: "Step 2: Pay for your AliExpress order" },
+      {
+        type: "p",
+        text: "The simplest way is to add your Pyker card when you check out. AliExpress saves it so you can pick it next time.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Add your items to your cart and go to checkout.",
+          "Check your shipping address and the order total.",
+          "In the payment section, choose to pay with a new card.",
+          "Enter the card number, expiry date, CVV and name from **Card details** in Pyker. If you're asked for a billing address, use the one Pyker shows.",
+          "Place the order. If AliExpress sends a verification code to your email or phone, enter it to finish.",
+        ],
+      },
+      {
+        type: "tip",
+        title: "One card, one AliExpress account",
+        text: "AliExpress may not let you use the same card on more than one account. Keep your Pyker card on the account you shop with.",
+      },
+      { type: "h2", text: "If your payment is declined" },
+      {
+        type: "ul",
+        items: [
+          "**Check the balance.** The card needs to cover the whole order in one payment.",
+          "**Re-enter the details** exactly as shown under **Card details**, including the name on the card.",
+          "**Make sure the card isn't frozen** in Pyker.",
+          "**Asked to verify?** AliExpress sometimes asks you to confirm a card before it accepts payments from it. Follow the steps it shows, then try again.",
+          "Still failing? Contact Pyker support with a screenshot of the message and we'll check the card with you.",
+        ],
+      },
+      { type: "h2", text: "Refunds and disputes" },
+      {
+        type: "p",
+        text: "If an order is cancelled or you win a dispute, AliExpress refunds the card you paid with. Keep your Pyker card active until the refund arrives. You'll see it under **View transactions**, and you can then withdraw it to your wallet.",
+      },
+    ],
+    faq: [
+      {
+        question: "Can I pay on AliExpress with a Pyker virtual dollar card?",
+        answer: "Yes. AliExpress accepts Visa and Mastercard. Add your Pyker card at checkout and it's saved for next time.",
+      },
+      {
+        question: "Why is AliExpress asking me to verify my card?",
+        answer:
+          "AliExpress sometimes checks a card before accepting payments, especially a new one. Follow the steps it shows. If you get stuck, contact Pyker support.",
+      },
+      {
+        question: "Where does my AliExpress refund go?",
+        answer: "Back to the card you paid with. Keep your Pyker card active until the refund arrives.",
+      },
+    ],
+    card: { color: "brown", network: "visa" },
+    related: ["temu", "amazon", "shopify"],
+    updated: "2026-10-31",
+  },
+  {
+    slug: "temu",
+    name: "Temu",
+    category: "shopping",
+    metaTitle: "How to Pay on Temu From Nigeria",
+    description:
+      "Step-by-step: create a Pyker virtual dollar card, fund it from naira, and add it to Temu. Plus fixes for declined payments and how refunds work.",
+    intro:
+      "Your naira card keeps failing on Temu? Here's how to add a Pyker virtual dollar card to your Temu account and check out, step by step.",
+    cardType: "Standard",
+    cardTypeReason:
+      "Temu refunds orders to the card you paid with, so you want a card that stays active after you shop. A Lite card expires on its own.",
+    fundAdvice: "Fund the order total shown at checkout, plus a small buffer.",
+    body: [
+      { type: "h2", text: "Step 2: Add your card to Temu" },
+      {
+        type: "ol",
+        items: [
+          "Sign in to Temu and open your account's payment methods page.",
+          "Select **+ Add a credit or debit card**.",
+          "Enter the card number, expiry date and CVV from **Card details** in Pyker.",
+          "If you're asked for a billing address, use the one shown under **Card details**, not your delivery address. Save the card.",
+        ],
+      },
+      {
+        type: "p",
+        text: "You can also add the card at checkout: choose to pay by card and enter the same details.",
+      },
+      {
+        type: "tip",
+        title: "Need to fix a typo?",
+        text: "In the Temu app, select Edit next to your saved card, then Edit your card, and re-enter the details from Pyker.",
+      },
+      { type: "h2", text: "If Temu declines your card" },
+      {
+        type: "ul",
+        items: [
+          "**Check the balance** covers the full order total.",
+          "**Match the billing address** to **Card details** in Pyker exactly.",
+          "**Unfreeze the card** in Pyker if it's frozen.",
+          "Still failing? Contact Pyker support with a screenshot and we'll check the card with you.",
+        ],
+      },
+      { type: "h2", text: "Refunds" },
+      {
+        type: "p",
+        text: "Temu refunds to your original payment method or as Temu credit, depending on what you choose. If it goes to your card, keep your Pyker card active until the refund arrives under **View transactions**.",
+      },
+    ],
+    faq: [
+      {
+        question: "Can I pay on Temu with a virtual dollar card from Nigeria?",
+        answer: "Yes. Temu accepts Visa and Mastercard. Add your Pyker card on your payment methods page or at checkout.",
+      },
+      {
+        question: "Which billing address should I use on Temu?",
+        answer:
+          "The billing address shown under Card details in the Pyker app. Your delivery address is separate.",
+      },
+      {
+        question: "Can I get my Temu refund back on my Pyker card?",
+        answer:
+          "Yes, if you choose a refund to your original payment method. Keep the card active until it arrives, then withdraw it to your wallet if you like.",
+      },
+    ],
+    card: { color: "pink", network: "mastercard" },
+    related: ["aliexpress", "amazon", "shopify"],
+    updated: "2026-10-31",
+  },
+  {
+    slug: "shopify",
+    name: "Shopify",
+    category: "work",
+    metaTitle: "How to Pay for Shopify in Nigeria",
+    description:
+      "Step-by-step: create a Pyker virtual dollar card, fund it from naira, and add it to your Shopify billing so your store bills are paid on time.",
+    intro:
+      "Running a Shopify store from Nigeria? Shopify bills in dollars, and many naira cards fail on recurring international payments. Here's how to pay your Shopify bills with a Pyker virtual dollar card, step by step.",
+    cardType: "Standard",
+    cardTypeReason:
+      "Shopify bills your store on a regular cycle, and an unpaid bill can freeze your store. You need a long-lived card, so don't use Lite, which expires on its own.",
+    fundAdvice:
+      "Fund at least your next bill, including any app charges, which you'll find under Billing in your Shopify admin. Shopify may also place a small temporary authorisation to check the card.",
+    body: [
+      { type: "h2", text: "Step 2: Add your card to Shopify billing" },
+      {
+        type: "ol",
+        items: [
+          "In your Shopify admin, go to **Settings** > **Billing**.",
+          "Click **Billing profile**, then **Add payment method**.",
+          "If you're asked to pick a type, choose a card from **Payment method type**.",
+          "Enter the card number, expiry date and CVV from **Card details** in Pyker, and the billing address Pyker shows. Save.",
+        ],
+      },
+      { type: "h3", text: "Replacing your old card" },
+      {
+        type: "p",
+        text: "Shopify doesn't let you edit a saved card's number. Add your Pyker card as above, then in **Payment methods** open the menu (**⋯**) on the old card and select **Delete**. You need at least one other payment method on file before you can delete one.",
+      },
+      {
+        type: "tip",
+        title: "Add a backup method",
+        text: "If your main card can't be charged, Shopify can use a backup payment method. Keeping a second method on file helps avoid a missed bill.",
+      },
+      { type: "h2", text: "If a Shopify bill fails" },
+      {
+        type: "ol",
+        items: [
+          "In Pyker, open your card and tap **Fund card** to top it up.",
+          "In Shopify, go to **Settings** > **Billing** and pay the outstanding bill.",
+          "If your store still shows as frozen after paying, wait a few minutes and refresh. If it's still frozen after 30 minutes, contact Shopify Support with proof of payment.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Shopify freezes a store when a bill stays unpaid for 28 days after the first failed attempt. Your store keeps working until then, but don't leave it that long.",
+      },
+      { type: "h2", text: "Keep your store paid" },
+      {
+        type: "ul",
+        items: [
+          "Check your billing date and upcoming charges under **Settings** > **Billing**, and fund your Pyker card a few days before.",
+          "Apps you install can add charges to your Shopify bill. Count them when you fund your card.",
+          "Use **Card statement** in Pyker to match each Shopify charge to your bills.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Can I pay for Shopify in Nigeria with a virtual dollar card?",
+        answer:
+          "Yes. Shopify bills accept Visa and Mastercard. Add your Pyker card under Settings > Billing > Billing profile in your Shopify admin.",
+      },
+      {
+        question: "Why did Shopify reject my naira card?",
+        answer:
+          "Shopify bills recur and are charged in dollars. Many naira cards block recurring international payments. A dollar card you fund yourself avoids those limits.",
+      },
+      {
+        question: "What happens if my Shopify bill isn't paid?",
+        answer:
+          "Shopify retries, and freezes your store if the bill is still unpaid 28 days after the first failed attempt. Fund your card and pay the bill under Settings > Billing.",
+      },
+    ],
+    card: { color: "indigo", network: "mastercard" },
+    related: ["canva", "facebook-instagram-ads", "google-ads"],
+    updated: "2026-10-31",
+  },
+  {
+    slug: "upwork",
+    name: "Upwork",
+    category: "work",
+    metaTitle: "How to Buy Upwork Connects in Nigeria",
+    description:
+      "Step-by-step: create a Pyker virtual dollar card, fund it from naira, add it as your Upwork billing method, and buy Connects or a membership.",
+    intro:
+      "Need Connects to send proposals on Upwork? You need a billing method on your account first, and many naira cards are declined. Here's how to add a Pyker virtual dollar card to Upwork and buy Connects, step by step.",
+    cardType: "Standard",
+    cardTypeReason:
+      "Upwork keeps your billing method on file for every Connects purchase and for membership renewals, so you want a long-lived card. A Lite card expires on its own.",
+    fundAdvice: "Fund the cost of the Connects bundle or membership you're buying, plus a small buffer.",
+    body: [
+      { type: "h2", text: "Step 2: Add your card as a billing method" },
+      {
+        type: "ol",
+        items: [
+          "On Upwork, go to **Settings** > **Billing & Payments**.",
+          "Choose **Add a billing method**, then pick the payment card option.",
+          "Enter the card number, expiry date and CVV from **Card details** in Pyker.",
+          "Enter the billing address shown under **Card details**. Address line 1 and line 2 together can be up to 60 characters. Save.",
+        ],
+      },
+      { type: "h2", text: "Step 3: Buy Connects" },
+      {
+        type: "ol",
+        items: [
+          "Open your profile menu and select **Connects**.",
+          "Choose a bundle and confirm the purchase.",
+        ],
+      },
+      {
+        type: "tip",
+        title: "Have earnings on Upwork?",
+        text: "Upwork uses your earnings balance first. It can't split one purchase between your balance and your card, so if your balance doesn't cover the whole amount, your card is charged instead. You need a verified billing method either way.",
+      },
+      { type: "h2", text: "If Upwork can't authorise your card" },
+      {
+        type: "ul",
+        items: [
+          "**Check the balance** on your Pyker card covers the purchase.",
+          "**Re-enter the details** exactly as shown under **Card details**, including the billing address.",
+          "**Make sure the card isn't frozen** in Pyker.",
+          "If you still see \"We are unable to authorize your card\", contact Pyker support with a screenshot, then Upwork support if needed.",
+        ],
+      },
+      { type: "h2", text: "Paying for a membership" },
+      {
+        type: "p",
+        text: "A Freelancer Plus membership is charged to your billing method each month. Fund your Pyker card before your renewal date, and check charges under **View transactions** on your card.",
+      },
+    ],
+    faq: [
+      {
+        question: "Can I buy Upwork Connects with a virtual dollar card from Nigeria?",
+        answer:
+          "Yes. Upwork accepts Visa and Mastercard as a billing method. Add your Pyker card under Settings > Billing & Payments, then buy Connects from your profile menu.",
+      },
+      {
+        question: "Do I need a billing method if I have Upwork earnings?",
+        answer:
+          "Yes. Upwork requires a verified billing method to buy Connects, even if your earnings will cover the purchase.",
+      },
+      {
+        question: "Why does Upwork charge my card instead of my balance?",
+        answer:
+          "Upwork can't split a purchase. If your earnings balance doesn't cover the full amount, the whole purchase goes to your billing method.",
+      },
+    ],
+    card: { color: "blue", network: "visa" },
+    related: ["linkedin-premium", "microsoft-365", "canva"],
+    updated: "2026-10-31",
+  },
+  {
+    slug: "microsoft-365",
+    name: "Microsoft 365",
+    category: "work",
+    metaTitle: "How to Pay for Microsoft 365 in Nigeria",
+    description:
+      "Step-by-step: create a Pyker virtual dollar card, fund it from naira, add it to your Microsoft account and switch your Microsoft 365 subscription to it.",
+    intro:
+      "Want Word, Excel and OneDrive storage with Microsoft 365, but your naira card won't renew it? Here's how to add a Pyker virtual dollar card to your Microsoft account and pay for your subscription, step by step.",
+    cardType: "Standard",
+    cardTypeReason:
+      "Microsoft 365 renews automatically, monthly or yearly, so you need a card that lasts. A Lite card expires on its own and would stop your renewals.",
+    fundAdvice: "Fund at least your plan's price before you subscribe and before each renewal.",
+    body: [
+      { type: "h2", text: "Step 2: Add your card to your Microsoft account" },
+      {
+        type: "ol",
+        items: [
+          "Sign in at **account.microsoft.com** and open **Payment options**.",
+          "Select **Add a new payment method**.",
+          "Enter the card number, expiry date and CVV from **Card details** in Pyker, and the billing address it shows.",
+          "Save. If the card is rejected, try entering the postal code with and without spaces.",
+        ],
+      },
+      { type: "h2", text: "Step 3: Pay for Microsoft 365 with it" },
+      {
+        type: "p",
+        text: "New subscriber? Choose your Pyker card at checkout. Already subscribed with another card? Switch it:",
+      },
+      {
+        type: "ol",
+        items: [
+          "Go to **account.microsoft.com/services**.",
+          "Find Microsoft 365 and select **Manage**.",
+          "Select **Change how you pay** and choose your Pyker card.",
+        ],
+      },
+      {
+        type: "tip",
+        title: "Don't see Change how you pay?",
+        text: "Your recurring billing may be off. The subscription then simply ends at the end of its term. Turn recurring billing on, or buy a new subscription with your Pyker card when it ends.",
+      },
+      {
+        type: "tip",
+        title: "Bought it through Apple or Google Play?",
+        text: "Microsoft can't change billing for subscriptions bought through the App Store or Google Play. Update the card with them instead: see our Apple and Google Play guides.",
+      },
+      { type: "h2", text: "If your payment is declined" },
+      {
+        type: "ul",
+        items: [
+          "**Check the balance** on your Pyker card covers the renewal.",
+          "**Match the billing address** to **Card details** in Pyker. Microsoft checks it against the card.",
+          "**Make sure the card isn't frozen.**",
+          "If your subscription is past due, fund the card and pay the balance from **account.microsoft.com/services**.",
+        ],
+      },
+      { type: "h2", text: "Microsoft 365 for business" },
+      {
+        type: "p",
+        text: "Business plans are billed through the Microsoft 365 admin center, not a personal account. With billing permissions, add your Pyker card under **Billing** > **Payment methods**. Without them, ask your IT administrator.",
+      },
+    ],
+    faq: [
+      {
+        question: "Can I pay for Microsoft 365 in Nigeria with a virtual dollar card?",
+        answer:
+          "Yes. Add your Pyker card under Payment options on account.microsoft.com, then choose it for your subscription with Manage > Change how you pay.",
+      },
+      {
+        question: "Can I change the card number on my saved Microsoft card?",
+        answer:
+          "No. You can edit details like the expiry date or billing address, but for a different card, add a new payment method and move your subscription to it.",
+      },
+      {
+        question: "Why is my Microsoft payment declined?",
+        answer:
+          "Usually the balance is too low or the billing address doesn't match. Fund your Pyker card and use the billing address from Card details exactly.",
+      },
+    ],
+    card: { color: "blue", network: "mastercard" },
+    related: ["linkedin-premium", "canva", "upwork"],
+    updated: "2026-10-31",
+  },
+  {
+    slug: "linkedin-premium",
+    name: "LinkedIn Premium",
+    category: "work",
+    metaTitle: "How to Pay for LinkedIn Premium in Nigeria",
+    description:
+      "Step-by-step: create a Pyker virtual dollar card, fund it from naira, and pay for LinkedIn Premium. Plus how to switch an existing subscription to it.",
+    intro:
+      "Want LinkedIn Premium for job hunting or growing your network, but your naira card is declined? Here's how to pay with a Pyker virtual dollar card, step by step.",
+    cardType: "Standard",
+    cardTypeReason:
+      "LinkedIn Premium renews automatically, so you need a long-lived card. A Lite card expires on its own and would stop your renewals.",
+    fundAdvice: "Fund at least the plan price shown at checkout, and top up before each renewal.",
+    body: [
+      { type: "h2", text: "Step 2: Pay for Premium with your Pyker card" },
+      {
+        type: "p",
+        text: "Use LinkedIn on a computer or a mobile browser. You can't add or update payment information in the LinkedIn app.",
+      },
+      {
+        type: "ol",
+        items: [
+          "On LinkedIn, choose the Premium plan you want and continue to checkout.",
+          "Enter the card number, expiry date and CVV from **Card details** in Pyker.",
+          "Enter the billing country and postal code from the billing address Pyker shows.",
+          "Confirm your purchase.",
+        ],
+      },
+      { type: "h2", text: "Already on Premium? Switch to your Pyker card" },
+      {
+        type: "p",
+        text: "Adding a new card doesn't move your subscription to it. You need to do both:",
+      },
+      {
+        type: "ol",
+        items: [
+          "Open your Premium subscription settings and go to **Manage payment methods**.",
+          "Select **Add a payment method** and enter your Pyker card details. Save.",
+          "On your subscription, select **Change payment method** and choose your Pyker card.",
+        ],
+      },
+      {
+        type: "tip",
+        title: "Billing country must match",
+        text: "Use the billing country and postal code from Card details in Pyker. A mismatch is a common reason LinkedIn won't accept a card.",
+      },
+      { type: "h2", text: "If your renewal fails" },
+      {
+        type: "ul",
+        items: [
+          "In Pyker, tap **Fund card** to top up your card.",
+          "Check the card isn't frozen.",
+          "If you have more than one card saved, LinkedIn may try another one. Make sure your Pyker card is the one on your subscription.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Can I pay for LinkedIn Premium in Nigeria with a virtual dollar card?",
+        answer:
+          "Yes. LinkedIn accepts Visa and Mastercard. Pay at checkout on a computer or mobile browser with your Pyker card details.",
+      },
+      {
+        question: "Can I update my LinkedIn payment method in the app?",
+        answer: "No. LinkedIn doesn't allow payment updates in its mobile app. Use a web browser.",
+      },
+      {
+        question: "Why is my new card not being charged for Premium?",
+        answer:
+          "Adding a card doesn't switch your subscription. Select Change payment method on your subscription and choose your Pyker card.",
+      },
+    ],
+    card: { color: "indigo", network: "visa" },
+    related: ["upwork", "microsoft-365", "coursera"],
+    updated: "2026-10-31",
+  },
+  {
+    slug: "airbnb",
+    name: "Airbnb",
+    category: "travel",
+    metaTitle: "How to Pay for Airbnb From Nigeria",
+    description:
+      "Step-by-step: create a Pyker virtual dollar card, fund it from naira, and book on Airbnb. Plus fixes for the most common declined payment errors.",
+    intro:
+      "Booking an Airbnb but your naira card is declined? Here's how to pay with a Pyker virtual dollar card, step by step, and how to fix the errors Airbnb shows most often.",
+    cardType: "Standard",
+    cardTypeReason:
+      "Airbnb may refund you after a cancellation, or charge later for changes to your trip. A Standard card stays active for those. A Lite card expires on its own.",
+    fundAdvice:
+      "Fund the booking total Airbnb shows before you confirm. Airbnb may also place small temporary authorisations to verify a new card, so add a little extra.",
+    body: [
+      { type: "h2", text: "Step 2: Book with your Pyker card" },
+      {
+        type: "ol",
+        items: [
+          "Choose your stay on Airbnb and select **Reserve**.",
+          "In the payment section, choose to add a credit or debit card.",
+          "Enter the card number, expiry date and CVV from **Card details** in Pyker.",
+          "Enter the billing address and postal code exactly as Pyker shows them.",
+          "Confirm and pay. If Airbnb shows an authentication request, complete it rather than closing it.",
+        ],
+      },
+      {
+        type: "tip",
+        title: "Small charges when you add the card?",
+        text: "Airbnb verifies a new card with two small temporary authorisations. They're released automatically. They aren't payments.",
+      },
+      { type: "h2", text: "Airbnb payment errors and fixes" },
+      {
+        type: "table",
+        head: ["What you see", "What to do"],
+        rows: [
+          [
+            "Looks like your bank declined the payment",
+            "Check your card balance, then try again and complete any authentication step Airbnb shows.",
+          ],
+          [
+            "Postal code must match your bank's records",
+            "Re-enter the postal code and billing address exactly as shown under **Card details** in Pyker.",
+          ],
+          [
+            "This credit card can't be added right now",
+            "Airbnb may have flagged unusual activity. Wait up to 24 hours, then try again.",
+          ],
+          [
+            "Can't complete this payment in your currency",
+            "Pay in the currency Airbnb suggests. Your Pyker card is a dollar card, so USD is the natural choice.",
+          ],
+          [
+            "There was an error adding your payment method",
+            "Check each field carefully, or try adding the card on a different device.",
+          ],
+        ],
+      },
+      { type: "h2", text: "Before and after your trip" },
+      {
+        type: "ul",
+        items: [
+          "If you pay in instalments, fund your card before each payment date.",
+          "Cancelled? Refunds go back to the card you paid with. Keep your Pyker card active until it arrives.",
+          "Track every Airbnb charge and refund under **View transactions** on your card.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Can I pay for Airbnb from Nigeria with a virtual dollar card?",
+        answer:
+          "Yes. Airbnb accepts Visa and Mastercard. Add your Pyker card when you reserve, using the billing address from Card details.",
+      },
+      {
+        question: "Why did Airbnb put small charges on my card?",
+        answer:
+          "Airbnb verifies new cards with two small temporary authorisations. They're released automatically.",
+      },
+      {
+        question: "Where does my Airbnb refund go?",
+        answer: "To the card you paid with. Keep your Pyker card active until the refund arrives.",
+      },
+    ],
+    card: { color: "pink", network: "visa" },
+    related: ["amazon", "google-ads", "netflix"],
+    updated: "2026-10-31",
+  },
+  {
+    slug: "steam",
+    name: "Steam",
+    category: "gaming",
+    metaTitle: "How to Buy Games on Steam in Nigeria",
+    description:
+      "Step-by-step: create a Pyker virtual dollar card, fund it from naira, and buy games or add funds to your Steam Wallet. Plus fixes for declined cards.",
+    intro:
+      "Your naira card won't go through on Steam? Here's how to buy games and top up your Steam Wallet with a Pyker virtual dollar card, step by step.",
+    cardType: "Standard",
+    cardTypeReason:
+      "Steam refunds eligible purchases to the card you paid with, so keep a card that stays active. A Lite card expires on its own.",
+    fundAdvice: "Fund the total shown in your Steam cart, plus a small buffer.",
+    body: [
+      { type: "h2", text: "Step 2: Pay on Steam with your Pyker card" },
+      {
+        type: "ol",
+        items: [
+          "Add a game to your cart, or choose an amount to add to your Steam Wallet.",
+          "Select **Purchase for myself**.",
+          "Choose Visa or Mastercard as your payment method.",
+          "Enter the card number, expiry date and CVV from **Card details** in Pyker, and the billing address it shows. Continue.",
+          "Review your order, agree to the Steam Subscriber Agreement and select **Purchase**.",
+        ],
+      },
+      {
+        type: "tip",
+        title: "Top up once, buy many times",
+        text: "Adding funds to your Steam Wallet lets you buy several games, or items on the Community Market, without paying by card each time.",
+      },
+      { type: "h2", text: "If Steam declines your card" },
+      {
+        type: "ul",
+        items: [
+          "**Check the balance.** Steam charges the full total in one payment.",
+          "**Match the billing address** to **Card details** in Pyker exactly. A mismatch is the most common reason for a decline.",
+          "**Make sure the card isn't frozen** in Pyker.",
+          "Too many failed attempts can block card purchases for a while. Wait before trying again.",
+        ],
+      },
+      { type: "h2", text: "Refunds" },
+      {
+        type: "p",
+        text: "Steam refunds eligible purchases to the payment method you used, or to your Steam Wallet. If it's your card, keep it active until the refund appears under **View transactions**.",
+      },
+    ],
+    faq: [
+      {
+        question: "Can I buy Steam games in Nigeria with a virtual dollar card?",
+        answer:
+          "Yes. Steam accepts Visa and Mastercard. Choose your card at checkout and use the billing address from Card details in Pyker.",
+      },
+      {
+        question: "Can I add funds to my Steam Wallet with my Pyker card?",
+        answer: "Yes. Choose an amount to add, then pay with your Pyker card at checkout.",
+      },
+      {
+        question: "Why does Steam keep declining my card?",
+        answer:
+          "Usually a billing address mismatch or low balance. Fund your card and re-enter the address exactly as Pyker shows it.",
+      },
+    ],
+    card: { color: "black", network: "visa" },
+    related: ["playstation", "google-play", "apple"],
+    updated: "2026-10-31",
+  },
+  {
+    slug: "playstation",
+    name: "PlayStation",
+    category: "gaming",
+    metaTitle: "How to Pay on PlayStation Store From Nigeria",
+    description:
+      "Step-by-step: create a Pyker virtual dollar card, fund it from naira, and add it to PlayStation Store on PS5, PS4, web or the PlayStation App.",
+    intro:
+      "Want games or PlayStation Plus but your naira card won't link? Here's how to add a Pyker virtual dollar card to your PlayStation account on any device, step by step.",
+    cardType: "Standard",
+    cardTypeReason:
+      "PlayStation keeps your card on file, and PlayStation Plus renews automatically. You need a card that lasts, so don't use Lite, which expires on its own.",
+    fundAdvice: "Fund the price of what you're buying, or your PlayStation Plus plan, plus a small buffer.",
+    body: [
+      {
+        type: "tip",
+        title: "Check your account's region first",
+        text: "PlayStation may not link a card registered to an address in a different country from your PlayStation Store region. Your Pyker card's billing address is under Card details in the app.",
+      },
+      { type: "h2", text: "Step 2: Add your card to PlayStation" },
+      { type: "h3", text: "On PS5" },
+      {
+        type: "ol",
+        items: [
+          "Go to **Settings** > **Users and Accounts** > **Account** > **Payment and Subscriptions** > **Payment Methods**.",
+          "Choose to add a credit or debit card.",
+          "Enter the card details from **Card details** in Pyker, then the billing address it shows. Save.",
+        ],
+      },
+      { type: "h3", text: "On PS4" },
+      {
+        type: "ol",
+        items: [
+          "Open **PlayStation Store** and scroll to the bottom of the sidebar.",
+          "Select **Payment Methods** and choose to add a credit or debit card.",
+          "Enter your Pyker card details and billing address. Save.",
+        ],
+      },
+      { type: "h3", text: "On the web or PlayStation App" },
+      {
+        type: "ol",
+        items: [
+          "**Web:** sign in to Account Management, open **Payment Method** and select **Add Payment Method**.",
+          "**PlayStation App:** tap the **PlayStation Store** icon, open the menu at the top right, then **Payment Methods** > **Add Payment Method**.",
+          "Choose the card option and enter your Pyker card details and billing address.",
+        ],
+      },
+      { type: "h2", text: "If your card won't link" },
+      {
+        type: "ul",
+        items: [
+          "**Enter the name and address exactly** as shown under **Card details** in Pyker.",
+          "**Check you haven't hit the limit.** You can save up to 3 cards on a PlayStation account.",
+          "**Check the region.** A card from a different country to your Store region may not link.",
+          "**Make sure the card has a balance and isn't frozen.**",
+        ],
+      },
+      { type: "h2", text: "Keep PlayStation Plus paid" },
+      {
+        type: "p",
+        text: "PlayStation Plus renews automatically with the card on your account. Fund your Pyker card before each renewal, and check charges under **View transactions**.",
+      },
+    ],
+    faq: [
+      {
+        question: "Can I use a virtual dollar card on PlayStation Store from Nigeria?",
+        answer:
+          "Yes, if your card's country matches your PlayStation Store region. PlayStation may not link a card registered in a different country from your account's region.",
+      },
+      {
+        question: "How many cards can I add to my PlayStation account?",
+        answer: "Up to 3 credit or debit cards.",
+      },
+      {
+        question: "Can I pay for PlayStation Plus with my Pyker card?",
+        answer: "Yes. Add the card to your account and fund it before each renewal date.",
+      },
+    ],
+    card: { color: "blue", network: "visa" },
+    related: ["steam", "google-play", "youtube-premium"],
+    updated: "2026-10-31",
   },
 ];
 

@@ -31,6 +31,8 @@ import { CARD } from "./content/card";
 import { SERVICES, serviceFaq, servicePath } from "./content/payFor";
 import { BILLS } from "./content/bills";
 import { SUPPORT_FAQ } from "./content/support";
+import { shareImagePath, type ShareSpec } from "./seo/shareSpec";
+import { MERCHANT_LOGOS } from "./data/merchantLogos";
 import { appSchema, articleSchema, breadcrumbSchema, faqSchema, type PageMeta, type SitemapEntry } from "./seo/meta";
 
 export type AppRoute = {
@@ -40,13 +42,23 @@ export type AppRoute = {
   meta: PageMeta;
   /** Omit to leave the page out of the sitemap. */
   sitemap?: Omit<SitemapEntry, "path">;
+  /** The page's own share image. Omit to use the site-wide one. */
+  share?: ShareSpec;
 };
 
 const home = { name: "Home", path: "/" };
 
-// Every page on the site, in one place. The router, the pre-renderer and the
-// sitemap are all generated from this list.
-export const ROUTES: AppRoute[] = [
+/** A post's share image follows its cover: a card, one coin's rate, or several coins. */
+function postShareVisual(post: (typeof POSTS)[number]): ShareSpec["visual"] {
+  const { cover } = post;
+  if (cover.kind === "card") return { kind: "card", color: cover.color, network: cover.network };
+  if (cover.kind === "coins" && cover.ids.length === 1) return { kind: "rate", coinId: cover.ids[0] };
+  if (cover.kind === "coins") return { kind: "coins", ids: cover.ids };
+  if (post.tags.includes("card")) return { kind: "card", color: "indigo", network: "visa" };
+  return { kind: "coins" };
+}
+
+const PAGES: AppRoute[] = [
   {
     path: "/",
     element: <HomePage />,
@@ -66,6 +78,13 @@ export const ROUTES: AppRoute[] = [
       ],
     },
     sitemap: { priority: 0.9, changefreq: "weekly", live: true },
+    share: {
+      eyebrow: "Sell crypto",
+      title: "Sell crypto for naira in minutes",
+      accent: "naira",
+      subtitle: "BTC, USDT, ETH and more, paid to your Pyker wallet.",
+      visual: { kind: "coins" },
+    },
   },
   ...COINS.map(
     (coin): AppRoute => ({
@@ -85,6 +104,13 @@ export const ROUTES: AppRoute[] = [
         ],
       },
       sitemap: { priority: 0.9, changefreq: "daily", live: true },
+      share: {
+        eyebrow: `Sell ${coin.symbol}`,
+        title: `Sell ${coin.displayName} for naira`,
+        accent: "naira",
+        subtitle: "See your payout before you send.",
+        visual: { kind: "rate", coinId: coin.id },
+      },
     }),
   ),
   {
@@ -97,6 +123,13 @@ export const ROUTES: AppRoute[] = [
       jsonLd: [breadcrumbSchema([home, { name: "Crypto rates", path: FEATURES.rates.path }]), faqSchema(RATES.faq)],
     },
     sitemap: { priority: 0.9, changefreq: "daily", live: true },
+    share: {
+      eyebrow: "Rates today",
+      title: "Crypto to naira rates today",
+      accent: "naira",
+      subtitle: "Pyker's own rates for BTC, USDT, ETH and more.",
+      visual: { kind: "coins" },
+    },
   },
   ...COINS.map(
     (coin): AppRoute => ({
@@ -116,6 +149,12 @@ export const ROUTES: AppRoute[] = [
         ],
       },
       sitemap: { priority: 0.9, changefreq: "daily", live: true },
+      share: {
+        eyebrow: "Rate today",
+        title: `${coin.displayName} to naira rate today`,
+        accent: "today",
+        visual: { kind: "rate", coinId: coin.id },
+      },
     }),
   ),
   {
@@ -131,6 +170,13 @@ export const ROUTES: AppRoute[] = [
       ],
     },
     sitemap: { priority: 0.9, changefreq: "weekly" },
+    share: {
+      eyebrow: "Virtual dollar card",
+      title: "Pay online in dollars from Nigeria",
+      accent: "dollars",
+      subtitle: "A USD Visa or Mastercard, funded from your naira wallet.",
+      visual: { kind: "card", color: "indigo", network: "visa" },
+    },
   },
   ...SERVICES.map(
     (service): AppRoute => ({
@@ -147,7 +193,7 @@ export const ROUTES: AppRoute[] = [
             path: servicePath(service),
             published: service.updated,
             updated: service.updated,
-            image: "/og-image.png",
+            image: shareImagePath(servicePath(service)),
           }),
           breadcrumbSchema([
             home,
@@ -158,6 +204,16 @@ export const ROUTES: AppRoute[] = [
         ],
       },
       sitemap: { priority: 0.8, changefreq: "monthly", lastmod: service.updated },
+      share: {
+        eyebrow: "Step-by-step guide",
+        title: `How to pay for ${service.name} in Nigeria`,
+        accent: service.name,
+        visual: {
+          kind: "card",
+          ...service.card,
+          merchant: MERCHANT_LOGOS[service.name] ? service.name : undefined,
+        },
+      },
     }),
   ),
   {
@@ -196,6 +252,12 @@ export const ROUTES: AppRoute[] = [
       jsonLd: [breadcrumbSchema([home, { name: "Blog", path: BLOG_PATH }])],
     },
     sitemap: { priority: 0.7, changefreq: "weekly", lastmod: POSTS.map((post) => post.updated).sort().at(-1) },
+    share: {
+      eyebrow: "Pyker blog",
+      title: "Crypto and dollar card guides for Nigerians",
+      accent: "guides",
+      visual: { kind: "coins" },
+    },
   },
   ...POSTS.map(
     (post): AppRoute => ({
@@ -206,12 +268,17 @@ export const ROUTES: AppRoute[] = [
         description: post.description,
         path: postPath(post),
         jsonLd: [
-          articleSchema({ ...post, path: postPath(post), image: post.cover.kind === "art" ? post.cover.src : "/og-image.png" }),
+          articleSchema({ ...post, path: postPath(post), image: shareImagePath(postPath(post)) }),
           breadcrumbSchema([home, { name: "Blog", path: BLOG_PATH }, { name: post.title, path: postPath(post) }]),
           faqSchema(post.faq),
         ],
       },
       sitemap: { priority: 0.7, changefreq: "monthly", lastmod: post.updated },
+      share: {
+        eyebrow: post.category,
+        title: post.title,
+        visual: postShareVisual(post),
+      },
     }),
   ),
   {
@@ -225,6 +292,13 @@ export const ROUTES: AppRoute[] = [
       jsonLd: [breadcrumbSchema([home, { name: "Alternatives", path: ALTERNATIVES_PATH }]), faqSchema(ALTERNATIVES_FAQ)],
     },
     sitemap: { priority: 0.7, changefreq: "monthly" },
+    share: {
+      eyebrow: "Alternatives",
+      title: "Where to sell crypto for naira now",
+      accent: "naira",
+      subtitle: "After Binance, Paxful and Quidax P2P.",
+      visual: { kind: "coins" },
+    },
   },
   ...ALTERNATIVES.map(
     (alt): AppRoute => ({
@@ -244,6 +318,12 @@ export const ROUTES: AppRoute[] = [
         ],
       },
       sitemap: { priority: 0.7, changefreq: "monthly" },
+      share: {
+        eyebrow: "Alternatives",
+        title: `The ${alt.name} alternative for naira`,
+        accent: "naira",
+        visual: { kind: "coins" },
+      },
     }),
   ),
   {
@@ -310,6 +390,12 @@ export const ROUTES: AppRoute[] = [
     },
   },
 ];
+
+// Every page on the site, in one place. The router, the pre-renderer and the
+// sitemap are all generated from this list.
+export const ROUTES: AppRoute[] = PAGES.map((route) =>
+  route.share ? { ...route, meta: { ...route.meta, image: shareImagePath(route.path) } } : route,
+);
 
 export function findRoute(pathname: string) {
   const clean = pathname !== "/" ? pathname.replace(/\/+$/, "") : pathname;

@@ -7,8 +7,24 @@ import { PostGrid } from "../components/blog/PostCard";
 import { postsTagged } from "../content/blog";
 import { FEATURES } from "../data/features";
 import { CARD } from "../content/card";
-import { SERVICES, serviceLabel, servicePath } from "../content/payFor";
+import { SERVICES, serviceLabel, servicePath, type ServiceCategory } from "../content/payFor";
+import MerchantLogo from "../components/ui/MerchantLogo";
+import { MERCHANT_LOGOS } from "../data/merchantLogos";
+import page from "../components/page/Page.module.css";
 import { CreditCardIcon, EyeSlashIcon, PlusIcon, SnowflakeIcon, GlobeIcon, MusicIcon, IdCardIcon, ShoppingIcon } from "../components/icons";
+
+// The order guides are grouped in on this page.
+const SERVICE_GROUPS: ServiceCategory[] = [
+  "shopping",
+  "streaming",
+  "apps",
+  "tools",
+  "work",
+  "learning",
+  "ads",
+  "travel",
+  "gaming",
+];
 
 export default function VirtualCardPage() {
   return (
@@ -68,13 +84,19 @@ export default function VirtualCardPage() {
       </PageSection>
 
       <PageSection soft eyebrow="Guides by service" title="How to pay for popular services">
-        <LinkCards
-          links={SERVICES.map((service) => ({
-            to: servicePath(service),
-            title: `Pay for ${service.name}`,
-            text: `${serviceLabel(service.category)}: step-by-step with your Pyker card.`,
-          }))}
-        />
+        {SERVICE_GROUPS.map((category) => (
+          <div key={category} className={page.linkGroup}>
+            <h3 className={page.linkGroupTitle}>{serviceLabel(category)}</h3>
+            <LinkCards
+              links={SERVICES.filter((service) => service.category === category).map((service) => ({
+                to: servicePath(service),
+                title: `Pay for ${service.name}`,
+                text: "Step-by-step with your Pyker card.",
+                icon: MERCHANT_LOGOS[service.name] ? <MerchantLogo name={service.name} size={28} /> : undefined,
+              }))}
+            />
+          </div>
+        ))}
       </PageSection>
 
       <Faq items={CARD.faq} title="Dollar card questions" />
