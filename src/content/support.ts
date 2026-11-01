@@ -19,6 +19,6 @@ export const SUPPORT_FAQ: FaqItem[] = [
   {
     question: "Will Pyker ever ask for my PIN or password?",
     answer:
-      "Never. Our team will never ask for your PIN, password, one-time code or seed phrase. We only contact you from support@usepyker.com.",
+      "Never. Our team will never ask for your PIN, password, one-time code or seed phrase. We only contact you from support@usepyker.com or our WhatsApp, 0703 077 2726.",
   },
 ];

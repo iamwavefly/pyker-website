@@ -12,6 +12,7 @@ import {
   InstagramLogoIcon,
   LinkedinLogoIcon,
   MegaphoneIcon,
+  WhatsappLogoIcon,
   XLogoIcon,
 } from "../components/icons";
 import styles from "./ContactPage.module.css";
@@ -23,7 +24,8 @@ const SOCIALS = [
 ];
 
 const SUPPORT_EMAIL = "support@usepyker.com";
-
+const WHATSAPP_NUMBER = "0703 077 2726";
+const WHATSAPP_URL = "https://wa.me/2347030772726";
 
 export default function ContactPage() {
   return (
@@ -37,6 +39,30 @@ export default function ContactPage() {
       <section className={styles.section}>
         <Container>
           <div className={styles.grid}>
+            <Card className={styles.card}>
+              <IconTile tone="green">
+                <WhatsappLogoIcon width={20} height={20} />
+              </IconTile>
+              <h3 className={styles.cardTitle}>Chat on WhatsApp</h3>
+              <p className={styles.cardText}>
+                Message the team for quick questions about your account, a sale or your
+                card.
+              </p>
+              <div className={styles.emailRow}>
+                <Button
+                  variant="ghost"
+                  size="md"
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  icon={<ArrowRightIcon width={16} height={16} />}
+                >
+                  {WHATSAPP_NUMBER}
+                </Button>
+                <CopyButton text={WHATSAPP_NUMBER.replace(/ /g, "")} />
+              </div>
+            </Card>
+
             <Card className={styles.card}>
               <IconTile tone="primary">
                 <EnvelopeIcon width={20} height={20} />
@@ -60,7 +86,7 @@ export default function ContactPage() {
             </Card>
 
             <Card className={styles.card}>
-              <IconTile tone="green">
+              <IconTile tone="orange">
                 <MegaphoneIcon width={20} height={20} />
               </IconTile>
               <h3 className={styles.cardTitle}>Follow along</h3>
