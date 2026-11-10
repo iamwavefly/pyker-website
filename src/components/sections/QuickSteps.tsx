@@ -37,7 +37,7 @@ const STEPS: { Icon: typeof BoltIcon; title: string; text: string; visual: React
   {
     Icon: IdCardIcon,
     title: "Verify in minutes",
-    text: "Sign up, verify your BVN and take a quick liveness check. Most people are done in a few minutes.",
+    text: "Sign up, verify your BVN and take a quick liveness check. No long thing: most people are done in a few minutes.",
     visual: <Checklist />,
   },
   {
@@ -49,13 +49,13 @@ const STEPS: { Icon: typeof BoltIcon; title: string; text: string; visual: React
   {
     Icon: BoltIcon,
     title: "Send and watch it land",
-    text: "Send from any wallet or exchange and follow it live, from payment detected to funds credited.",
+    text: "Send from any wallet or exchange and follow it live, from payment detected to money in your wallet.",
     visual: <Phone src="/screens/sell-success.webp" alt="Pyker sale tracking screen" className={styles.phone} />,
   },
   {
     Icon: CreditCardIcon,
     title: "Spend it your way",
-    text: "Fund a virtual dollar card for shopping and subscriptions online, or keep it in your wallet.",
+    text: "Fund your dollar card, pay bills with cashback or withdraw to your bank. Your money, your choice.",
     visual: <CardFan />,
   },
 ];

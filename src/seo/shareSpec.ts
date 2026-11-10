@@ -6,7 +6,8 @@ import type { CardColor, CardNetwork } from "../data/cards";
 export type ShareVisual =
   | { kind: "card"; color: CardColor; network: CardNetwork; merchant?: string }
   | { kind: "rate"; coinId: string }
-  | { kind: "coins"; ids?: string[] };
+  | { kind: "coins"; ids?: string[] }
+  | { kind: "bills" };
 
 export type ShareSpec = {
   eyebrow: string;

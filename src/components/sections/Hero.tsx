@@ -310,8 +310,8 @@ export default function Hero() {
               </span>
             </h1>
             <p className={styles.subtitle}>
-              Instant sell, no P2P. Get paid in minutes, then pay Apple, Google, Netflix and more with a
-              virtual dollar card.
+              Instant sell, no P2P, no waiting for a buyer. Get paid in minutes, pay Netflix, Apple and co
+              with a virtual dollar card, and buy airtime, data and light with cashback.
             </p>
             <div className={styles.ctaRow}>
               <GetAppButton variant="lime" size="lg" icon={<CaretRightIcon width={13} height={13} />} className={styles.iconEnd}>

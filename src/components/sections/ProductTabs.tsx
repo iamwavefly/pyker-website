@@ -61,23 +61,23 @@ const TABS: { key: string; label: string; title: string; text: string; more: { l
   {
     key: "sell",
     label: "Sell",
-    title: "Sell crypto with ease",
-    text: "Instant sell, no P2P. BTC, ETH, USDT and more, converted to naira or dollars as soon as your deposit confirms.",
+    title: "Sell crypto, no wahala",
+    text: "No P2P, no \"buyer don japa\". BTC, ETH, USDT and more, turned into naira or dollars as soon as your deposit confirms.",
     more: { label: "Learn about selling crypto", to: FEATURES.sellCrypto.path },
     cards: [
       {
         title: "Your own deposit address",
-        text: "Scan or share a QR code, with the minimum and live rate shown before you send.",
+        text: "Scan or share your QR code. You see the minimum and the live rate before you send, no story.",
         visual: <Screen src="/screens/sell-address.webp" position="50% 52%" />,
       },
       {
         title: "Rates that move with the market",
-        text: "Live prices for every coin you can sell, plus alerts when the market jumps.",
+        text: "Live prices for every coin, plus alerts when the market jumps, so you sell at the right time.",
         visual: <Art src="/art/rates.webp" />,
       },
       {
         title: "Every sale, tracked",
-        text: "See each deposit go from detected to credited, with a receipt for every one.",
+        text: "Watch every deposit go from detected to credited, with a receipt for each one. No more \"where my money?\"",
         visual: <Art src="/art/activity.webp" />,
       },
     ],
@@ -86,7 +86,7 @@ const TABS: { key: string; label: string; title: string; text: string; more: { l
     key: "spend",
     label: "Spend",
     title: "Spend in dollars, anywhere",
-    text: "A virtual dollar card funded straight from your wallet, for subscriptions, software and shopping online.",
+    text: "Netflix, Apple, ChatGPT and co. A virtual dollar card funded straight from your wallet, so \"card declined\" becomes old story.",
     more: { label: "Explore the dollar card", to: FEATURES.virtualCard.path },
     cards: [
       {
@@ -100,7 +100,7 @@ const TABS: { key: string; label: string; title: string; text: string; more: { l
       },
       {
         title: "A card for the world online",
-        text: "Fund it from your Pyker balance and pay wherever Visa or Mastercard is accepted.",
+        text: "Fund it from your Pyker balance and pay anywhere Visa or Mastercard works. No domiciliary account needed.",
         visual: <Art src="/art/cards.webp" />,
       },
       {
@@ -113,18 +113,18 @@ const TABS: { key: string; label: string; title: string; text: string; more: { l
   {
     key: "fund",
     label: "Fund",
-    title: "Top up and pay, your way",
-    text: "Add naira by bank transfer from any Nigerian bank, and keep naira and dollars side by side.",
+    title: "Top up, pay bills, get cashback",
+    text: "Send naira from any Nigerian bank, keep naira and dollars side by side, and get paid back every time you pay a bill.",
     more: { label: "See bill payments", to: FEATURES.bills.path },
     cards: [
       {
         title: "Your own account number",
-        text: "Use a one-time account for a single transfer, or activate a permanent one that's yours.",
+        text: "Use a one-time account for a quick transfer, or activate a permanent one that's yours to keep.",
         visual: <AccountNumber />,
       },
       {
-        title: "Airtime, data and bills",
-        text: "Pay for airtime, data, electricity and cable TV straight from your naira balance.",
+        title: "Bills that pay you back",
+        text: "Recharge airtime and data, buy light and renew TV in seconds, and get cashback every time.",
         soon: !isLive("bills"),
         visual: <Art src="/art/bills.webp" />,
       },

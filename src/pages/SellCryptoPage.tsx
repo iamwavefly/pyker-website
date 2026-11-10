@@ -23,7 +23,7 @@ export default function SellCryptoPage() {
             Instant crypto to naira, <span className="accent">no waiting</span>
           </>
         }
-        intro="Send Bitcoin, USDT, Ethereum and more to your own Pyker address. No buyers to wait for, no fake alerts to worry about: your NGN or USD wallet is credited as soon as the network confirms."
+        intro="Send Bitcoin, USDT, Ethereum and more to your own Pyker address. No buyer to beg, no fake alert to fall for: your NGN or USD wallet is credited as soon as the network confirms."
         secondary={{ label: "See today's rates", to: FEATURES.rates.path }}
       />
 
@@ -50,7 +50,7 @@ export default function SellCryptoPage() {
 
       <PainPoints soft />
 
-      <PageSection eyebrow="Compare" title="Instant sell vs P2P" intro="Why selling to your own address beats waiting on a buyer.">
+      <PageSection eyebrow="Compare" title="Instant sell vs P2P" intro="Why selling to your own address beats waiting on a buyer who may or may not pay.">
         <CompareTable columns={SELL_COMPARE.columns} rows={SELL_COMPARE.rows} />
       </PageSection>
 

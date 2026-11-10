@@ -123,9 +123,10 @@ export function Steps({ steps }: { steps: { title: string; text: string }[] }) {
 
 export type Point = { Icon: ComponentType<{ width?: number; height?: number }>; title: string; text: string };
 
-export function Points({ points }: { points: Point[] }) {
+/** `columns={3}` suits six points, which would leave two alone in a row of four. */
+export function Points({ points, columns }: { points: Point[]; columns?: 3 }) {
   return (
-    <div className={styles.points}>
+    <div className={`${styles.points} ${columns === 3 ? styles.points3 : ""}`}>
       {points.map(({ Icon, title, text }, index) => (
         <Reveal key={title} delay={(index % 4) * 70} className={styles.point}>
           <span className={styles.pointIcon}>

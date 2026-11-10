@@ -91,7 +91,7 @@ export default function CardSection() {
             <h2 className={`display ${styles.title}`}>Your dollar card, ready in a minute</h2>
             <p className={styles.lead}>
               Spend in dollars, pay in naira. Create a USD card from your Pyker balance and pay for
-              Apple, Google, Netflix, Udemy, Claude and more.
+              Apple, Google, Netflix, Udemy, Claude and more, without begging anybody to help you pay.
             </p>
 
             <ol className={styles.steps}>

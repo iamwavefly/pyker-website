@@ -24,7 +24,7 @@ export type PostCover =
   | { kind: "coins"; ids: string[]; tone: CoverTone }
   | { kind: "shield"; tone: CoverTone };
 
-export type PostTag = "card" | "sell" | "bitcoin" | "usdt" | "safety";
+export type PostTag = "card" | "sell" | "bitcoin" | "usdt" | "safety" | "bills";
 
 export type Post = {
   slug: string;

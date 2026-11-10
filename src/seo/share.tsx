@@ -1,7 +1,8 @@
-import type { CSSProperties, ReactNode } from "react";
+import type { ComponentType, CSSProperties, ReactNode } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { COINS, formatNgn } from "../data/coins";
 import { MERCHANT_LOGOS } from "../data/merchantLogos";
+import { AirtimeIcon, CableTvIcon, DataIcon, ElectricityIcon } from "../components/icons";
 import type { CardColor, CardNetwork } from "../data/cards";
 import type { CoinRate } from "../hooks/useMarketTicker";
 import type { ShareSpec, ShareVisual } from "./shareSpec";
@@ -42,6 +43,16 @@ function merchantIcon(name: string, size: number) {
   const logo = MERCHANT_LOGOS[name];
   if (!logo) return null;
   const markup = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="${logo.color}"><path d="${logo.path}"/></svg>`;
+  return <img src={svgUri(markup)} width={size} height={size} />;
+}
+
+function uiIcon(Icon: ComponentType<{ width?: number; height?: number }>, size: number) {
+  // Solar paints with currentColor and sets the duotone half's opacity
+  // through CSS variables, neither of which resvg resolves inside an image.
+  const markup = renderToStaticMarkup(<Icon width={size} height={size} />)
+    .replace(/style="[^"]*"/g, 'opacity="0.5"')
+    .replace(/currentColor/g, PRIMARY)
+    .replace(/<svg(?![^>]*xmlns=)/, '<svg xmlns="http://www.w3.org/2000/svg"');
   return <img src={svgUri(markup)} width={size} height={size} />;
 }
 
@@ -203,6 +214,42 @@ function CoinsVisual({ ids }: { ids: string[] }) {
   );
 }
 
+function BillsVisual() {
+  const spots = [
+    { Icon: AirtimeIcon, x: 70, y: 120, s: 150 },
+    { Icon: ElectricityIcon, x: 260, y: 170, s: 170 },
+    { Icon: DataIcon, x: 40, y: 320, s: 140 },
+    { Icon: CableTvIcon, x: 220, y: 380, s: 150 },
+  ];
+  return (
+    <div style={{ display: "flex", position: "relative", width: 500, height: 630 }}>
+      {spots.map(({ Icon, x, y, s }, i) => (
+        <div key={i} style={{ display: "flex", position: "absolute", left: x, top: y }}>
+          <Badge size={s}>{uiIcon(Icon, Math.round(s * 0.5))}</Badge>
+        </div>
+      ))}
+      <div
+        style={{
+          display: "flex",
+          position: "absolute",
+          left: 150,
+          top: 300,
+          padding: "14px 26px",
+          borderRadius: 999,
+          background: "#d4f55c",
+          color: INK,
+          fontFamily: "Clash Display",
+          fontSize: 32,
+          transform: "rotate(-6deg)",
+          boxShadow: "0 18px 40px -12px rgba(12, 10, 26, 0.3)",
+        }}
+      >
+        + Cashback
+      </div>
+    </div>
+  );
+}
+
 function Title({ title, accent }: { title: string; accent?: string }) {
   const size = title.length <= 30 ? 70 : title.length <= 48 ? 60 : 50;
   const at = accent ? title.indexOf(accent) : -1;
@@ -348,6 +395,7 @@ export function ShareImage({
       >
         {visual.kind === "card" && <CardVisual visual={visual} assets={assets} />}
         {visual.kind === "rate" && <RateVisual coinId={visual.coinId} rate={rate} date={date} />}
+        {visual.kind === "bills" && <BillsVisual />}
         {visual.kind === "coins" && (
           <CoinsVisual ids={visual.ids ?? ["bitcoin", "tether", "ethereum", "solana", "usd-coin", "dogecoin"]} />
         )}

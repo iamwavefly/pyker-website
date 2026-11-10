@@ -87,15 +87,15 @@ export const SELL_HUB = {
   steps: [
     {
       title: "Pick a coin and your payout",
-      text: "Choose the coin you're selling and whether you want naira or dollars.",
+      text: "Choose the coin you're selling and whether you want naira or dollars. Your call.",
     },
     {
       title: "Send it to your address",
-      text: "Pyker gives you a deposit address that's yours. Send from any wallet or exchange.",
+      text: "Pyker gives you a deposit address that's yours alone. Send from any wallet or exchange.",
     },
     {
       title: "Get paid in minutes",
-      text: "Once the network confirms, your NGN or USD wallet is credited.",
+      text: "Once the network confirms, your NGN or USD wallet is credited. No waiting for anybody to \"send am\".",
     },
   ] as Step[],
   faq: [

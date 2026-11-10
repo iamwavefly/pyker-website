@@ -9,7 +9,7 @@ export default function PainPoints({
   soft = false,
   title = (
     <>
-      Tired of surprise fees and <span className="accent">slow cashouts?</span>
+      Tired of P2P wahala and <span className="accent">slow cashouts?</span>
     </>
   ),
 }: {

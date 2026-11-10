@@ -53,7 +53,7 @@ export const HOME_FAQ: FaqItem[] = [
     question: "Can I pay bills with Pyker?",
     answer:
       FEATURES.bills.status === "live"
-        ? "Yes. Pay for airtime, data, electricity and cable TV straight from your naira balance."
+        ? "Yes, and you get paid back for it. Buy airtime and data, pay for light and renew cable TV from your naira balance, and cashback lands in your wallet every time."
         : "Airtime, data, electricity and cable TV payments are coming soon. We'll let you know in the app as soon as they're live.",
   },
 ];

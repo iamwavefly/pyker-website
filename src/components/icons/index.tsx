@@ -38,6 +38,7 @@ import {
   LightbulbIcon,
   TvIcon,
   GiftIcon as SolarGift,
+  UsersGroupRoundedIcon,
 } from "@solar-icons/react/bold-duotone";
 import {
   CheckCircleIcon as SolarCheckCircle,
@@ -106,6 +107,7 @@ export const AirtimeIcon = solar(SmartphoneIcon);
 export const DataIcon = solar(WiFiRouterIcon);
 export const ElectricityIcon = solar(LightbulbIcon);
 export const CableTvIcon = solar(TvIcon);
+export const UsersIcon = solar(UsersGroupRoundedIcon);
 export const GiftIcon = solar(SolarGift);
 
 // Solid accents (bold)

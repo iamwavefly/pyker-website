@@ -39,8 +39,8 @@ export const FEATURES: Record<FeatureKey, Feature> = {
   bills: {
     label: "Pay bills",
     path: "/pay-bills",
-    status: "coming-soon",
-    summary: "Airtime, data, electricity and cable TV from your naira balance.",
+    status: "live",
+    summary: "Airtime, data, light and TV, with cashback every time you pay.",
   },
 };
 

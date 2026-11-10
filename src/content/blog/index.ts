@@ -5,12 +5,13 @@ import { usdtNetworks } from "./usdt-networks-explained";
 import { bitcoinToNaira } from "./convert-bitcoin-to-naira";
 import { virtualCardGuide } from "./virtual-dollar-card-guide";
 import { avoidScams } from "./avoid-crypto-scams";
+import { payBillsOnline } from "./pay-bills-online-in-nigeria";
 
 export type { Block, Post, PostTag };
 
 // To publish a post, write it in its own file and add it here. Its page,
 // blog listing, related links and sitemap entry are generated from this list.
-export const POSTS: Post[] = [sellUsdt, payForChatgpt, usdtNetworks, bitcoinToNaira, virtualCardGuide, avoidScams].sort(
+export const POSTS: Post[] = [sellUsdt, payForChatgpt, usdtNetworks, bitcoinToNaira, virtualCardGuide, avoidScams, payBillsOnline].sort(
   (a, b) => b.published.localeCompare(a.published),
 );
 

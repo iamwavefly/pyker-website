@@ -20,7 +20,7 @@ export default function FinalCta() {
               Get the Pyker <span className="accent">mobile app</span>
             </h2>
             <p className={styles.description}>
-              Verify in minutes and turn your next deposit into naira you can spend, save or send.
+              Verify in minutes, sell your crypto sharp sharp, and get paid back every time you pay a bill.
             </p>
             <StoreButtons />
           </div>

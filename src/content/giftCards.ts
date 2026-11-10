@@ -40,7 +40,7 @@ export const GIFT_CARDS = {
         {
           question: "What can I do with Pyker today?",
           answer:
-            "Sell crypto for naira or dollars instantly, withdraw naira to your bank, and pay online with a virtual dollar card.",
+            "Sell crypto for naira or dollars instantly, withdraw naira to your bank, pay bills with cashback, and pay online with a virtual dollar card.",
         },
       ]) as FaqItem[],
 };

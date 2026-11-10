@@ -235,6 +235,10 @@
   gap: 20px;
 }
 
+.points3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .point {
   padding: 28px;
   border-radius: 24px;

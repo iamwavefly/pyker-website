@@ -16,14 +16,14 @@ export const CARD = {
     },
     {
       title: "Fund it and spend",
-      text: "Move money from your Pyker balance onto your card and pay anywhere online.",
+      text: "Move money from your Pyker balance onto your card and pay anywhere online. Simple as that.",
     },
   ] as Step[],
   uses: [
     { title: "Apple and Google", text: "Pay for apps, iCloud, Google One and app store purchases." },
-    { title: "Netflix and streaming", text: "Keep your streaming and music subscriptions running." },
-    { title: "Claude and ChatGPT", text: "Subscribe to the AI tools you use for work and study." },
-    { title: "Udemy and online courses", text: "Pay for courses and learn new skills online." },
+    { title: "Netflix and streaming", text: "Keep Netflix, Spotify and co running, so your weekend binge doesn't stop halfway." },
+    { title: "Claude and ChatGPT", text: "Subscribe to the AI tools you use for work, study and side hustle." },
+    { title: "Udemy and online courses", text: "Pay for that course and level up your skills, without asking a friend abroad to help." },
   ],
   faq: [
     {

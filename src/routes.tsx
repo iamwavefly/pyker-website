@@ -55,6 +55,7 @@ function postShareVisual(post: (typeof POSTS)[number]): ShareSpec["visual"] {
   if (cover.kind === "coins" && cover.ids.length === 1) return { kind: "rate", coinId: cover.ids[0] };
   if (cover.kind === "coins") return { kind: "coins", ids: cover.ids };
   if (post.tags.includes("card")) return { kind: "card", color: "indigo", network: "visa" };
+  if (post.tags.includes("bills")) return { kind: "bills" };
   return { kind: "coins" };
 }
 
@@ -239,7 +240,14 @@ const PAGES: AppRoute[] = [
       path: FEATURES.bills.path,
       jsonLd: [breadcrumbSchema([home, { name: "Pay bills", path: FEATURES.bills.path }]), faqSchema(BILLS.faq)],
     },
-    sitemap: { priority: 0.6, changefreq: "monthly" },
+    sitemap: { priority: 0.9, changefreq: "monthly", lastmod: "2026-11-10" },
+    share: {
+      eyebrow: "Bill payments",
+      title: "Pay bills and get cashback",
+      accent: "cashback",
+      subtitle: "Airtime, data, light and TV from your naira wallet.",
+      visual: { kind: "bills" },
+    },
   },
   {
     path: BLOG_PATH,

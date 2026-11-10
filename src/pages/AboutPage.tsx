@@ -51,8 +51,8 @@ export default function AboutPage() {
             </p>
             <p className={styles.missionText}>
               Beyond selling, Pyker connects crypto to the things people actually spend
-              money on, starting with a virtual USD card for online payments. Bill payments
-              and gift card selling are coming soon. The goal is simple: make crypto useful,
+              money on, from a virtual USD card for online payments to airtime, data and bills with
+              cashback. Gift card selling is coming soon. The goal is simple: make crypto useful,
               not just something you hold.
             </p>
           </div>

@@ -11,7 +11,7 @@ export const avoidScams: Post = {
   category: "Safety",
   tags: ["safety", "sell"],
   published: "2026-10-18",
-  updated: "2026-10-18",
+  updated: "2026-11-10",
   cover: { kind: "shield", tone: "lilac" },
   body: [
     {
@@ -38,7 +38,7 @@ export const avoidScams: Post = {
     {
       type: "tip",
       title: "A rule with no exceptions",
-      text: "No genuine support team will ever ask for your PIN, password, OTP or seed phrase. Pyker support only contacts you from support@usepyker.com.",
+      text: "No genuine support team will ever ask for your PIN, password, OTP or seed phrase. Pyker support only contacts you from support@usepyker.com or our WhatsApp line, 0703 077 2726.",
     },
     { type: "h2", text: "3. Rates that are too good to be true" },
     {
