@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Rich from "./Rich";
 import Phone from "../ui/Phone";
+import { Checklist, NetworkChecker, Picker, PostConverter } from "./Interactive";
 import { headingId, type Block } from "../../content/blog";
 import { CaretRightIcon } from "../icons";
 import styles from "./Blog.module.css";
@@ -93,6 +94,23 @@ function BlockView({ block }: { block: Block }) {
           ))}
         </div>
       );
+    case "answer":
+      return (
+        <aside className={styles.answer}>
+          <strong>Quick answer</strong>
+          <p>
+            <Rich text={block.text} />
+          </p>
+        </aside>
+      );
+    case "converter":
+      return <PostConverter coinId={block.coinId} />;
+    case "networkChecker":
+      return <NetworkChecker />;
+    case "checklist":
+      return <Checklist title={block.title} items={block.items} />;
+    case "picker":
+      return <Picker question={block.question} options={block.options} />;
     case "cta":
       return (
         <aside className={styles.cta}>

@@ -372,7 +372,7 @@ const changedPlatforms: Alternative[] = [
       },
       {
         question: "Will I see my rate before I send?",
-        answer: "Yes. Pyker shows your rate in the app before you send, with Pyker's fee built in.",
+        answer: "Yes. Pyker shows your rate in the app before you send, and every receipt shows the fee.",
       },
     ],
     sources: [
@@ -392,7 +392,7 @@ const activePlatforms: Alternative[] = [
     name: "Roqqu",
     metaTitle: "Roqqu Alternative: Sell Crypto for Naira Instantly | Pyker",
     description:
-      "Comparing Roqqu for rates or cashout speed? Pyker has one upfront rate, no separate fee, and no Pyker fee to withdraw naira to your bank.",
+      "Comparing Roqqu for rates or cashout speed? Pyker has one upfront rate, a transparent fee on every receipt, and no Pyker fee to withdraw naira to your bank.",
     intro:
       "Looking for a better payout or a faster way to get naira into your bank? Here's how Pyker works, and how to compare apps fairly before you sell.",
     changed: {
@@ -414,7 +414,7 @@ const activePlatforms: Alternative[] = [
       },
       {
         label: "Fees to check",
-        pyker: "Pyker's fee is built into the rate shown, and Pyker charges no fee to withdraw naira.",
+        pyker: "A transparent transaction fee, itemised on every receipt, and no Pyker fee to withdraw naira.",
         them: "Check Roqqu's current fee schedule in its app.",
       },
     ],
@@ -436,7 +436,7 @@ const activePlatforms: Alternative[] = [
       {
         question: "Does Pyker have better rates than Roqqu?",
         answer:
-          "Rates on every platform move constantly, so the fair way to compare is to check both apps at the same time and compare the naira that would land in your bank after all fees. On Pyker, our fee is built into the rate you see and there's no Pyker fee to withdraw naira.",
+          "Rates on every platform move constantly, so the fair way to compare is to check both apps at the same time and compare the naira that would land in your bank after all fees. On Pyker, you see your rate before you send, every receipt shows the fee, and there's no Pyker fee to withdraw naira.",
       },
       {
         question: "How fast can I cash out on Pyker?",
@@ -457,7 +457,7 @@ const activePlatforms: Alternative[] = [
     name: "Busha",
     metaTitle: "Busha Alternative: Sell Crypto for Naira Instantly | Pyker",
     description:
-      "Comparing Busha for rates or cashout? Pyker is built just for selling crypto for naira: one upfront rate, no separate fee, free naira withdrawals.",
+      "Comparing Busha for rates or cashout? Pyker is built just for selling crypto for naira: one upfront rate, a transparent fee, free naira withdrawals.",
     intro:
       "Busha is a full crypto investing app. If you mostly want to turn crypto into naira, quickly and with a clear payout, here's how Pyker compares.",
     changed: {
@@ -479,7 +479,7 @@ const activePlatforms: Alternative[] = [
       },
       {
         label: "Fees to check",
-        pyker: "Pyker's fee is built into the rate shown, and Pyker charges no fee to withdraw naira.",
+        pyker: "A transparent transaction fee, itemised on every receipt, and no Pyker fee to withdraw naira.",
         them: "Check Busha's current fees in its app.",
       },
     ],
@@ -501,7 +501,7 @@ const activePlatforms: Alternative[] = [
       {
         question: "Does Pyker have better rates than Busha?",
         answer:
-          "Rates change all the time, so compare both apps at the same moment and look at the naira that would reach your bank after every fee. On Pyker, our fee is built into the rate shown and there's no Pyker fee to withdraw naira.",
+          "Rates change all the time, so compare both apps at the same moment and look at the naira that would reach your bank after every fee. On Pyker, you see your rate before you send, every receipt shows the fee, and there's no Pyker fee to withdraw naira.",
       },
       {
         question: "Is Pyker an investment app?",
@@ -559,7 +559,7 @@ const morePlatforms: Alternative[] = [
       {
         question: "Does Pyker have better rates than Bitnob?",
         answer:
-          "Rates change constantly, so compare both apps at the same moment and look at the naira that would reach your bank after every fee. On Pyker, our fee is built into the rate shown and there's no Pyker fee to withdraw naira.",
+          "Rates change constantly, so compare both apps at the same moment and look at the naira that would reach your bank after every fee. On Pyker, you see your rate before you send, every receipt shows the fee, and there's no Pyker fee to withdraw naira.",
       },
       {
         question: "Does Pyker have a dollar card like Bitnob?",
@@ -601,7 +601,7 @@ const morePlatforms: Alternative[] = [
       { ...pykerSellRow, them: "Instant sell from your portfolio, or orders on the Luno Exchange." },
       {
         label: "Fees to check",
-        pyker: "Pyker's fee is built into the rate shown, and Pyker charges no fee to withdraw naira.",
+        pyker: "A transparent transaction fee, itemised on every receipt, and no Pyker fee to withdraw naira.",
         them: "Luno publishes its Nigeria fees and limits in its help centre.",
       },
     ],
@@ -614,7 +614,7 @@ const morePlatforms: Alternative[] = [
       {
         question: "Does Pyker have better rates than Luno?",
         answer:
-          "Compare both at the same moment and look at the naira that reaches your bank after every fee. Luno publishes its Nigeria fees in its help centre; on Pyker, our fee is built into the rate and naira withdrawals are free.",
+          "Compare both at the same moment and look at the naira that reaches your bank after every fee. Luno publishes its Nigeria fees in its help centre; on Pyker, every receipt shows the fee and naira withdrawals are free.",
       },
       {
         question: "Is Pyker an investment platform like Luno?",
@@ -665,7 +665,7 @@ const morePlatforms: Alternative[] = [
       {
         question: "Does Pyker have better crypto rates than Prestmit?",
         answer:
-          "Compare both apps at the same moment and look at the naira that reaches your bank after every fee. On Pyker, our fee is built into the rate shown and naira withdrawals are free.",
+          "Compare both apps at the same moment and look at the naira that reaches your bank after every fee. On Pyker, every receipt shows the fee and naira withdrawals are free.",
       },
       {
         question: "Which coins can I sell on Pyker?",
@@ -723,7 +723,7 @@ const morePlatforms: Alternative[] = [
       },
       {
         question: "Will I see my rate before I send?",
-        answer: "Yes. Pyker shows your rate in the app before you send, with Pyker's fee built in.",
+        answer: "Yes. Pyker shows your rate in the app before you send, and every receipt shows the fee.",
       },
     ],
     sources: [
@@ -851,7 +851,8 @@ export function alternativePath(alternative: Alternative) {
 }
 
 // How to compare payouts fairly, shown on every alternatives page. Pyker's
-// side reflects the backend: fee built into the quoted rate (sell.Quote), no
+// side reflects the backend: a net quoted rate (sell.Quote) with the fee itemised
+// on the receipt (mobile sell-receipt: Fee, Amount after fee), no
 // fee on naira bank withdrawals (sell.Withdraw).
 export const PAYOUT_CHECKS = [
   {
@@ -860,7 +861,7 @@ export const PAYOUT_CHECKS = [
   },
   {
     title: "Count every fee",
-    text: "Look at the naira you'd actually receive: rate, selling fees and withdrawal fees together. On Pyker, our fee is built into the rate you see.",
+    text: "Look at the naira you'd actually receive: rate, selling fees and withdrawal fees together. On Pyker, you see your rate before you send and the fee on every receipt.",
   },
   {
     title: "Check the cashout",

@@ -50,7 +50,7 @@ export function coinRateFaq(coin: Coin): FaqItem[] {
     },
     {
       question: `How much is ${stable ? `100 ${symbol}` : `1 ${symbol}`} in naira?`,
-      answer: `Use the table or converter on this page: it multiplies today's Pyker rate by your amount. The figure you'll receive is shown in the app before you send, with Pyker's fee already built in.`,
+      answer: `Use the table or converter on this page: it multiplies today's Pyker rate by your amount. The figure you'll receive is shown in the app before you send, and your receipt shows the fee for every sale.`,
     },
     stable
       ? {

@@ -12,7 +12,7 @@ import { BoltIcon, ChartIcon, QrIcon, WalletIcon } from "../components/icons";
 export default function SellCoinPage({ coin }: { coin: Coin }) {
   const others = COINS.filter((c) => c.id !== coin.id);
   // Coin-specific guides first, then general selling guides.
-  const coinTag = (["bitcoin", "usdt"] as PostTag[]).find((tag) => tag === coin.slug);
+  const coinTag = (["bitcoin", "usdt", "dogecoin"] as PostTag[]).find((tag) => tag === coin.slug);
   const guides = [...(coinTag ? postsTagged([coinTag]) : []), ...postsTagged(["sell"])]
     .filter((post, index, all) => all.indexOf(post) === index)
     .slice(0, 3);
@@ -53,7 +53,7 @@ export default function SellCoinPage({ coin }: { coin: Coin }) {
               title: "Instant sell",
               text: `No buyers, no haggling. Your wallet is credited automatically once your ${coin.symbol} confirms.`,
             },
-            { Icon: ChartIcon, title: "One upfront rate", text: "See your rate before you send, with Pyker's fee already built in." },
+            { Icon: ChartIcon, title: "Transparent fees", text: "See your rate before you send, and the fee on every receipt." },
             {
               Icon: QrIcon,
               title: "Your own address",

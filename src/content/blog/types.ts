@@ -13,7 +13,17 @@ export type Block =
   | { type: "table"; head: string[]; rows: string[][] }
   | { type: "cta"; title: string; text: string; to: string; label: string }
   /** One or two app screenshots in phone frames, each with a caption. */
-  | { type: "screens"; items: { src: string; alt: string; caption: string }[] };
+  | { type: "screens"; items: { src: string; alt: string; caption: string }[] }
+  /** A short "quick answer" box, usually first, for skimmers and featured snippets. */
+  | { type: "answer"; text: string }
+  /** The live coin-to-naira converter, by coin id. */
+  | { type: "converter"; coinId: string }
+  /** Type a phone number, see which network its prefix belongs to. */
+  | { type: "networkChecker" }
+  /** Steps or things to check that the reader can tick off. */
+  | { type: "checklist"; title: string; items: string[] }
+  /** "Which one are you?": pick an option, see the answer for it. */
+  | { type: "picker"; question: string; options: { label: string; result: string }[] };
 
 export type CoverTone = "lilac" | "lime" | "peach" | "ink";
 
@@ -24,7 +34,7 @@ export type PostCover =
   | { kind: "coins"; ids: string[]; tone: CoverTone }
   | { kind: "shield"; tone: CoverTone };
 
-export type PostTag = "card" | "sell" | "bitcoin" | "usdt" | "safety" | "bills";
+export type PostTag = "card" | "sell" | "bitcoin" | "usdt" | "safety" | "bills" | "dogecoin";
 
 export type Post = {
   slug: string;

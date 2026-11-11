@@ -1,13 +1,13 @@
 // Common frustrations from public app-store reviews of crypto apps in Nigeria
 // (withdrawals, fees, waiting, not knowing where money is). No platform is
-// named. Each answer is backed by the backend: fee built into the quoted rate
+// named. Each answer is backed by the backend: net quoted rate with the fee itemised on the receipt
 // (sell.Quote), no fee on naira bank withdrawals (sell.Withdraw), automatic
 // crediting on the provider's trade webhook, and the deposit tracker.
 export const PAIN_POINTS = [
   {
     pain: "Surprise fees after you sell",
-    title: "One upfront rate",
-    text: "Pyker's fee is built into the rate you see before you send. What you see is what you get, no extra charge to work out.",
+    title: "Transparent fees",
+    text: "See your rate before you send, and the fee on every receipt. No hidden charges, no surprises after you sell.",
   },
   {
     pain: "Waiting on a P2P buyer who has gone quiet",

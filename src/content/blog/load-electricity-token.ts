@@ -5,9 +5,9 @@ export const loadElectricityToken: Post = {
   title: "How to Load an Electricity Token on Your Prepaid Meter",
   metaTitle: "How to Load Electricity Token on a Prepaid Meter",
   description:
-    "Bought your token? Here's how to load it on your prepaid meter in Nigeria, step by step, plus what to do when the meter rejects it.",
+    "How to load an electricity token on your prepaid meter in Nigeria, step by step, plus a quick fix for every error your meter shows when it rejects a token.",
   excerpt:
-    "You don pay, token don land. Here's how to load it on your prepaid meter, step by step, and what to do if the meter says no.",
+    "You don pay, token don land. Here's how to load it on your prepaid meter, step by step, and what to do when the meter says no.",
   category: "Bills",
   tags: ["bills"],
   published: "2026-11-11",
@@ -15,13 +15,17 @@ export const loadElectricityToken: Post = {
   cover: { kind: "art", src: "/art/bills.webp" },
   body: [
     {
+      type: "answer",
+      text: "Go to your meter's keypad, type the **20-digit token** carefully, then press **Enter** (on many keypads it's the **#** key or a coloured key). Wait for **Accept** or **Success**, and your new units are added on top of what was left. If the meter rejects it, retype it slowly first; most rejections are a typo.",
+    },
+    {
       type: "p",
-      text: "You don pay, token don land. Now you just need to put it in the meter. Loading a token takes less than a minute once you know the steps, and this guide also covers what to do when the meter refuses to take it.",
+      text: "You don pay, token don land. Now you just need to put it in the meter. Loading a token takes less than a minute once you know the steps, but it can be stressful when the meter flashes \"Reject\" at 10pm and the fan has stopped. This guide covers both: how to load it right the first time, and exactly what to do for every message your meter can throw at you.",
     },
     { type: "h2", text: "First, get your token" },
     {
       type: "p",
-      text: "A prepaid electricity token is a 20-digit number. You get a new one every time you buy units for your meter. On Pyker, tap **Pay bills**, then **Electricity**, choose your DisCo and **Prepaid**, enter your **Meter ID** and pay. Your token shows on the success screen straight away, and we send it as a notification too.",
+      text: "A prepaid electricity token is a 20-digit number. You get a new one every time you buy units for your meter, and it only works on that meter. On Pyker, tap **Pay bills**, then **Electricity**, choose your DisCo and **Prepaid**, enter your **Meter ID** and pay. Your token shows on the success screen straight away, and we send it as a notification too.",
     },
     {
       type: "p",
@@ -34,27 +38,64 @@ export const loadElectricityToken: Post = {
     },
     { type: "h2", text: "How to load the token, step by step" },
     {
-      type: "ol",
+      type: "checklist",
+      title: "Load your token",
       items: [
-        "Go to your meter's keypad. On some meters it's on the meter itself; on split meters it's a separate small unit inside the house.",
-        "Type the 20 digits carefully, in order. Take your time: one wrong digit and the meter will reject it.",
-        "Press the Enter key. On many keypads it's marked **Enter**, or it's the **#** key or a coloured key.",
-        "Wait for the meter to confirm. Most show a message like **Accept** or **Success**, then your new units.",
+        "Go to the meter's keypad (on the meter, or the small unit inside the house on split meters)",
+        "Clear any old digits on the screen",
+        "Type all 20 digits, slowly, in order",
+        "Press Enter (often **#** or a coloured key)",
+        "Wait for **Accept** or **Success** and check your new units",
       ],
     },
     {
       type: "p",
-      text: "That's it. Your units are added on top of whatever was left, so you don't lose any credit by loading early.",
+      text: "That's it. Your units are added on top of whatever was left, so you don't lose any credit by loading early. In fact, loading before your units finish means no surprise blackout in the middle of the night.",
     },
-    { type: "h2", text: "If your meter rejects the token" },
+    { type: "h2", text: "Meter on the pole? Split meters explained" },
     {
-      type: "ul",
-      items: [
-        "**You typed a digit wrong.** This is the most common reason. Clear the screen and type the token again slowly.",
-        "**The token is for a different meter.** A token only works on the meter it was bought for. Check that the meter number on your receipt matches your meter.",
-        "**The token has already been used.** Each token loads once. If the meter says it's used, check your units: it may already be in.",
-        "**Your meter needs key change tokens.** When DisCos upgrade meters in an area, they may issue key change tokens to enter before your normal token. Your DisCo will tell you if this applies to you.",
-        "**The meter shows an error or a lock.** That's a meter fault, not a token problem. Contact your DisCo with your meter number.",
+      type: "p",
+      text: "Many newer meters are split meters. The measuring part sits outside, often on the pole or the wall, and you get a small keypad unit inside the house, sometimes called a customer interface unit or CIU. You type your token on the indoor unit, and it talks to the meter outside. If the indoor unit shows no connection, move it closer to the meter or change its batteries, then try again.",
+    },
+    { type: "h2", text: "What is your meter saying?" },
+    {
+      type: "p",
+      text: "Meters don't all use the same words, but most messages fall into one of these. Pick what yours is showing:",
+    },
+    {
+      type: "picker",
+      question: "What does your meter show after you press Enter?",
+      options: [
+        {
+          label: "Accept / Success",
+          result:
+            "You're done. Your units were added on top of your old balance. Keep the token or receipt in case you need it later.",
+        },
+        {
+          label: "Reject / Invalid",
+          result:
+            "Usually a typo. Clear the screen and type all 20 digits again slowly. Still rejected? Check that the meter number on your receipt matches your meter: a token only works on the meter it was bought for.",
+        },
+        {
+          label: "Used / Old token",
+          result:
+            "That token has already been loaded, maybe by someone else in the house. Check your units: the credit is probably already there.",
+        },
+        {
+          label: "Key change / KCT",
+          result:
+            "Your meter needs key change tokens before it can accept normal tokens. This happens when DisCos upgrade meters in an area. Contact your DisCo with your meter number to get them, enter them first, then your normal token.",
+        },
+        {
+          label: "Error, lock or tamper",
+          result:
+            "That's a meter fault, not a token problem. Don't keep retrying. Contact your DisCo with your meter number and the exact message on the screen.",
+        },
+        {
+          label: "Nothing happens",
+          result:
+            "On split meters, check the indoor unit's batteries and move it closer to the outdoor meter. On other meters, make sure you pressed the right Enter key for your model.",
+        },
       ],
     },
     {
@@ -64,7 +105,26 @@ export const loadElectricityToken: Post = {
     { type: "h2", text: "How to check your remaining units" },
     {
       type: "p",
-      text: "Most prepaid meters show your remaining units on the screen, and some cycle through readings when you press a key. The exact key depends on your meter brand, so check the manual or ask your DisCo. Keep an eye on it, and buy units before NEPA takes light at the worst time.",
+      text: "Most prepaid meters show your remaining units on the screen, and some cycle through readings when you press a key. The exact key depends on your meter brand, so check the manual that came with it or ask your DisCo. Make it a habit to check every few days, so you can buy units before NEPA takes light at the worst possible time.",
+    },
+    { type: "h2", text: "Why your units finish so fast" },
+    {
+      type: "p",
+      text: "If the same amount buys fewer units than before, your area may have moved to a higher tariff band. [Here's how the bands work](/blog/electricity-tariff-bands-nigeria-explained). If your units disappear quickly even when you're not using much, the usual suspects are standby appliances, old bulbs and faulty wiring.",
+    },
+    {
+      type: "ul",
+      items: [
+        "**Switch off at the socket.** TVs, decoders and chargers still draw power on standby.",
+        "**Use LED bulbs.** They use a fraction of the power of old bulbs.",
+        "**Iron in one go.** Pressing irons are power-hungry. Do the week's ironing in one session.",
+        "**Get the wiring checked** if units vanish with almost everything off.",
+      ],
+    },
+    { type: "h2", text: "A real example" },
+    {
+      type: "p",
+      text: "It's 9:45pm and Bisi's units run out in the middle of her series. She opens Pyker, taps Electricity, picks Eko Electric and her saved meter, checks the name and pays. The token pops up immediately. She types it on the keypad, gets \"Reject\", takes a breath, types it again slowly and gets \"Accept\". Two minutes, light back, series back. Cashback in her wallet too.",
     },
     {
       type: "cta",
@@ -87,6 +147,15 @@ export const loadElectricityToken: Post = {
       question: "Why does my meter reject my token?",
       answer:
         "Usually a typo, so type it again slowly. Otherwise, the token may be for another meter, already used, or your meter may need key change tokens from your DisCo first.",
+    },
+    {
+      question: "What is a key change token (KCT)?",
+      answer:
+        "A special token that updates your meter's settings, usually when a DisCo upgrades meters in an area. Enter it before your normal token. Your DisCo provides it.",
+    },
+    {
+      question: "Do I lose my old units when I load a new token?",
+      answer: "No. New units are added on top of whatever was left.",
     },
     {
       question: "Where can I find my token again on Pyker?",

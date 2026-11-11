@@ -48,7 +48,7 @@ export function sellCoinFaq(coin: Coin): FaqItem[] {
     },
     {
       question: `Are there fees to sell ${symbol}?`,
-      answer: `Pyker's fee is built into the rate you see before you send, so there's no separate charge to work out. Your exchange or wallet may charge its own network fee to send ${symbol}.`,
+      answer: `Pyker charges a transparent transaction fee. You see your rate before you send, and every sale's receipt shows the fee and the amount after it. Your exchange or wallet may charge its own network fee to send ${symbol}.`,
     },
     {
       question: "Is there a minimum amount?",
@@ -122,7 +122,7 @@ export const SELL_HUB = {
     {
       question: "Are there fees to sell crypto on Pyker?",
       answer:
-        "Pyker's fee is built into the rate shown before you send, so there's no separate charge. Your exchange or wallet may charge its own network fee to send crypto.",
+        "Pyker charges a transparent transaction fee. You see your rate before you send, and every sale's receipt shows the fee and the amount after it. Your exchange or wallet may charge its own network fee to send crypto.",
     },
     {
       question: "Can I get paid in dollars instead of naira?",
@@ -153,7 +153,7 @@ export const SELL_COMPARE = {
     },
     {
       label: "Your rate",
-      ours: "Shown before you send, with Pyker's fee built in.",
+      ours: "Shown before you send, with the fee itemised on every receipt.",
       theirs: "Set per trade, and can change while you negotiate.",
     },
     {

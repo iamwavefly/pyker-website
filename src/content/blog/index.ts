@@ -9,12 +9,15 @@ import { payBillsOnline } from "./pay-bills-online-in-nigeria";
 import { loadElectricityToken } from "./load-electricity-token";
 import { prepaidVsPostpaid } from "./prepaid-vs-postpaid-meter";
 import { fundCardWithCrypto } from "./fund-dollar-card-with-crypto";
+import { sellDogecoin } from "./sell-dogecoin-in-nigeria";
+import { networkPrefixes } from "./network-number-prefixes";
+import { tariffBands } from "./electricity-tariff-bands";
 
 export type { Block, Post, PostTag };
 
 // To publish a post, write it in its own file and add it here. Its page,
 // blog listing, related links and sitemap entry are generated from this list.
-export const POSTS: Post[] = [sellUsdt, payForChatgpt, usdtNetworks, bitcoinToNaira, virtualCardGuide, avoidScams, payBillsOnline, loadElectricityToken, prepaidVsPostpaid, fundCardWithCrypto].sort(
+export const POSTS: Post[] = [sellUsdt, payForChatgpt, usdtNetworks, bitcoinToNaira, virtualCardGuide, avoidScams, payBillsOnline, loadElectricityToken, prepaidVsPostpaid, fundCardWithCrypto, sellDogecoin, networkPrefixes, tariffBands].sort(
   (a, b) => b.published.localeCompare(a.published),
 );
 
@@ -43,7 +46,13 @@ function blockText(block: Block): string {
     case "tip":
       return `${block.title} ${block.text}`;
     case "cta":
+    case "converter":
+    case "networkChecker":
       return "";
+    case "checklist":
+      return `${block.title} ${block.items.join(" ")}`;
+    case "picker":
+      return [block.question, ...block.options.flatMap((option) => [option.label, option.result])].join(" ");
     case "screens":
       return block.items.map((item) => item.caption).join(" ");
     default:
