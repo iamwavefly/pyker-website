@@ -185,6 +185,20 @@ export function Merchants({ names, note }: { names: string[]; note?: string }) {
   );
 }
 
+/** Short facts as chips, e.g. number prefixes or areas a DisCo covers. */
+export function Chips({ items, note }: { items: string[]; note?: string }) {
+  return (
+    <div className={styles.merchants}>
+      <ul>
+        {items.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+      {note && <p>{note}</p>}
+    </div>
+  );
+}
+
 export function CompareTable({
   columns,
   rows,

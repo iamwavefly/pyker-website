@@ -3,7 +3,7 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
 import App from "./App";
 
-export { ROUTES, sitemapEntries } from "./routes";
+export { ROUTES, metaFor, sitemapEntries } from "./routes";
 export { headTags, safeJson, sitemapXml } from "./seo/meta";
 export { fetchTicker, primeTicker, rateFor } from "./hooks/useMarketTicker";
 export { ShareBackground, ShareImage } from "./seo/share";

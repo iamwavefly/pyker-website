@@ -1,4 +1,4 @@
-import type { Coin } from "../data/coins";
+import { formatNgn, type Coin } from "../data/coins";
 import type { FaqItem } from "../seo/meta";
 
 /** Naira amounts listed in the "naira to coin" table on every rate page. */
@@ -24,13 +24,19 @@ export function coinRateIntro(coin: Coin) {
   return INTROS[coin.slug] ?? `What Pyker pays for 1 ${coin.symbol} in naira today.`;
 }
 
-export function coinRateTitle(coin: Coin) {
+// With today's rate, the number itself goes in the search result. The daily
+// rebuild keeps it current; without one, the titles fall back to plain text.
+export function coinRateTitle(coin: Coin, price?: number) {
+  if (price) return `${coin.displayName} to Naira Rate Today: ₦${formatNgn(price)} | Pyker`;
   return coin.displayName === coin.symbol
     ? `${coin.symbol} to Naira Rate Today: Convert ${coin.symbol} to NGN | Pyker`
     : `${coin.displayName} to Naira Rate Today: ${coin.symbol} to NGN | Pyker`;
 }
 
-export function coinRateDescription(coin: Coin) {
+export function coinRateDescription(coin: Coin, price?: number) {
+  if (price) {
+    return `1 ${coin.symbol} = ₦${formatNgn(price)} on Pyker today. See what any amount of ${coin.displayName} is worth in naira, then sell in minutes with no P2P.`;
+  }
   return `Today's ${coin.displayName} to naira rate from Pyker. Convert any amount of ${coin.symbol} to NGN, see what common amounts are worth, then sell in minutes.`;
 }
 

@@ -21,19 +21,23 @@ import { BLOG_PATH, POSTS, postPath } from "./content/blog";
 import AlternativesPage from "./pages/AlternativesPage";
 import AlternativePage from "./pages/AlternativePage";
 import { ALTERNATIVES, ALTERNATIVES_FAQ, ALTERNATIVES_PATH, alternativePath } from "./content/alternatives";
-import { COINS, ratePath, sellPath } from "./data/coins";
+import { COINS, ratePath, sellPath, type Coin } from "./data/coins";
+import { buildTicker, rateFor } from "./hooks/useMarketTicker";
 import { FEATURES } from "./data/features";
 import { HOME, HOME_FAQ } from "./content/home";
 import { SELL_HUB, sellCoinDescription, sellCoinFaq, sellCoinTitle } from "./content/sell";
-import { RATES } from "./content/rates";
+import { CALCULATOR, RATES } from "./content/rates";
+import CryptoCalculatorPage from "./pages/CryptoCalculatorPage";
 import { coinRateDescription, coinRateFaq, coinRateTitle } from "./content/coinRates";
 import { CARD } from "./content/card";
 import { SERVICES, serviceFaq, servicePath } from "./content/payFor";
 import { BILLS } from "./content/bills";
+import { BILL_KINDS, BILL_PROVIDERS, billProviderPath } from "./content/billProviders";
+import BillProviderPage from "./pages/BillProviderPage";
 import { SUPPORT_FAQ } from "./content/support";
 import { shareImagePath, type ShareSpec } from "./seo/shareSpec";
 import { MERCHANT_LOGOS } from "./data/merchantLogos";
-import { appSchema, articleSchema, breadcrumbSchema, faqSchema, type PageMeta, type SitemapEntry } from "./seo/meta";
+import { appSchema, websiteSchema, articleSchema, breadcrumbSchema, faqSchema, type PageMeta, type SitemapEntry } from "./seo/meta";
 
 export type AppRoute = {
   /** "/" for home, "*" for the 404 page. */
@@ -44,6 +48,8 @@ export type AppRoute = {
   sitemap?: Omit<SitemapEntry, "path">;
   /** The page's own share image. Omit to use the site-wide one. */
   share?: ShareSpec;
+  /** A rate page: its title and description carry today's rate. */
+  rateCoin?: Coin;
 };
 
 const home = { name: "Home", path: "/" };
@@ -63,7 +69,7 @@ const PAGES: AppRoute[] = [
   {
     path: "/",
     element: <HomePage />,
-    meta: { ...HOME, path: "/", jsonLd: [appSchema, faqSchema(HOME_FAQ)] },
+    meta: { ...HOME, path: "/", jsonLd: [websiteSchema, appSchema, faqSchema(HOME_FAQ)] },
     sitemap: { priority: 1, changefreq: "weekly", live: true },
   },
   {
@@ -115,6 +121,31 @@ const PAGES: AppRoute[] = [
     }),
   ),
   {
+    path: CALCULATOR.path,
+    element: <CryptoCalculatorPage />,
+    meta: {
+      title: CALCULATOR.title,
+      description: CALCULATOR.description,
+      path: CALCULATOR.path,
+      jsonLd: [
+        breadcrumbSchema([
+          home,
+          { name: "Crypto rates", path: FEATURES.rates.path },
+          { name: "Calculator", path: CALCULATOR.path },
+        ]),
+        faqSchema(CALCULATOR.faq),
+      ],
+    },
+    sitemap: { priority: 0.9, changefreq: "daily", live: true },
+    share: {
+      eyebrow: "Calculator",
+      title: "Crypto to naira calculator",
+      accent: "calculator",
+      subtitle: "Any amount of BTC, USDT, ETH and more, in naira today.",
+      visual: { kind: "coins" },
+    },
+  },
+  {
     path: FEATURES.rates.path,
     element: <RatesPage />,
     meta: {
@@ -136,6 +167,7 @@ const PAGES: AppRoute[] = [
     (coin): AppRoute => ({
       path: ratePath(coin),
       element: <CoinRatePage coin={coin} />,
+      rateCoin: coin,
       meta: {
         title: coinRateTitle(coin),
         description: coinRateDescription(coin),
@@ -249,6 +281,33 @@ const PAGES: AppRoute[] = [
       visual: { kind: "bills" },
     },
   },
+  ...BILL_PROVIDERS.map(
+    (provider): AppRoute => ({
+      path: billProviderPath(provider),
+      element: <BillProviderPage provider={provider} />,
+      meta: {
+        title: provider.metaTitle,
+        description: provider.description,
+        path: billProviderPath(provider),
+        jsonLd: [
+          breadcrumbSchema([
+            home,
+            { name: "Pay bills", path: FEATURES.bills.path },
+            { name: provider.name, path: billProviderPath(provider) },
+          ]),
+          faqSchema(provider.faq),
+        ],
+      },
+      sitemap: { priority: 0.8, changefreq: "monthly", lastmod: "2026-11-11" },
+      share: {
+        eyebrow: BILL_KINDS[provider.kind].label,
+        title: provider.h1.charAt(0).toUpperCase() + provider.h1.slice(1),
+        accent: provider.accent,
+        subtitle: "Pay in seconds from your Pyker wallet, with cashback.",
+        visual: { kind: "bills" },
+      },
+    }),
+  ),
   {
     path: BLOG_PATH,
     element: <BlogIndexPage />,
@@ -404,6 +463,17 @@ const PAGES: AppRoute[] = [
 export const ROUTES: AppRoute[] = PAGES.map((route) =>
   route.share ? { ...route, meta: { ...route.meta, image: shareImagePath(route.path) } } : route,
 );
+
+/** A route's head tags, with today's rate on rate pages. */
+export function metaFor(route: AppRoute): PageMeta {
+  const price = route.rateCoin ? rateFor(buildTicker(), route.rateCoin.id)?.price : undefined;
+  if (!route.rateCoin || !price) return route.meta;
+  return {
+    ...route.meta,
+    title: coinRateTitle(route.rateCoin, price),
+    description: coinRateDescription(route.rateCoin, price),
+  };
+}
 
 export function findRoute(pathname: string) {
   const clean = pathname !== "/" ? pathname.replace(/\/+$/, "") : pathname;

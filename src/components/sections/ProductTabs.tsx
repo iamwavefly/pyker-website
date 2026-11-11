@@ -61,7 +61,7 @@ const TABS: { key: string; label: string; title: string; text: string; more: { l
   {
     key: "sell",
     label: "Sell",
-    title: "Sell crypto, no wahala",
+    title: "Sell crypto, no stress",
     text: "No P2P, no \"buyer don japa\". BTC, ETH, USDT and more, turned into naira or dollars as soon as your deposit confirms.",
     more: { label: "Learn about selling crypto", to: FEATURES.sellCrypto.path },
     cards: [

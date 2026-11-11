@@ -1,5 +1,36 @@
 import type { FaqItem } from "../seo/meta";
 
+export const CALCULATOR = {
+  path: "/crypto-to-naira-calculator",
+  title: "Crypto to Naira Calculator: BTC, USDT, ETH to NGN | Pyker",
+  description:
+    "Convert Bitcoin, USDT, Ethereum, USDC, Solana and Dogecoin to naira at today's Pyker rate. Type any amount, either way, and see what you'll get before you sell.",
+  intro:
+    "How much naira is your crypto worth today? Pick a coin, type any amount, and see it in naira at Pyker's rate, or type naira to see how much crypto that is. No guesswork, no long calculation.",
+  faq: [
+    {
+      question: "How do I convert crypto to naira?",
+      answer:
+        "Pick your coin above and type the amount. The calculator multiplies it by today's Pyker rate for that coin. To actually cash out, sell it in the Pyker app and the naira lands in your NGN Wallet.",
+    },
+    {
+      question: "How much is 100 USDT in naira?",
+      answer:
+        "Pick USDT and type 100. USDT tracks the dollar, so 100 USDT is about the naira value of $100 at Pyker's USD rate today.",
+    },
+    {
+      question: "Is this the rate I'll get when I sell?",
+      answer:
+        "It's today's Pyker rate, refreshed every few hours. Prices move all day, so the app shows your exact rate at the moment you sell, before you send anything.",
+    },
+    {
+      question: "Can I convert naira to crypto?",
+      answer:
+        "Yes. Type a naira amount in the NGN field and the calculator shows how much of the coin that's worth. Pyker is for selling crypto, so use it to see what you need to send to get a naira amount.",
+    },
+  ] as FaqItem[],
+};
+
 export const RATES = {
   title: "Crypto to Naira Rates Today: BTC, USDT, ETH to NGN | Pyker",
   description:

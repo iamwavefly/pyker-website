@@ -40,7 +40,7 @@ export default function VirtualCardPage() {
             A dollar card for Nigerians, <span className="accent">funded in naira</span>
           </>
         }
-        intro={'Create a USD Visa or Mastercard virtual card in about a minute. Fund it from your Pyker balance and pay for Apple, Google, Netflix, Udemy, Claude and more. No more "transaction declined" wahala.'}
+        intro={'Create a USD Visa or Mastercard virtual card in about a minute. Fund it from your Pyker balance and pay for Apple, Google, Netflix, Udemy, Claude and more. No more "transaction declined" stories.'}
         secondary={{ label: "Sell crypto to fund it", to: FEATURES.sellCrypto.path }}
         aside={
           <div style={{ width: "100%", maxWidth: 440, transform: "rotate(-5deg)" }}>

@@ -114,6 +114,11 @@ let state: TickerState = hydrationState;
 const listeners = new Set<() => void>();
 let timers: ReturnType<typeof setInterval>[] = [];
 
+/** The prices this page was built with, the same on the server and in the browser. */
+export function buildTicker() {
+  return hydrationState;
+}
+
 export function primeTicker(snapshot: TickerState | null) {
   hydrationState = snapshot ?? EMPTY;
   state = hydrationState;

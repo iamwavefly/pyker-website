@@ -26,6 +26,7 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
     title: "Rates today",
     links: [
       ...COINS.map((coin) => ({ label: `${coin.displayName} to naira`, to: ratePath(coin) })),
+      { label: "Crypto calculator", to: "/crypto-to-naira-calculator" },
       { label: "All rates", to: FEATURES.rates.path },
     ],
   },

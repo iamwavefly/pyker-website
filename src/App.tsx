@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import ScrollToTop from "./components/layout/ScrollToTop";
-import { ROUTES, findRoute } from "./routes";
+import { ROUTES, findRoute, metaFor } from "./routes";
 import { applyMeta } from "./seo/meta";
 import { useHighlighterDraw, usePageTransitions } from "./hooks/useMotion";
 
@@ -11,7 +11,7 @@ import { useHighlighterDraw, usePageTransitions } from "./hooks/useMotion";
 function RouteMeta() {
   const { pathname } = useLocation();
   useEffect(() => {
-    applyMeta(findRoute(pathname).meta);
+    applyMeta(metaFor(findRoute(pathname)));
   }, [pathname]);
   return null;
 }

@@ -11,7 +11,7 @@ export const BILLS = {
     ? "Recharge airtime and data, buy light and renew DStv, GOtv or StarTimes in seconds from your Pyker wallet, and get cashback every time. See exactly what you'll earn before you pay."
     : "Bill payments are coming to Pyker. Soon you'll buy airtime and data, pay electricity bills and renew cable TV straight from your naira balance.",
   intro: live
-    ? "Recharge your line, buy light, renew DStv, no wahala. Pay from your naira balance in seconds, and every time you recharge, top up or renew, Pyker pays you back with cashback straight to your wallet."
+    ? "Recharge your line, buy light, renew DStv, no stress. Pay from your naira balance in seconds, and every time you recharge, top up or renew, Pyker pays you back with cashback straight to your wallet."
     : "Bill payments are coming to Pyker. Soon you'll buy airtime and data, pay your electricity bill and renew cable TV straight from your naira balance.",
   categories: live
     ? [

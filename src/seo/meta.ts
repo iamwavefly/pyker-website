@@ -75,6 +75,15 @@ export function articleSchema(article: {
   };
 }
 
+// The Organization itself is in index.html, on every page; this points to it.
+export const websiteSchema: JsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE_NAME,
+  url: `${SITE_URL}/`,
+  publisher: { "@id": `${SITE_URL}/#organization` },
+};
+
 export const appSchema: JsonLd = {
   "@context": "https://schema.org",
   "@type": "MobileApplication",

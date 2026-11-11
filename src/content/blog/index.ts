@@ -6,12 +6,15 @@ import { bitcoinToNaira } from "./convert-bitcoin-to-naira";
 import { virtualCardGuide } from "./virtual-dollar-card-guide";
 import { avoidScams } from "./avoid-crypto-scams";
 import { payBillsOnline } from "./pay-bills-online-in-nigeria";
+import { loadElectricityToken } from "./load-electricity-token";
+import { prepaidVsPostpaid } from "./prepaid-vs-postpaid-meter";
+import { fundCardWithCrypto } from "./fund-dollar-card-with-crypto";
 
 export type { Block, Post, PostTag };
 
 // To publish a post, write it in its own file and add it here. Its page,
 // blog listing, related links and sitemap entry are generated from this list.
-export const POSTS: Post[] = [sellUsdt, payForChatgpt, usdtNetworks, bitcoinToNaira, virtualCardGuide, avoidScams, payBillsOnline].sort(
+export const POSTS: Post[] = [sellUsdt, payForChatgpt, usdtNetworks, bitcoinToNaira, virtualCardGuide, avoidScams, payBillsOnline, loadElectricityToken, prepaidVsPostpaid, fundCardWithCrypto].sort(
   (a, b) => b.published.localeCompare(a.published),
 );
 

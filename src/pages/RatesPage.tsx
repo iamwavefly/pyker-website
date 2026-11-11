@@ -20,7 +20,7 @@ export default function RatesPage() {
           </>
         }
         intro="What Pyker pays for Bitcoin, USDT, Ethereum, USDC, Solana and Dogecoin today, in naira. Ready to sell? You'll see your exact rate in the app before you send, no surprises."
-        secondary={{ label: "How selling works", to: FEATURES.sellCrypto.path }}
+        secondary={{ label: "Open the calculator", to: "/crypto-to-naira-calculator" }}
       />
 
       <section style={{ marginTop: "-40px", position: "relative" }}>

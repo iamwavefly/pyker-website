@@ -540,6 +540,34 @@ a.rateCoin:hover {
 }
 
 /* Rate converter */
+.coinPicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.coinPicker button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px 8px 10px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  box-shadow: 0 0 0 1px var(--color-border);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-dark);
+  cursor: pointer;
+}
+
+.coinPicker button[aria-pressed="true"] {
+  background: var(--color-lime);
+  box-shadow: none;
+}
+
 .converter {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);

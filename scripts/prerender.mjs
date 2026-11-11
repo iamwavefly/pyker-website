@@ -12,7 +12,7 @@ const dist = path.join(root, "dist");
 const ssrDir = path.join(root, "dist-ssr");
 
 const server = await import(pathToFileURL(path.join(ssrDir, "entry-server.js")).href);
-const { render, ROUTES, sitemapEntries, headTags, safeJson, sitemapXml, fetchTicker, primeTicker } = server;
+const { render, ROUTES, metaFor, sitemapEntries, headTags, safeJson, sitemapXml, fetchTicker, primeTicker } = server;
 const { ShareBackground, ShareImage, shareImagePath, rateFor } = server;
 
 // Bake in today's prices so rate pages are indexed with real numbers. If
@@ -48,7 +48,7 @@ function outputFile(routePath) {
 for (const route of ROUTES) {
   const url = route.path === "*" ? "/404" : route.path;
   const html = template
-    .replace("<!--app-head-->", headTags(route.meta))
+    .replace("<!--app-head-->", headTags(metaFor(route)))
     .replace("<!--app-html-->", render(url))
     .replace("<!--app-data-->", data);
   const file = path.join(dist, outputFile(route.path));

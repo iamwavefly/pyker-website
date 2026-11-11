@@ -3,6 +3,8 @@ import Faq from "../components/sections/Faq";
 import FinalCta from "../components/sections/FinalCta";
 import { FEATURES, isLive } from "../data/features";
 import { BILLS } from "../content/bills";
+import { BILL_KINDS, BILL_PROVIDERS, billProviderPath, type BillKind } from "../content/billProviders";
+import page from "../components/page/Page.module.css";
 import { postsTagged } from "../content/blog";
 import { PostGrid } from "../components/blog/PostCard";
 import {
@@ -65,7 +67,22 @@ export default function PayBillsPage() {
             <Steps steps={BILLS.steps} />
           </PageSection>
 
-          <PageSection soft eyebrow="Made for how we live" title="For everybody wey dey pay bills">
+          <PageSection soft eyebrow="By provider" title="Pick your network, DisCo or decoder">
+            {(["network", "electricity", "tv"] as BillKind[]).map((kind) => (
+              <div key={kind} className={page.linkGroup}>
+                <h3 className={page.linkGroupTitle}>{BILL_KINDS[kind].plural}</h3>
+                <LinkCards
+                  links={BILL_PROVIDERS.filter((provider) => provider.kind === kind).map((provider) => ({
+                    to: billProviderPath(provider),
+                    title: provider.h1,
+                    text: "Pay in seconds, with cashback.",
+                  }))}
+                />
+              </div>
+            ))}
+          </PageSection>
+
+          <PageSection eyebrow="Made for how we live" title="For everybody wey dey pay bills">
             <Points points={BILLS.forYou.map((item, index) => ({ Icon: FOR_YOU_ICONS[index], ...item }))} />
           </PageSection>
         </>
