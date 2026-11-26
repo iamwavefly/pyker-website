@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
 import Container from "../ui/Container";
 import CopyButton from "../ui/CopyButton";
-import { InstagramLogoIcon, LinkedinLogoIcon, XLogoIcon } from "../icons";
+import { FacebookLogoIcon, InstagramLogoIcon, LinkedinLogoIcon, TiktokLogoIcon, XLogoIcon } from "../icons";
+import { FACEBOOK_URL, INSTAGRAM_URL, LINKEDIN_URL, TIKTOK_URL, X_URL } from "../../data/links";
 import { COINS, ratePath, sellPath } from "../../data/coins";
 import { FEATURES } from "../../data/features";
 import styles from "./Footer.module.css";
 
 const SOCIALS = [
-  { Icon: XLogoIcon, label: "X (Twitter)", href: "#" },
-  { Icon: InstagramLogoIcon, label: "Instagram", href: "#" },
-  { Icon: LinkedinLogoIcon, label: "LinkedIn", href: "#" },
+  { Icon: XLogoIcon, label: "X (Twitter)", href: X_URL },
+  { Icon: FacebookLogoIcon, label: "Facebook", href: FACEBOOK_URL },
+  { Icon: InstagramLogoIcon, label: "Instagram", href: INSTAGRAM_URL },
+  { Icon: LinkedinLogoIcon, label: "LinkedIn", href: LINKEDIN_URL },
+  { Icon: TiktokLogoIcon, label: "TikTok", href: TIKTOK_URL },
 ];
 
 type FooterLink = { label: string; to?: string; href?: string; soon?: boolean };
@@ -102,7 +105,7 @@ export default function Footer() {
           <span>© {new Date().getFullYear()} Pyker Digital Services Ltd. All rights reserved.</span>
           <div className={styles.socials}>
             {SOCIALS.map(({ Icon, label, href }) => (
-              <a href={href} key={label} aria-label={label} className={styles.socialLink}>
+              <a href={href} key={label} aria-label={label} className={styles.socialLink} target="_blank" rel="noopener noreferrer">
                 <Icon width={16} height={16} />
               </a>
             ))}

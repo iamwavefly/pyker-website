@@ -46,7 +46,7 @@ import {
   StarsMinimalisticIcon,
 } from "@solar-icons/react/bold";
 // Solar has no brand marks, so store and social logos stay on Phosphor.
-import { AppleLogo, GooglePlayLogo, InstagramLogo, LinkedinLogo, WhatsappLogo, XLogo } from "@phosphor-icons/react";
+import { AppleLogo, FacebookLogo, GooglePlayLogo, InstagramLogo, LinkedinLogo, TiktokLogo, WhatsappLogo, XLogo } from "@phosphor-icons/react";
 
 type IconProps = {
   width?: number | string;
@@ -119,6 +119,8 @@ export const SparkIcon = solar(StarsMinimalisticIcon);
 export const AppleLogoIcon = brand(AppleLogo);
 export const GooglePlayLogoIcon = brand(GooglePlayLogo);
 export const XLogoIcon = brand(XLogo);
+export const FacebookLogoIcon = brand(FacebookLogo);
 export const InstagramLogoIcon = brand(InstagramLogo);
 export const LinkedinLogoIcon = brand(LinkedinLogo);
+export const TiktokLogoIcon = brand(TiktokLogo);
 export const WhatsappLogoIcon = brand(WhatsappLogo);
