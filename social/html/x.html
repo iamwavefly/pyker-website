@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="banner.css">
+<style>
+  /* X header, 1500x500, matching the Facebook cover (dark J background, phones cutting across).
+     The profile photo covers roughly x 40-380, y 330 down, so copy stays top-left. */
+  .canvas, body { background: #070609; }
+  .canvas { width: 1500px; height: 500px; }
+  .light {
+    background:
+      radial-gradient(circle 340px at 1150px 250px, rgba(107, 78, 255, 0.28), rgba(107, 78, 255, 0) 100%),
+      radial-gradient(circle 210px at 980px 330px, rgba(247, 169, 72, 0.12), rgba(247, 169, 72, 0) 100%),
+      #070609;
+  }
+  .contours { position: absolute; left: 720px; top: -190px; width: 960px; opacity: 0.075; transform: rotate(-10deg); mix-blend-mode: screen;
+    -webkit-mask-image: radial-gradient(ellipse 60% 70% at 55% 55%, #000 30%, transparent 75%); }
+
+  .copy { position: absolute; left: 104px; top: 66px; width: 640px; }
+  .headline { margin-top: 0; font-size: 64px; }
+  .swash { bottom: -12px; height: 15px; }
+  .sub { margin-top: 24px; font-size: 19px; }
+  .values { margin-top: 16px; font-size: 16px; color: rgba(255, 255, 255, 0.72); }
+
+  .stage { left: 0; top: 0; width: 1500px; height: 500px; }
+  .phone.back { --w: 300px; left: 1170px; top: -70px; transform: rotateY(-16deg) rotateX(6deg) rotateZ(20deg) translateZ(-70px); }
+  .phone.front { --w: 320px; left: 1010px; top: -10px; transform: rotateY(-16deg) rotateX(6deg) rotateZ(20deg); }
+
+  .notif-stack { left: 815px; top: 250px; --nw: 330px; transform: rotate(-4deg); }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="light"></div>
+  <img class="contours" src="../assets/card-contours.png" alt="">
+
+  <div class="stage">
+    <div class="phone back">
+      <div class="btn" style="top:18%;height:6%"></div><div class="btn r" style="top:24%;height:11%"></div>
+      <div class="screen"><img src="../../public/screens/virtual-card.webp" alt=""><div class="island"></div><div class="glare"></div></div>
+    </div>
+    <div class="phone front">
+      <div class="btn" style="top:17%;height:5%"></div><div class="btn" style="top:24%;height:9%"></div><div class="btn r" style="top:22%;height:12%"></div>
+      <div class="screen"><img src="../../public/screens/sell-success.webp" alt=""><div class="island"></div><div class="glare"></div></div>
+    </div>
+  </div>
+
+  <div class="notif-stack">
+    <div class="notif ghost ghost2"></div>
+    <div class="notif ghost"></div>
+    <div class="notif">
+      <div class="n-head"><img src="../../public/pyker-icon.png" alt="">Pyker<span class="time">now</span></div>
+      <div class="n-title">Credit alert <span class="n-pill">Successful</span></div>
+      <div class="n-amount">₦365,878.50</div>
+      <div class="n-body">You sold 0.004 BTC. Naira is in your wallet.</div>
+    </div>
+  </div>
+
+  <div class="copy">
+    <h1 class="headline">Never settle<br>for <span class="less">less.<svg class="swash" viewBox="0 0 200 22" preserveAspectRatio="none"><path d="M4 15 C 40 6, 95 4, 196 9" fill="none" stroke="#d4f55c" stroke-width="5" stroke-linecap="round"/></svg></span></h1>
+    <p class="sub">More naira for your crypto. Better FX on your dollar card.</p>
+    <div class="values">
+      <span><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="#0b0918" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Low spread</span>
+      <b class="dot"></b>
+      <span><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="#0b0918" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Low fees</span>
+      <b class="dot"></b>
+      <span><i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="#0b0918" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Better FX</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

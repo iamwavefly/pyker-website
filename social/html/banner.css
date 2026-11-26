@@ -1,0 +1,82 @@
+/* Shared styles for the social banners in social/html/. Rendered with headless Chrome by social/render-html.mjs. */
+@font-face { font-family: "Clash Display"; font-weight: 600; src: url(../../public/fonts/clash-display-600.woff2) format("woff2"); }
+@font-face { font-family: "Clash Display"; font-weight: 500; src: url(../../public/fonts/clash-display-500.woff2) format("woff2"); }
+@font-face { font-family: "Mona Sans"; font-weight: 200 900; src: url(../../public/fonts/mona-sans-latin.woff2) format("woff2"); }
+
+:root {
+  --ink: #0b0918;
+  --purple: #6b4eff;
+  --deep: #2a178f;
+  --lime: #d4f55c;
+  --text: #ffffff;
+  --muted: rgba(235, 232, 255, 0.66);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--ink); }
+body { font-family: "Mona Sans", system-ui, sans-serif; color: var(--text); -webkit-font-smoothing: antialiased; }
+
+.canvas { position: relative; overflow: hidden; background: var(--ink); }
+
+/* Background */
+.light { position: absolute; inset: 0; }
+
+/* Copy */
+.logo { display: block; }
+.headline { font-family: "Clash Display", sans-serif; font-weight: 600; letter-spacing: -0.035em; line-height: 0.96; }
+.headline .less { position: relative; color: var(--lime); display: inline-block; }
+.headline .swash { position: absolute; left: -2%; width: 104%; }
+.sub { color: var(--muted); line-height: 1.4; font-weight: 450; }
+.values { display: flex; gap: 0.9em; align-items: center; color: rgba(255, 255, 255, 0.92); font-weight: 550; }
+.values span { display: inline-flex; align-items: center; gap: 0.42em; white-space: nowrap; }
+.values i { width: 1.15em; height: 1.15em; border-radius: 50%; background: var(--lime); display: inline-grid; place-items: center; }
+.values i svg { width: 62%; height: 62%; }
+.values .dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); }
+
+/* Phone mockup */
+.stage { position: absolute; perspective: 2600px; transform-style: preserve-3d; }
+.phone {
+  position: absolute; width: var(--w); aspect-ratio: 9 / 19.4;
+  border-radius: calc(var(--w) * 0.155); padding: calc(var(--w) * 0.03);
+  background: linear-gradient(150deg, #4a4563 0%, #1a1726 22%, #0c0a13 55%, #2b2740 80%, #57517a 100%);
+  box-shadow:
+    inset 0 0 0 1.5px rgba(255, 255, 255, 0.16),
+    inset 0 0 0 calc(var(--w) * 0.012) #08070d,
+    0 calc(var(--w) * 0.2) calc(var(--w) * 0.3) rgba(4, 2, 16, 0.65),
+    0 calc(var(--w) * 0.05) calc(var(--w) * 0.08) rgba(30, 14, 110, 0.45);
+  transform-style: preserve-3d;
+}
+.phone .btn { position: absolute; left: -3px; width: 4px; border-radius: 2px; background: linear-gradient(90deg, #5a5478, #1c1a28); }
+.phone .btn.r { left: auto; right: -3px; }
+.screen { position: relative; width: 100%; height: 100%; border-radius: calc(var(--w) * 0.125); overflow: hidden; background: #fff; }
+.screen img { width: 100%; display: block; }
+.island { position: absolute; top: 1.9%; left: 50%; transform: translateX(-50%); width: 31%; height: 3.4%; border-radius: 99px; background: #000; }
+.glare { position: absolute; inset: 0; background: linear-gradient(118deg, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0.06) 26%, rgba(255, 255, 255, 0) 42%); }
+.phone.back { filter: blur(0.8px) brightness(0.8) saturate(0.95); }
+
+/* iOS-style notification */
+.notif-stack { position: absolute; }
+.notif {
+  position: relative; width: var(--nw);
+  padding: calc(var(--nw) * 0.045) calc(var(--nw) * 0.05) calc(var(--nw) * 0.05);
+  border-radius: calc(var(--nw) * 0.075);
+  background: rgba(250, 249, 255, 0.82);
+  backdrop-filter: blur(22px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 calc(var(--nw) * 0.09) calc(var(--nw) * 0.16) rgba(4, 2, 16, 0.55), 0 0 calc(var(--nw) * 0.12) rgba(212, 245, 92, 0.18);
+  color: #15122b; font-size: calc(var(--nw) * 0.038);
+}
+/* Stacked notifications peeking out under the main one, like iOS. */
+.notif.ghost {
+  position: absolute; top: 0; left: 4.5%; right: 4.5%; width: auto; height: 100%;
+  background: rgba(250, 249, 255, 0.2); border-color: rgba(255, 255, 255, 0.22); box-shadow: none;
+  backdrop-filter: blur(10px); transform: translateY(calc(var(--nw) * 0.03));
+}
+.notif.ghost2 { left: 9%; right: 9%; background: rgba(250, 249, 255, 0.09); border-color: rgba(255, 255, 255, 0.12); transform: translateY(calc(var(--nw) * 0.058)); }
+.n-head { display: flex; align-items: center; gap: 0.6em; color: #6a6681; font-size: 0.86em; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600; }
+.n-head img { width: 1.9em; height: 1.9em; border-radius: 0.5em; }
+.n-head .time { margin-left: auto; text-transform: none; letter-spacing: 0; font-weight: 500; }
+.n-title { margin-top: 0.75em; display: flex; align-items: center; gap: 0.5em; font-weight: 650; font-size: 1.12em; }
+.n-pill { font-size: 0.7em; font-weight: 600; color: #fff; background: #02c076; padding: 0.22em 0.7em; border-radius: 99px; }
+.n-amount { font-family: "Clash Display", sans-serif; font-weight: 600; font-size: 2.55em; letter-spacing: -0.02em; line-height: 1.05; margin-top: 0.12em; }
+.n-body { color: #5d5973; margin-top: 0.3em; }
